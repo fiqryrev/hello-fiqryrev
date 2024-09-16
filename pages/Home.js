@@ -2,13 +2,13 @@
 
 import React from 'react';
 import Layout from '../src/components/Layout';
+import Hero from '../src/components/Hero';
 
 const Home = () => {
   return (
     <Layout>
-      <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
-      <p className="text-xl">Hi, I'm [Your Name]. I'm a passionate developer and tech enthusiast.</p>
-      {/* Add more content here */}
+      <Hero />
+      {/* You can add other sections below */}
     </Layout>
   );
 };
