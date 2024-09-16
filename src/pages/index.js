@@ -1,5 +1,11 @@
-// File: src/pages/index.js
+import React from 'react';
+   import Layout from '../components/Layout';
 
-import Home from './Home';
-
-export default Home;
+   export default function Home() {
+     return (
+       <Layout>
+         <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
+         <p className="text-xl">Hi, I'm [Your Name]. I'm a passionate developer and tech enthusiast.</p>
+       </Layout>
+     );
+   }
