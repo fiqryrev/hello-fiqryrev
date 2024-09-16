@@ -1,9 +1,9 @@
 // src/pages/Blog.js
 import React from 'react';
-import Header from '../components/Header';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
-import Chatbot from '../components/Chatbot';
+import Header from '../src/components/Header';
+import Navigation from '../src/components/Navigation';
+import Footer from '../src/components/Footer';
+import Chatbot from '../src/components/Chatbot';
 
 const BlogPost = ({ title, date, excerpt, link }) => (
   <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
