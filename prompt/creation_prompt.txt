@@ -1,0 +1,102 @@
+You are tasked with creating a personal portfolio website using Tailwind CSS, with a tech-related design and a chatbot section connected to FlowiseAI. Follow these instructions carefully to set up the project structure and develop the website iteratively.
+
+Project Name: <project_name>fiqry_personal_profile</project_name>
+GitHub Username: <github_username>fiqryrev</github_username>
+
+1. Set up the GitHub repository:
+   Create a new repository on GitHub with the name fiqry_personal_profile. Clone it to your local machine.
+
+2. Create the following directory structure in your local repository:
+   <directory_structure>
+   fiqry_personal_profile/
+   ├── src/
+   │   ├── components/
+   │   │   ├── Header.js
+   │   │   ├── Footer.js
+   │   │   ├── Navigation.js
+   │   │   └── Chatbot.js
+   │   ├── pages/
+   │   │   ├── Home.js
+   │   │   ├── About.js
+   │   │   ├── Skills.js
+   │   │   ├── Projects.js
+   │   │   └── Blog.js
+   │   ├── styles/
+   │   │   └── globals.css
+   │   └── utils/
+   │       └── api.js
+   ├── public/
+   │   └── images/
+   ├── tests/
+   ├── .gitignore
+   ├── package.json
+   ├── tailwind.config.js
+   └── README.md
+   </directory_structure>
+
+3. Initialize the project:
+   a. Run `npm init -y` to create a package.json file.
+   b. Install necessary dependencies:
+      ```
+      npm install react react-dom next tailwindcss postcss autoprefixer
+      ```
+   c. Set up Tailwind CSS:
+      - Run `npx tailwindcss init -p`
+      - Update `tailwind.config.js` to include your source files:
+        ```javascript
+        module.exports = {
+          content: [
+            "./src/**/*.{js,ts,jsx,tsx}",
+          ],
+          theme: {
+            extend: {},
+          },
+          plugins: [],
+        }
+        ```
+      - Create a `globals.css` file in the `styles` directory and add:
+        ```css
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        ```
+
+4. Develop the website components and pages:
+   For each file in the `components` and `pages` directories, create a basic React component. Start with a minimal structure and iteratively add content and styling.
+
+5. Implement the required menu items:
+   a. Personal details (career path, etc.):
+      - Create an `About.js` page with sections for your bio, career highlights, and goals.
+   b. Technical skills:
+      - Develop a `Skills.js` page listing your technical skills, tools, and certifications.
+   c. Projects:
+      - Build a `Projects.js` page showcasing your internal and external projects from recent companies.
+   d. Personal blogs:
+      - Set up a `Blog.js` page to display your blog posts or link to an external blog platform.
+
+6. Integrate the chatbot:
+   a. In the `Chatbot.js` component, create a placeholder for the FlowiseAI chatbot.
+   b. Research and implement the necessary steps to connect the chatbot with FlowiseAI as a RAG-based platform.
+
+7. Style your website:
+   Use Tailwind CSS classes to style your components and pages. Ensure the design is tech-related and visually appealing.
+
+8. Iterative development process:
+   a. Commit your changes frequently with meaningful commit messages.
+   b. Push your changes to the GitHub repository after each significant feature or component is completed.
+   c. Continue to refine and improve your website, adding more details and enhancing the user experience.
+
+9. Testing:
+   Create basic tests for your components and pages in the `tests` directory.
+
+10. Documentation:
+    Update the README.md file with information about your project, including:
+    - Project overview
+    - Technologies used
+    - Setup instructions
+    - Usage guidelines
+
+11. Deployment:
+    Research and choose a suitable platform for deploying your Next.js application (e.g., Vercel, Netlify).
+
+Remember to iterate on each file and component, gradually building up your personal website. Commit and push your changes regularly to your GitHub repository at https://github.com/fiqryrev/fiqry_personal_profile.
