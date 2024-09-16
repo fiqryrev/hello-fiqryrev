@@ -20,7 +20,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "npm install && next build"
+    "vercel-build": "npm run build && tailwindcss -i ./src/styles/globals.css -o ./public/build/tailwind.css"
   },
   "author": "Fiqry Revadiansyah",
   "license": "ISC"
