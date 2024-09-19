@@ -1,0 +1,21 @@
+📦app
+ ┣ 📂blog
+ ┃ ┗ 📜page.tsx
+ ┣ 📂components
+ ┃ ┣ 📜Footer.tsx
+ ┃ ┣ 📜Header.tsx
+ ┃ ┣ 📜HeroSection.tsx
+ ┃ ┣ 📜ProjectsSection.tsx
+ ┃ ┣ 📜SkillsTechStacks.tsx
+ ┃ ┗ 📜WorkExperience.tsx
+ ┣ 📂fonts
+ ┃ ┣ 📜GeistMonoVF.woff
+ ┃ ┣ 📜GeistVF.woff
+ ┃ ┣ 📜Lato-Bold.ttf
+ ┃ ┗ 📜Lato-Regular.ttf
+ ┣ 📂projects
+ ┃ ┗ 📜page.tsx
+ ┣ 📜favicon.ico
+ ┣ 📜globals.css
+ ┣ 📜layout.tsx
+ ┗ 📜page.tsx
