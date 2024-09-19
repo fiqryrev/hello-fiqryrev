@@ -62,6 +62,8 @@ const config: Config = {
 		marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         gradient: "gradient 15s ease infinite",
+		pulse: "pulse var(--duration) ease-out infinite",
+		"border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
       keyframes: {
         "spin-around": {
@@ -95,6 +97,15 @@ const config: Config = {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
           "100%": { backgroundPosition: "0% 50%" },
+        },
+		pulse: {
+			"0%, 100%": { boxShadow: "0 0 0 0 var(--pulse-color)" },
+			"50%": { boxShadow: "0 0 0 5px var(--pulse-color)" },
+		  },
+		  "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
         },
       },
       backgroundSize: {

@@ -12,22 +12,11 @@ const AIBuiltSection: React.FC = () => {
     const maxParticles = 500;
 
     useEffect(() => {
-        const video = videoRef.current;
-        if (video) {
-            video.play().then(() => {
-                console.log("Video started playing successfully");
-            }).catch(error => {
-                console.error("Error playing the video:", error);
-            });
-        }
-    }, [isVideoLoaded]);
-
-    useEffect(() => {
         const createParticle = () => {
             if (particleCount < maxParticles) {
                 const particle = document.createElement('div');
                 particle.classList.add(styles.particle);
-                particle.style.left = '0'; // Start from the left
+                particle.style.left = '0';
                 particle.style.top = `${Math.random() * 100}%`;
                 particle.style.animationDuration = `${Math.random() * 2 + 3}s`;
                 document.querySelector(`.${styles.wormholeBackground}`)?.appendChild(particle);
@@ -48,21 +37,41 @@ const AIBuiltSection: React.FC = () => {
         };
     }, [particleCount]);
 
+    useEffect(() => {
+        const video = videoRef.current;
+        if (video) {
+            const playVideo = () => {
+                video.play().catch(error => {
+                    console.error("Error playing the video:", error);
+                });
+            };
+
+            if (isVideoLoaded) {
+                playVideo();
+            }
+
+            video.addEventListener('canplaythrough', playVideo);
+
+            return () => {
+                video.removeEventListener('canplaythrough', playVideo);
+            };
+        }
+    }, [isVideoLoaded]);
+
     return (
         <section className={`${styles.gradientBackground} relative`}>
+            <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent z-30"></div>
             <video
                 ref={videoRef}
                 className="absolute top-0 left-0 w-full h-full object-cover opacity-50"
-                src="/images/background/blackhole.webm"
                 loop
                 muted
                 playsInline
-                onLoadedData={() => {
-                    console.log("Video loaded");
-                    setIsVideoLoaded(true);
-                }}
-                onError={(e) => console.error("Video error:", e)}
-            />
+                onLoadedData={() => setIsVideoLoaded(true)}
+            >
+                <source src="/images/background/blackhole.webm" type="video/webm" />
+                Your browser does not support the video tag.
+            </video>
             <div className={`${styles.wormholeBackground} z-10`}></div>
             <div className="container relative z-20 mx-auto text-center text-white h-screen flex flex-col justify-center items-center">
                 <h2 className="text-3xl font-bold mb-8">This website is made using</h2>
@@ -77,8 +86,8 @@ const AIBuiltSection: React.FC = () => {
                         words={["Claude 3.5 Sonnet", "ChatGPT 4o", "Gemini 1.5 Flash"]}
                     />
                 </p>
-                
             </div>
+            <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent z-30"></div>
         </section>
     );
 };

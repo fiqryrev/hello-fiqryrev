@@ -1,9 +1,8 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import SparklesText from "@/components/magicui/sparkles-text";
-import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import Marquee from "@/components/magicui/marquee";
 import ShinyButton from "@/components/magicui/shiny-button";
 
@@ -41,12 +40,113 @@ const techStacks = [
 ];
 
 const AnimatedBackground: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    setCanvasSize();
+
+    const stars: { x: number; y: number; radius: number; opacity: number; speed: number }[] = [];
+
+    // Create stars
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        opacity: Math.random(),
+        speed: 0.1 + Math.random() * 0.3
+      });
+    }
+
+    function drawStars() {
+      if (!canvas || !ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw background gradient
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#000000');
+      gradient.addColorStop(1, '#0f172a');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw stars
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.fill();
+
+        // Move star
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+
+        // Twinkle effect
+        star.opacity = Math.sin(Date.now() * 0.001 * star.speed) * 0.5 + 0.5;
+      });
+
+      // Draw light from below
+      const lightGradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height + 500, 0,
+        canvas.width / 2, canvas.height + 500, canvas.height
+      );
+      lightGradient.addColorStop(0, 'rgba(66, 103, 212, 0.3)');
+      lightGradient.addColorStop(1, 'rgba(66, 103, 212, 0)');
+      ctx.fillStyle = lightGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      requestAnimationFrame(drawStars);
+    }
+
+    drawStars();
+
+    const handleResize = () => {
+      setCanvasSize();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
+};
+
+const BottomCurve: React.FC = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black bg-400% animate-gradient"></div>
-      <div className="absolute inset-0 opacity-20">
-        <AnimatedGridPattern />
-      </div>
+    <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+      <svg
+        viewBox="0 0 1440 75"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-auto"
+        preserveAspectRatio="none"
+      >
+        {/* Apply the gradient to a rectangle that covers the entire SVG */}
+        <rect width="1440" height="600" fill="url(#lightSpectrum)" />
+
+        {/* The bottom curve */}
+        <path
+          d="M0 600V300C240 100 480 0 720 0C960 0 1200 100 1440 300V600H0Z"
+          fill="#000000"
+        />
+      </svg>
     </div>
   );
 };
@@ -135,20 +235,31 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <AnimatedBackground />
-      <div className="container mx-auto px-4 z-10">
+      <div className="absolute inset-0 z-0">
+        <video
+          src="/videos/effect_ray.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-50"
+        />
+      </div>
+      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent z-30"></div>
+      <div className="container mx-auto px-4 z-10 relative">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-6xl font-bold mb-4 text-blue-500 font-lato"><SparklesText text="Fiqry Revadiansyah"/></h1>
             
             <p className="text-xl mb-6 text-gray-300 font-lato">
-            A <b>professional leader</b> with <b>6</b> years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions.
+              A <b>professional leader</b> with <b>6</b> years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions.
             </p>
-            <div className="flex space-x-4 mb-6">
+            <div className="flex flex-wrap gap-4 mb-6">
               <ShinyButton text="Data Scientist" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
               <ShinyButton text="Data Analyst" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
               <ShinyButton text="Data Engineer" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
             </div>
-            <div className="flex space-x-4 mb-6">
+            <div className="flex flex-wrap gap-4 mb-6">
               <ShinyButton text="AI Product Manager" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
               <ShinyButton text="AI & Prompt Engineer" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
               <ShinyButton text="Speaker & Mentor" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
@@ -159,6 +270,8 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
       </div>
+      <BottomCurve />
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent z-30"></div>
     </section>
   );
 };

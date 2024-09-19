@@ -241,7 +241,7 @@ const speakershipData: SpeakershipData[] = [
     logo: "/images/speakership/speaker_itb_logo.png",
     events: [
       {
-        title: "Business Statistics (MB1201) of School of Business Management ITB - Guest Lecturer",
+        title: "Business Statistics of School of Business Management ITB - Guest Lecturer",
         date: "April 2020",
         description: "Presented a guest lecture 'Statistics as Decision, Business, and Marketing Science in the Disruptive Industry'. The class was attended by 300+ SBM ITB students, with Lecture class of Mr. Meditya Wasesa, Ph.D."
       }
@@ -287,7 +287,7 @@ const speakershipData: SpeakershipData[] = [
       {
         title: "Untan Actuary & Data Science Webinar - Speaker",
         date: "May 2021",
-        description: "Delivered a webinar about 'The Role of Actuary Science and Data Science in Industry 4.0 Era' which was attended by 200+ participants."
+        description: "Delivered a webinar about 'The Role of Actuary Science and Data Science in Industry 4.0 Era', which was attended by 200+ participants."
       }
     ]
   },
@@ -594,10 +594,11 @@ const WorkExperience: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-900 text-white">
+    <section className="py-16 bg-black text-white"> 
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-8 text-center text-blue-500">Work Experience</h2>
-        <h3 className="text-2xl font-bold mb-4 text-center">Employment History</h3>
+      <h4 className="text-lg font-medium mb-4 text-center text-gray-400 font-lato">Explore more by selecting the logo</h4>
+      <h2 className="text-4xl font-bold mb-8 text-center text-blue-500 font-lato">Professional Experience</h2>
+      <h3 className="text-2xl font-semibold mb-4 text-center font-lato">Career Highlights</h3>
         <div className="flex justify-center items-center flex-wrap mb-12">
           {workRelatedCompanies.map((company: Company, index: number) => (
             <div key={index} className="w-1/3 sm:w-1/4 md:w-1/4 p-2">
@@ -613,8 +614,7 @@ const WorkExperience: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <h3 className="text-2xl font-bold mb-4 text-center">Speakership & Workshop</h3>
+        <h3 className="text-2xl font-semibold mb-4 text-center font-lato">Speakership and Mentorship</h3>
         <div className="flex justify-center items-center flex-wrap mb-16">
           {speakershipCompanies.map((company: Company, index: number) => (
             <div key={index} className="w-1/3 sm:w-1/4 md:w-1/5 p-2">
@@ -630,8 +630,7 @@ const WorkExperience: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <h3 className="text-2xl font-bold mb-4 text-center">Technical Stacks</h3>
+        <h3 className="text-2xl font-semibold mb-4 text-center font-lato">Technical Competencies</h3>
         <div className="relative mt-6 overflow-hidden">
           <Marquee
             className="[--duration:60s]"
