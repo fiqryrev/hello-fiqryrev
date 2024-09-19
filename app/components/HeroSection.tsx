@@ -2,8 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { cn } from "@/lib/utils";
 import SparklesText from "@/components/magicui/sparkles-text";
 import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import Marquee from "@/components/magicui/marquee";

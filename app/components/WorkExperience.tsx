@@ -317,7 +317,7 @@ const WorkExperience: React.FC = () => {
                   src={company.img}
                   alt={`${company.name} logo`}
                   width={300}
-                  height={20}
+                  height={75}
                   objectFit="contain"
                 />
               </div>
@@ -334,7 +334,7 @@ const WorkExperience: React.FC = () => {
                   src={company.img}
                   alt={`${company.name} logo`}
                   width={150}
-                  height={20}
+                  height={50}
                   objectFit="contain"
                 />
               </a>
@@ -356,10 +356,12 @@ const WorkExperience: React.FC = () => {
                 rel="noopener noreferrer"
                 className="mx-6 flex flex-col items-center"
               >
-                <img
+                <Image
                   src={tech.img}
                   alt={`${tech.name} logo`}
-                  className="h-16 w-16 object-contain"
+                  width={64}
+                  height={64}
+                  objectFit="contain"
                 />
                 <p className="mt-2 text-center text-sm">{tech.name}</p>
               </a>
