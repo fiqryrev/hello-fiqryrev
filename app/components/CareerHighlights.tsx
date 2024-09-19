@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from 'next/image';
-import { BorderBeam } from "@/components/magicui/border-beam";
 
 interface HighlightEvent {
   id: number;
