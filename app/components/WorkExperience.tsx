@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Marquee from "@/components/magicui/marquee";
 import ShineBorder from "@/components/magicui/shine-border";
@@ -30,6 +30,16 @@ interface CompanyData {
   techStacks: string[];
 }
 
+interface SpeakershipData {
+  university: string;
+  logo: string;
+  events: {
+    title: string;
+    date: string;
+    description: string;
+  }[];
+}
+
 const workRelatedCompanies: Company[] = [
   { name: "Paper.id", img: "/images/work_experience/paperid_logo.png", url: "https://www.paper.id" },
   { name: "Ajaib.co.id", img: "/images/work_experience/ajaib_logo.png", url: "https://www.ajaib.co.id" },
@@ -51,7 +61,9 @@ const speakershipCompanies: Company[] = [
   { name: "Universitas Multimedia Nusantara (UMN)", img: "/images/speakership/speaker_umn_logo.png", url: "https://www.umn.ac.id" },
   { name: "IFG", img: "/images/speakership/speaker_ifg_logo.png", url: "https://www.ifg.id" },
   { name: "Bank Mandiri", img: "/images/speakership/speaker_bankmandiri_logo.png", url: "https://www.bankmandiri.co.id" },
-  { name: "Kemenparekraf", img: "/images/speakership/speaker_kemenparekraf_logo.png", url: "https://www.kemenparekraf.go.id" },
+  { name: "Policy Institute for Procurement of Goods/Services of Indonesia", img: "/images/speakership/speaker_lkpp_logo.png", url: "https://www.lkpp.go.id" },
+  { name: "Ministry of Tourism and Creative Economy of Indonesia", img: "/images/speakership/speaker_kemenparekraf_logo.png", url: "https://www.kemenparekraf.go.id" },
+  { name: "Glints", img: "/images/speakership/speaker_glints_logo.png", url: "https://glints.com/id" },
   { name: "Angelhacks Jakarta", img: "/images/speakership/speakership_angelhack_logo.png", url: "https://angelhack.com/hackglobal/jakarta/" },
 ];
 
@@ -212,23 +224,195 @@ Automated regulatory reporting for the Treasury team, reducing manual data reque
   }
 ];
 
+const speakershipData: SpeakershipData[] = [
+  {
+    university: "Universitas Indonesia (UI)",
+    logo: "/images/speakership/speaker_ui_logo.png",
+    events: [
+      {
+        title: "Compfest 14 - Mentor",
+        date: "August 2022",
+        description: "Assigned as a mentor for Compfest 14, guiding teams in building data-driven products and honing their presentation skills. Provided expert advice on implementing industry-standard Data Science practices, ensuring the solutions were both technically robust and strategically aligned with real-world applications."
+      }
+    ]
+  },
+  {
+    university: "Institut Teknologi Bandung (ITB)",
+    logo: "/images/speakership/speaker_itb_logo.png",
+    events: [
+      {
+        title: "Business Statistics (MB1201) of School of Business Management ITB - Guest Lecturer",
+        date: "April 2020",
+        description: "Presented a guest lecture 'Statistics as Decision, Business, and Marketing Science in the Disruptive Industry'. The class was attended by 300+ SBM ITB students, with Lecture class of Mr. Meditya Wasesa, Ph.D."
+      }
+    ]
+  },
+  {
+    university: "Universitas Gadjah Mada (UGM)",
+    logo: "/images/speakership/speaker_ugm_logo.webp",
+    events: [
+      {
+        title: "BukalapakKeKampus Chapter UGM - Speaker",
+        date: "May 2019",
+        description: "Conducted a one day workshop about Data Science short-course in industry. This event was attended by 50+ student participants of UGM."
+      }
+    ]
+  },
+  {
+    university: "Universitas Padjadjaran (Unpad)",
+    logo: "/images/speakership/speaker_unpad_logo.png",
+    events: [
+      {
+        title: "Closing Webinar and Talkshow of Padjadjaran Statistics Olympiad (RASIO) 2023 - Speaker",
+        date: "October 2023",
+        description: "Delivered a closing seminar and talkshow about 'Harnessing the Power of Big Data and Artificial Intelligence: How Generation Z Can Contribute to Achieving SDGs', which was attended by 100+ participants in South East Asia scale."
+      }
+    ]
+  },
+  {
+    university: "ITTP Telkom",
+    logo: "/images/speakership/speaker_ittp_telkom_logo.png",
+    events: [
+      {
+        title: "Dies Natalis (Anniversary) of ITTP Telkom Purwokerto - Speaker",
+        date: "September 2022",
+        description: "Delivered a webinar 'The Asterism Fragments of Data Science', which was attended by 100+ participants ranging from Dean, Lecturers, and students of ITTP Telkom Purwokerto."
+      }
+    ]
+  },
+  {
+    university: "Universitas Tanjungpura (Untan)",
+    logo: "/images/speakership/speaker_untan_logo.png",
+    events: [
+      {
+        title: "Untan Actuary & Data Science Webinar - Speaker",
+        date: "May 2021",
+        description: "Delivered a webinar about 'The Role of Actuary Science and Data Science in Industry 4.0 Era' which was attended by 200+ participants."
+      }
+    ]
+  },
+  {
+    university: "Universitas Negeri Malang (UM)",
+    logo: "/images/speakership/speaker_um_logo.png",
+    events: [
+      {
+        title: "Course Computational Thinking - Guest Lecturer",
+        date: "December 2022",
+        description: "Delivered guest lecture sessions about computational thinking for master degree students of Faculty of Mathematics and Natural Science, with class lecturer of Mr. Deny Setiawan, M.Pd."
+      }
+    ]
+  },
+  {
+    university: "Universitas Multimedia Nusantara (UMN)",
+    logo: "/images/speakership/speaker_umn_logo.png",
+    events: [
+      {
+        title: "Garudahacks 2024 - Speaker",
+        date: "July 2024",
+        description: "Delivered a closing seminar about Paper.id engineering culture about AI and automation, which was attended by 100+ participants internationally."
+      }
+    ]
+  },
+  {
+    university: "IFG",
+    logo: "/images/speakership/speaker_ifg_logo.png",
+    events: [
+      {
+        title: "Data Analytics Corporate Training - Speaker",
+        date: "July 2024",
+        description: "Delivered a two days offline workshop at IFG office about Data Analysis, SQL, and Dashboarding. This workshop was attended by 30+ the top employees of IFG and its subsidiary companies."
+      }
+    ]
+  },
+  {
+    university: "Bank Mandiri",
+    logo: "/images/speakership/speaker_bankmandiri_logo.png",
+    events: [
+      {
+        title: "Data Analytics Corporate Training - Speaker",
+        date: "August 2021",
+        description: "Delivered an online workshop about introduction to data analysis with python. The workshop was attended by 30+ participants."
+      }
+    ]
+  },
+  {
+    university: "Policy Institute for Procurement of Goods/Services of Indonesia",
+    logo: "/images/speakership/speaker_lkpp_logo.png",
+    events: [
+      {
+        title: "Data Analytics Corporate Training - Speaker",
+        date: "June 2023",
+        description: "Delivered an offline workshop about introduction to data analysis with SQL. The workshop was attended by 20+ participants."
+      }
+    ]
+  },
+  {
+    university: "Ministry of Tourism and Creative Economy of Indonesia",
+    logo: "/images/speakership/speaker_kemenparekraf_logo.png",
+    events: [
+      {
+        title: "Data Analytics Corporate Training - Speaker",
+        date: "September 2021",
+        description: "Delivered an offline workshop about introduction to data analysis with SQL. The workshop was attended by 20+ participants."
+      }
+    ]
+  },
+  {
+    university: "Glints",
+    logo: "/images/speakership/speaker_glints_logo.png",
+    events: [
+      {
+        title: "Technical Webinar - Speaker",
+        date: "August 2021",
+        description: "Delivered a webinar about 'Problem Solving with Data Visualization', which was attended by 10+ participants."
+      }
+    ]
+  },
+  {
+    university: "Angelhacks Jakarta",
+    logo: "/images/speakership/speakership_angelhack_logo.png",
+    events: [
+      {
+        title: "Hackathon Jakarta 2024 - City Judge",
+        date: "August 2024",
+        description: "Served as a city judge in Indonesia, managed to review the hackathon submissions of 'Financial Inclusion' topic."
+      }
+    ]
+  }
+];
+
 const CompanyPopup: React.FC<{ company: CompanyData, onClose: () => void, onPrevious: () => void, onNext: () => void }> = ({ company, onClose, onPrevious, onNext }) => {
+  const popupRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        onClose();
+      } else if (event.key === 'ArrowLeft') {
+        onPrevious();
+      } else if (event.key === 'ArrowRight') {
+        onNext();
+      }
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
         onClose();
       }
     };
-    window.addEventListener('keydown', handleEsc);
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [onClose]);
+  }, [onClose, onPrevious, onNext]);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
-      <div className="relative w-full max-w-4xl mx-4 flex items-center">
+      <div ref={popupRef} className="relative w-full max-w-4xl mx-4 flex items-center">
         <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full">
           <ShimmerButton onClick={onPrevious} className="px-10 py-4">
             &larr; Previous
@@ -241,6 +425,7 @@ const CompanyPopup: React.FC<{ company: CompanyData, onClose: () => void, onPrev
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
           >
             <div className="text-white p-8 w-full max-h-[80vh] overflow-y-auto bg-black rounded-lg">
+              {/* Company popup content */}
               <div className="flex flex-col items-center mb-6">
                 <Image
                   src={company.logo}
@@ -287,13 +472,107 @@ const CompanyPopup: React.FC<{ company: CompanyData, onClose: () => void, onPrev
   );
 };
 
+const SpeakershipPopup: React.FC<{
+  data: SpeakershipData;
+  onClose: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
+}> = ({ data, onClose, onPrevious, onNext }) => {
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      } else if (event.key === 'ArrowLeft') {
+        onPrevious();
+      } else if (event.key === 'ArrowRight') {
+        onNext();
+      }
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose, onPrevious, onNext]);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
+      <div ref={popupRef} className="relative w-full max-w-4xl mx-4 flex items-center">
+        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full">
+          <ShimmerButton onClick={onPrevious} className="px-10 py-4">
+            &larr; Previous
+          </ShimmerButton>
+        </div>
+        <div className="relative w-full">
+          <button onClick={onClose} className="absolute top-2 right-2 text-2xl text-white z-10">
+            &times;
+          </button>
+          <ShineBorder
+            className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+            color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
+          >
+            <div className="text-white p-8 w-full max-h-[80vh] overflow-y-auto bg-black rounded-lg">
+              {/* Speakership popup content */}
+              <div className="flex flex-col items-center mb-6">
+                <Image
+                  src={data.logo}
+                  alt={`${data.university} logo`}
+                  width={200}
+                  height={75}
+                  objectFit="contain"
+                />
+                <h2 className="text-2xl font-bold mt-4">{data.university}</h2>
+              </div>
+              {data.events.map((event, index) => (
+                <div key={index} className="mb-6 border-t border-gray-600 pt-4">
+                  <h3 className="text-xl font-semibold">{event.title}</h3>
+                  <p className="text-gray-400 mt-1">{event.date}</p>
+                  <p className="mt-2">{event.description}</p>
+                </div>
+              ))}
+            </div>
+          </ShineBorder>
+        </div>
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full">
+          <ShimmerButton onClick={onNext} className="px-10 py-3">
+            Next &rarr;
+          </ShimmerButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const WorkExperience: React.FC = () => {
   const [showCompanyPopup, setShowCompanyPopup] = useState(false);
   const [selectedCompanyIndex, setSelectedCompanyIndex] = useState(0);
+  const [showSpeakershipPopup, setShowSpeakershipPopup] = useState(false);
+  const [selectedSpeakershipIndex, setSelectedSpeakershipIndex] = useState(0);
 
   const handleCompanyClick = (index: number) => {
     setSelectedCompanyIndex(index);
     setShowCompanyPopup(true);
+  };
+
+  const handleSpeakershipClick = (index: number) => {
+    const speakershipDataIndex = speakershipData.findIndex(
+      (data) => data.university === speakershipCompanies[index].name
+    );
+    if (speakershipDataIndex !== -1) {
+      setSelectedSpeakershipIndex(speakershipDataIndex);
+      setShowSpeakershipPopup(true);
+    }
   };
 
   const handlePrevious = () => {
@@ -302,6 +581,16 @@ const WorkExperience: React.FC = () => {
 
   const handleNext = () => {
     setSelectedCompanyIndex((prevIndex) => (prevIndex + 1) % companyData.length);
+  };
+
+  const handleSpeakershipPrevious = () => {
+    setSelectedSpeakershipIndex((prevIndex) =>
+      prevIndex === 0 ? speakershipData.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleSpeakershipNext = () => {
+    setSelectedSpeakershipIndex((prevIndex) => (prevIndex + 1) % speakershipData.length);
   };
 
   return (
@@ -329,7 +618,7 @@ const WorkExperience: React.FC = () => {
         <div className="flex justify-center items-center flex-wrap mb-16">
           {speakershipCompanies.map((company: Company, index: number) => (
             <div key={index} className="w-1/3 sm:w-1/4 md:w-1/5 p-2">
-              <a href={company.url} target="_blank" rel="noopener noreferrer">
+              <div onClick={() => handleSpeakershipClick(index)} className="cursor-pointer">
                 <Image
                   src={company.img}
                   alt={`${company.name} logo`}
@@ -337,10 +626,11 @@ const WorkExperience: React.FC = () => {
                   height={50}
                   objectFit="contain"
                 />
-              </a>
+              </div>
             </div>
           ))}
         </div>
+
         <h3 className="text-2xl font-bold mb-4 text-center">Technical Stacks</h3>
         <div className="relative mt-6 overflow-hidden">
           <Marquee
@@ -375,6 +665,14 @@ const WorkExperience: React.FC = () => {
           onClose={() => setShowCompanyPopup(false)}
           onPrevious={handlePrevious}
           onNext={handleNext}
+        />
+      )}
+      {showSpeakershipPopup && (
+        <SpeakershipPopup
+          data={speakershipData[selectedSpeakershipIndex]}
+          onClose={() => setShowSpeakershipPopup(false)}
+          onPrevious={handleSpeakershipPrevious}
+          onNext={handleSpeakershipNext}
         />
       )}
     </section>

@@ -141,7 +141,7 @@ const HeroSection: React.FC = () => {
             <h1 className="text-6xl font-bold mb-4 text-blue-500 font-lato"><SparklesText text="Fiqry Revadiansyah"/></h1>
             
             <p className="text-xl mb-6 text-gray-300 font-lato">
-            A <b>leader</b> professional with <b>6</b> years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions.
+            A <b>professional leader</b> with <b>6</b> years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions.
             </p>
             <div className="flex space-x-4 mb-6">
               <ShinyButton text="Data Scientist" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
