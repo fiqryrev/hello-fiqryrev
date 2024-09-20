@@ -115,13 +115,10 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 font-lato">
-      <div className="w-full bg-black" onMouseLeave={handleMouseLeave}>
-        {/* Static background box */}
-        <div className="w-full h-20"></div>
-        
+    <header className={`fixed top-0 left-0 w-full z-50 font-lato transition-colors duration-300 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}>
+      <div className="w-full" onMouseLeave={handleMouseLeave}>
         {/* Menu box */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-black w-3/4 h-20">
+        <div className="mx-auto w-3/4 h-20">
           <nav className="container mx-auto px-6 h-full">
             <div className="flex items-center justify-between h-full">
               {/* Left space (25% for logo) */}
