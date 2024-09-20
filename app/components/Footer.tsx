@@ -27,21 +27,49 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <div>
-            <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-blue-400">About Me</Link></li>
-              <li><Link href="/portfolio" className="hover:text-blue-400">Portfolio</Link></li>
-              <li><Link href="/blog" className="hover:text-blue-400">Blog</Link></li>
-              <li><Link href="https://calendly.com/fiqryrev/letschat" className="hover:text-blue-400">Chat with me</Link></li>
+            <h4 className="text-xl font-semibold mb-4">Solutions</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/solutions/data-ai-product">Data and AI Product</Link> 
+              </li>
+              <li>
+                <Link href="/solutions/data-platform-engineering">Data Platform and Engineering</Link>
+              </li>
+              <li>
+                <Link href="/solutions/search-retrieval">Search and Retrieval</Link>
+              </li>
+              <li>
+                <Link href="/solutions/bi-analytics">Business Intelligence and Analytics</Link>
+              </li>
+              <li>
+                <Link href="/solutions/data-governance-security">Data Governance and Security</Link>
+              </li>
+              <li>
+                <Link href="/solutions/web-development">Web Development</Link>
+              </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-xl font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              <li>Data and AI Consulting</li>
-              <li>Career Coaching</li>
-              <li>Engineering Automation</li>
-              <li>Workshop and Speakership</li>
+            <h4 className="text-xl font-semibold mb-4">Resources</h4>
+            <ul className="space-y-3">
+              < li>
+                <Link href="/resources/blogs">Blogs</Link>
+              </li >
+              <li>
+                <Link href="/resources/presentation-deck">Presentation Deck</Link>
+              </li>
+              <li>
+                <Link href="/resources/case-studies">Case Studies</Link>
+              </li>
+              < li>
+                <Link href="/resources/certifications">Certifications</Link>
+              </li >
+              <li>
+                <Link href="https://calendly.com/fiqryrev/letschat">Chat with Me</Link>
+              </li>
+              < li>
+                <Link href="/about">About</Link>
+              </li >
             </ul>
           </div>
         </div>
