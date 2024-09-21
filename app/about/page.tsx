@@ -123,7 +123,7 @@ export default function About() {
             <p className="text-lg font-light">
                 I leverage cutting-edge technologies to solve complex challenges. From advanced analytics to AI-powered automation, my work bridges the gap between innovation and impact. Together, we create solutions that transform businesses into data-driven powerhouses.
                 <br />
-                Let's build the future of intelligent systems, starting today.
+                Let&apos;s build the future of intelligent systems, starting today.
             </p>
             </div>
             </div>
@@ -139,7 +139,7 @@ export default function About() {
             <p className="text-lg mb-8 text-center">
             Here is my top-notch data warehouse architecture utilizing advanced AI solutions for top tech companies, leading innovations in automation, data governance, and machine learning. With each project, my goal is to make your business smarter, faster, and more secure.
             <br />
-            Let's reshape the way you think about data.
+            Let&apos;s reshape the way you think about data.
             </p>
             <ImageSlider />
           </section>
