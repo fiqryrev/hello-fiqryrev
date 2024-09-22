@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-// import Image from 'next/image';
+import Image from 'next/image';
 
 interface HighlightEvent {
   id: number;
@@ -115,14 +115,18 @@ const CareerHighlights: React.FC = () => {
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
-  const getImageUrl = (imageSrc: string) => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    return `${baseUrl}${imageSrc}`;
-  };
-
-  useEffect(() => {
-    console.log('Current image source:', getImageUrl(events[currentIndex].imageSrc));
-  }, [currentIndex]);
+  const renderImage = (event: HighlightEvent, index: number) => (
+    <div className={`w-full h-64 sm:h-80 relative ${index === currentIndex ? 'sm:w-1/2' : 'hidden sm:block sm:w-1/4'} ${index !== currentIndex ? 'opacity-50 blur-sm' : ''}`}>
+      <Image
+        src={event.imageSrc}
+        alt={event.title}
+        layout="fill"
+        objectFit="cover"
+        className="rounded-lg"
+        priority={index === currentIndex}
+      />
+    </div>
+  );
 
   return (
     <section className="bg-black text-white py-8 sm:py-16">
@@ -138,57 +142,9 @@ const CareerHighlights: React.FC = () => {
           <button onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 text-3xl text-white opacity-75 hover:opacity-100 transition-opacity duration-300">&lt;</button>
           
           <div className="flex justify-center items-center">
-            {/* Mobile View: Single Image */}
-            <div className="sm:hidden w-full h-64 relative">
-              <img 
-                src={getImageUrl(events[currentIndex].imageSrc)}
-                alt={events[currentIndex].title} 
-                className="w-full h-full object-cover rounded-lg"
-                onError={(e) => {
-                  console.error('Error loading image:', e);
-                  (e.target as HTMLImageElement).src = '/images/placeholder.jpg';
-                }}
-              />
-            </div>
-
-            {/* Desktop View: Three Images */}
-            <div className="hidden sm:flex items-center space-x-4">
-              <div className="w-1/4 h-48 md:h-64 lg:h-80 relative opacity-50 blur-sm">
-                <img 
-                  src={getImageUrl(events[(currentIndex - 1 + events.length) % events.length].imageSrc)}
-                  alt="Previous Event" 
-                  className="w-full h-full object-cover rounded-lg"
-                  onError={(e) => {
-                    console.error('Error loading image:', e);
-                    (e.target as HTMLImageElement).src = '/images/placeholder.jpg';
-                  }}
-                />
-              </div>
-
-              <div className="w-1/2 h-64 md:h-80 lg:h-96 relative">
-                <img 
-                  src={getImageUrl(events[currentIndex].imageSrc)}
-                  alt={events[currentIndex].title} 
-                  className="w-full h-full object-cover rounded-lg"
-                  onError={(e) => {
-                    console.error('Error loading image:', e);
-                    (e.target as HTMLImageElement).src = '/images/placeholder.jpg';
-                  }}
-                />
-              </div>
-              
-              <div className="w-1/4 h-48 md:h-64 lg:h-80 relative opacity-50 blur-sm">
-                <img 
-                  src={getImageUrl(events[(currentIndex + 1) % events.length].imageSrc)}
-                  alt="Next Event" 
-                  className="w-full h-full object-cover rounded-lg"
-                  onError={(e) => {
-                    console.error('Error loading image:', e);
-                    (e.target as HTMLImageElement).src = '/images/placeholder.jpg';
-                  }}
-                />
-              </div>
-            </div>
+            {renderImage(events[(currentIndex - 1 + events.length) % events.length], (currentIndex - 1 + events.length) % events.length)}
+            {renderImage(events[currentIndex], currentIndex)}
+            {renderImage(events[(currentIndex + 1) % events.length], (currentIndex + 1) % events.length)}
           </div>
 
           <button onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 text-3xl text-white opacity-75 hover:opacity-100 transition-opacity duration-300">&gt;</button>
