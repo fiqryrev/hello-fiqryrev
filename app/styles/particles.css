@@ -35,3 +35,20 @@
     opacity: 0;
   }
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .particle {
+    width: 2px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .particle {
+    width: 1px;
+    height: 1px;
+  }
+}
+
+/* Adjust the number of particles for smaller screens in the JavaScript code */

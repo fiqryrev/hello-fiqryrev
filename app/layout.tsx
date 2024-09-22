@@ -18,9 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body className={`${inter.className} bg-black text-white min-h-screen flex flex-col`}>
         <Header />
-        {children}
+        <main className="flex-grow w-full">
+          {children}
+        </main>
         <Footer />
         <div suppressHydrationWarning>
           <ScrollToTopButton />

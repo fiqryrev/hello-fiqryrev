@@ -57,7 +57,7 @@ const ImageSlider = () => {
     return (
       <div
         ref={sliderRef}
-        className="relative w-full h-[400px] md:h-[750px] overflow-hidden cursor-ew-resize" // Increased height here
+        className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden cursor-ew-resize"
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}
       >
@@ -110,43 +110,43 @@ export default function About() {
     <div className="min-h-screen bg-black text-white relative">
       <ParticleEffect />
       <div className="relative z-10">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
           {/* Main Title Section */}
-            <div className="flex flex-col md:flex-row justify-center items-center mt-16 mb-16"> {/* Made responsive */}
-            <div className="text-center md:text-left md:w-1/2"> {/* Adjusted for responsiveness */}
-            <h1 className="text-4xl md:text-5xl font-lato mb-6">
-                Elevating Your Vision with <br />
+          <div className="flex flex-col md:flex-row justify-center items-center mt-8 sm:mt-12 md:mt-16 mb-8 sm:mb-12 md:mb-16">
+            <div className="text-center md:text-left md:w-1/2 mb-6 md:mb-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-lato mb-4 sm:mb-6">
+                Elevating Your Vision with <br className="hidden sm:inline" />
                 Data and AI Innovation
-            </h1>
+              </h1>
             </div>
-            <div className="text-center md:text-right md:w-1/2 mt-4 md:mt-0 md:ml-8"> {/* Adjusted for responsiveness */}
-            <p className="text-lg font-light">
+            <div className="text-center md:text-right md:w-1/2 md:pl-8">
+              <p className="text-base sm:text-lg font-light">
                 I leverage cutting-edge technologies to solve complex challenges. From advanced analytics to AI-powered automation, my work bridges the gap between innovation and impact. Together, we create solutions that transform businesses into data-driven powerhouses.
-                <br />
+                <br className="hidden sm:inline" />
                 Let&apos;s build the future of intelligent systems, starting today.
-            </p>
+              </p>
             </div>
-            </div>
+          </div>
   
           {/* Separator Line */}
-          <div className="border-t border-gray-500 my-8"></div>
+          <div className="border-t border-gray-500 my-6 sm:my-8"></div>
   
           {/* Case Study Section */}
-          <section className="mb-12 bg-gray-900 bg-opacity-70 p-8 rounded-lg shadow-md">
-            <h1 className="text-3xl font-lato font-bold text-center mb-6">
-                Case Study - Modernize Data Warehouse Architecture
+          <section className="mb-8 sm:mb-12 bg-gray-900 bg-opacity-70 p-4 sm:p-6 md:p-8 rounded-lg shadow-md">
+            <h1 className="text-2xl sm:text-3xl font-lato font-bold text-center mb-4 sm:mb-6">
+              Case Study - Modernize Data Warehouse Architecture
             </h1>
-            <p className="text-lg mb-8 text-center">
-            Here is my top-notch data warehouse architecture utilizing advanced AI solutions for top tech companies, leading innovations in automation, data governance, and machine learning. With each project, my goal is to make your business smarter, faster, and more secure.
-            <br />
-            Let&apos;s reshape the way you think about data.
+            <p className="text-base sm:text-lg mb-6 sm:mb-8 text-center">
+              Here is my top-notch data warehouse architecture utilizing advanced AI solutions for top tech companies, leading innovations in automation, data governance, and machine learning. With each project, my goal is to make your business smarter, faster, and more secure.
+              <br className="hidden sm:inline" />
+              Let&apos;s reshape the way you think about data.
             </p>
             <ImageSlider />
           </section>
   
           {/* Inquiry Form */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Send Your Inquiries</h2>
+          <section className="mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">Send Your Inquiries</h2>
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
               <textarea
                 className="w-full p-3 border border-gray-600 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white"
