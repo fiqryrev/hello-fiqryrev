@@ -82,13 +82,13 @@ const Header: React.FC = () => {
   const ResourcesSubMenu: React.FC = () => (
     <div className="flex flex-col md:flex-row">
       <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-0">
-        <ResourcesMenuItem icon="📝" text="Blog" description="Read the writings about data, hobbies, etc" href="/blog" />
-        <ResourcesMenuItem icon="🎓" text="Certifications" description="Get informed about my certifications" href="/certifications" />
-        <ResourcesMenuItem icon="🖥️" text="Presentation Deck" description="Visit my latest presentation deck" href="/presentation-deck" />
-        <ResourcesMenuItem icon="📊" text="Case Studies" description="Latest news, tips, and best practices" href="/case-studies" />
+        <ResourcesMenuItem icon="📝" text="Blog" description="Read the writings about data, hobbies, etc" href="/resources/blog" />
+        <ResourcesMenuItem icon="🎓" text="Certifications" description="Get informed about my certifications" href="/resources/certifications" />
+        <ResourcesMenuItem icon="🖥️" text="Presentation Deck" description="Visit my latest presentation deck" href="/resources/presentation-deck" />
+        <ResourcesMenuItem icon="📊" text="Case Studies" description="Latest news, tips, and best practices" href="/resources/case-studies" />
       </div>
       <div className="w-full md:w-1/4 flex border-t md:border-t-0 md:border-l border-gray-700">
-        <Link href="/case-studies/multimodal-ocr" className="flex items-center w-full">
+        <Link href="/resources/case-studies/multimodal-ocr" className="flex items-center w-full">
           <div className="w-1/3 h-full flex items-center justify-center p-2">
             <div className="relative w-full h-0 pb-[100%]">
               <Image
@@ -121,7 +121,7 @@ const Header: React.FC = () => {
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 font-lato transition-colors duration-300 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}>
-      <div className="w-full" onMouseLeave={handleMouseLeave}>
+      <div className="relative w-full" onMouseLeave={handleMouseLeave}>
         {/* Menu box */}
         <div className="mx-auto w-full md:w-3/4 h-20">
           <nav className="container mx-auto px-4 md:px-6 h-full">
@@ -198,7 +198,7 @@ const Header: React.FC = () => {
 
         {/* Submenu background box */}
         {activeSubmenu && (
-          <div className="w-full bg-black">
+          <div className="absolute left-0 w-full bg-black shadow-lg">
             {/* Submenu content box */}
             <div className="mx-auto bg-black w-full md:w-[900px]">
               <div className="w-full mx-auto">

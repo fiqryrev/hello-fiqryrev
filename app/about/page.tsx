@@ -137,9 +137,7 @@ export default function About() {
               Case Study - Modernize Data Warehouse Architecture
             </h1>
             <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 text-center">
-              Here is my top-notch data warehouse architecture utilizing advanced AI solutions for top tech companies, leading innovations in automation, data governance, and machine learning. With each project, my goal is to make your business smarter, faster, and more secure.
-              <br className="hidden sm:inline" />
-              Let&apos;s reshape the way you think about data.
+              Here is my top-notch data warehouse architecture utilizing advanced AI solutions for top tech companies, leading innovations in automation, data governance, and machine learning. This transformation modernizes data warehouse architecture by integrating AI-powered tools like dbt and Google Gemini for automated SQL generation, metadata management, and real-time data processing.
             </p>
             <ImageSlider />
           </section>
