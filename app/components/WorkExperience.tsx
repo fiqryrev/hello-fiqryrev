@@ -6,6 +6,7 @@ import Marquee from "@/components/magicui/marquee";
 import ShineBorder from "@/components/magicui/shine-border";
 import ShimmerButton from "@/components/ui/shimmer-button";
 
+
 interface Company {
   name: string;
   img: string;
@@ -411,62 +412,60 @@ const CompanyPopup: React.FC<{ company: CompanyData, onClose: () => void, onPrev
   }, [onClose, onPrevious, onNext]);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
-      <div ref={popupRef} className="relative w-full max-w-4xl mx-4 flex items-center">
-        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full">
-          <ShimmerButton onClick={onPrevious} className="px-10 py-4">
-            &larr; Previous
-          </ShimmerButton>
-        </div>
-        <div className="relative w-full">
-          <button onClick={onClose} className="absolute top-2 right-2 text-2xl text-white z-10">&times;</button>
-          <ShineBorder
-            className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
-            color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-          >
-            <div className="text-white p-8 w-full max-h-[80vh] overflow-y-auto bg-black rounded-lg">
-              {/* Company popup content */}
-              <div className="flex flex-col items-center mb-6">
-                <Image
-                  src={company.logo}
-                  alt={`${company.name} logo`}
-                  width={200}
-                  height={75}
-                  objectFit="contain"
-                />
-                <div className="text-center mt-4">
-                  <h2 className="text-2xl font-bold">{company.position}</h2>
-                  <p className="text-gray-400 mt-2">{company.duration}</p>
-                  <p className="text-blue-500 font-semibold mt-1">{company.ratio}</p>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <p>{company.company_description}</p>
-              </div>
-
-              <div className="mb-6">
-                <p>{company.description}</p>
-              </div>
-
-              <div className="border-t border-gray-600 pt-6">
-                <h3 className="text-xl font-bold mb-4 text-center">Highlight Projects</h3>
-                <Marquee className="[--duration:30s]" pauseOnHover={true} gradient={false}>
-                  {company.highlightProjects.map((project: string, index: number) => (
-                    <div key={index} className="mx-4 bg-gray-800 p-3 rounded">
-                      <p className="text-sm font-semibold">{project}</p>
-                    </div>
-                  ))}
-                </Marquee>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300 p-4">
+      <div ref={popupRef} className="relative w-full max-w-4xl mx-auto">
+        <ShineBorder
+          className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background shadow-xl"
+          color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+        >
+          <div className="text-white p-4 sm:p-8 w-full max-h-[80vh] overflow-y-auto bg-black rounded-lg">
+            <button onClick={onClose} className="absolute top-2 right-2 text-2xl text-white z-10">&times;</button>
+            
+            {/* Company popup content */}
+            <div className="flex flex-col items-center mb-4 sm:mb-6">
+              <Image
+                src={company.logo}
+                alt={`${company.name} logo`}
+                width={150}
+                height={56}
+                objectFit="contain"
+              />
+              <div className="text-center mt-4">
+                <h2 className="text-xl sm:text-2xl font-bold">{company.position}</h2>
+                <p className="text-gray-400 mt-2 text-sm sm:text-base">{company.duration}</p>
+                <p className="text-blue-500 font-semibold mt-1 text-sm sm:text-base">{company.ratio}</p>
               </div>
             </div>
-          </ShineBorder>
-        </div>
-        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full">
-          <ShimmerButton onClick={onNext} className="px-10 py-3">
-            Next &rarr; 
-          </ShimmerButton>
-        </div>
+
+            <div className="mb-4 sm:mb-6 text-sm sm:text-base">
+              <p>{company.company_description}</p>
+            </div>
+
+            <div className="mb-4 sm:mb-6 text-sm sm:text-base">
+              <p>{company.description}</p>
+            </div>
+
+            <div className="border-t border-gray-600 pt-4 sm:pt-6">
+              <h3 className="text-lg sm:text-xl font-bold mb-4 text-center">Highlight Projects</h3>
+              <Marquee className="[--duration:30s]" pauseOnHover={true} gradient={false}>
+                {company.highlightProjects.map((project: string, index: number) => (
+                  <div key={index} className="mx-2 sm:mx-4 bg-gray-800 p-2 sm:p-3 rounded">
+                    <p className="text-xs sm:text-sm font-semibold">{project}</p>
+                  </div>
+                ))}
+              </Marquee>
+            </div>
+
+            <div className="flex justify-between mt-4 sm:mt-6">
+              <ShimmerButton onClick={onPrevious} className="px-3 py-1 sm:px-4 sm:py-2 text-sm">
+                &larr; Previous
+              </ShimmerButton>
+              <ShimmerButton onClick={onNext} className="px-3 py-1 sm:px-4 sm:py-2 text-sm">
+                Next &rarr;
+              </ShimmerButton>
+            </div>
+          </div>
+        </ShineBorder>
       </div>
     </div>
   );
@@ -507,48 +506,46 @@ const SpeakershipPopup: React.FC<{
   }, [onClose, onPrevious, onNext]);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
-      <div ref={popupRef} className="relative w-full max-w-4xl mx-4 flex items-center">
-        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full">
-          <ShimmerButton onClick={onPrevious} className="px-10 py-4">
-            &larr; Previous
-          </ShimmerButton>
-        </div>
-        <div className="relative w-full">
-          <button onClick={onClose} className="absolute top-2 right-2 text-2xl text-white z-10">
-            &times;
-          </button>
-          <ShineBorder
-            className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
-            color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
-          >
-            <div className="text-white p-8 w-full max-h-[80vh] overflow-y-auto bg-black rounded-lg">
-              {/* Speakership popup content */}
-              <div className="flex flex-col items-center mb-6">
-                <Image
-                  src={data.logo}
-                  alt={`${data.university} logo`}
-                  width={200}
-                  height={75}
-                  objectFit="contain"
-                />
-                <h2 className="text-2xl font-bold mt-4">{data.university}</h2>
-              </div>
-              {data.events.map((event, index) => (
-                <div key={index} className="mb-6 border-t border-gray-600 pt-4">
-                  <h3 className="text-xl font-semibold">{event.title}</h3>
-                  <p className="text-gray-400 mt-1">{event.date}</p>
-                  <p className="mt-2">{event.description}</p>
-                </div>
-              ))}
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300 p-4">
+      <div ref={popupRef} className="relative w-full max-w-4xl mx-auto">
+        <ShineBorder
+          className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background shadow-xl"
+          color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
+        >
+          <div className="text-white p-4 sm:p-8 w-full max-h-[80vh] overflow-y-auto bg-black rounded-lg">
+            <button onClick={onClose} className="absolute top-2 right-2 text-2xl text-white z-10">
+              &times;
+            </button>
+            
+            {/* Speakership popup content */}
+            <div className="flex flex-col items-center mb-4 sm:mb-6">
+              <Image
+                src={data.logo}
+                alt={`${data.university} logo`}
+                width={150}
+                height={56}
+                objectFit="contain"
+              />
+              <h2 className="text-xl sm:text-2xl font-bold mt-4">{data.university}</h2>
             </div>
-          </ShineBorder>
-        </div>
-        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full">
-          <ShimmerButton onClick={onNext} className="px-10 py-3">
-            Next &rarr;
-          </ShimmerButton>
-        </div>
+            {data.events.map((event, index) => (
+              <div key={index} className="mb-4 sm:mb-6 border-t border-gray-600 pt-4">
+                <h3 className="text-lg sm:text-xl font-semibold">{event.title}</h3>
+                <p className="text-gray-400 mt-1 text-sm sm:text-base">{event.date}</p>
+                <p className="mt-2 text-sm sm:text-base">{event.description}</p>
+              </div>
+            ))}
+
+            <div className="flex justify-between mt-4 sm:mt-6">
+              <ShimmerButton onClick={onPrevious} className="px-3 py-1 sm:px-4 sm:py-2 text-sm">
+                &larr; Previous
+              </ShimmerButton>
+              <ShimmerButton onClick={onNext} className="px-3 py-1 sm:px-4 sm:py-2 text-sm">
+                Next &rarr;
+              </ShimmerButton>
+            </div>
+          </div>
+        </ShineBorder>
       </div>
     </div>
   );
@@ -594,43 +591,43 @@ const WorkExperience: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-black text-white"> 
+    <section className="py-8 sm:py-16 bg-black text-white"> 
       <div className="container mx-auto px-4">
-      <h4 className="text-lg font-medium mb-4 text-center text-gray-400 font-lato">Explore more by selecting the logo</h4>
-      <h2 className="text-4xl font-bold mb-8 text-center text-blue-500 font-lato">Professional Experience</h2>
-      <h3 className="text-2xl font-semibold mb-4 text-center font-lato">Career Highlights</h3>
-        <div className="flex justify-center items-center flex-wrap mb-12">
+        <h4 className="text-base sm:text-lg font-medium mb-2 sm:mb-4 text-center text-gray-400 font-lato">Explore more by selecting the logo</h4>
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-8 text-center text-blue-500 font-lato">Professional Experience</h2>
+        <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center font-lato">Career Highlights</h3>
+        <div className="flex justify-center items-center flex-wrap mb-8 sm:mb-12">
           {workRelatedCompanies.map((company: Company, index: number) => (
             <div key={index} className="w-1/3 sm:w-1/4 md:w-1/4 p-2">
               <div onClick={() => handleCompanyClick(index)} className="cursor-pointer">
                 <Image
                   src={company.img}
                   alt={`${company.name} logo`}
-                  width={300}
-                  height={75}
+                  width={150}
+                  height={38}
                   objectFit="contain"
                 />
               </div>
             </div>
           ))}
         </div>
-        <h3 className="text-2xl font-semibold mb-4 text-center font-lato">Speakership and Mentorship</h3>
-        <div className="flex justify-center items-center flex-wrap mb-16">
+        <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center font-lato">Speakership and Mentorship</h3>
+        <div className="flex justify-center items-center flex-wrap mb-8 sm:mb-16">
           {speakershipCompanies.map((company: Company, index: number) => (
             <div key={index} className="w-1/3 sm:w-1/4 md:w-1/5 p-2">
               <div onClick={() => handleSpeakershipClick(index)} className="cursor-pointer">
                 <Image
                   src={company.img}
                   alt={`${company.name} logo`}
-                  width={150}
-                  height={50}
+                  width={75}
+                  height={25}
                   objectFit="contain"
                 />
               </div>
             </div>
           ))}
         </div>
-        <h3 className="text-2xl font-semibold mb-4 text-center font-lato">Technical Competencies</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center font-lato">Technical Competencies</h3>
         <div className="relative mt-6 overflow-hidden">
           <Marquee
             className="[--duration:60s]"
@@ -643,16 +640,16 @@ const WorkExperience: React.FC = () => {
                 href={tech.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mx-6 flex flex-col items-center"
+                className="mx-3 sm:mx-6 flex flex-col items-center"
               >
                 <Image
                   src={tech.img}
                   alt={`${tech.name} logo`}
-                  width={64}
-                  height={64}
+                  width={32}
+                  height={32}
                   objectFit="contain"
                 />
-                <p className="mt-2 text-center text-sm">{tech.name}</p>
+                <p className="mt-2 text-center text-xs sm:text-sm">{tech.name}</p>
               </a>
             ))}
           </Marquee>
