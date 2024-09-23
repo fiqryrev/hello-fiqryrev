@@ -34,7 +34,7 @@ const SearchRetrievalPage: React.FC = () => {
         <div className="bg-gray-800 p-6 rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Ready to Enhance Your Search Capabilities?</h2>
           <p className="mb-4">
-            Let's discuss how our Search and Retrieval solutions can improve your data accessibility. Contact us today for a consultation.
+            Lets discuss how our Search and Retrieval solutions can improve your data accessibility. Contact us today for a consultation.
           </p>
           <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
             Contact Us

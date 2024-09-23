@@ -34,7 +34,7 @@ const BIAnalyticsPage: React.FC = () => {
         <div className="bg-gray-800 p-6 rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Ready to Unlock the Power of Your Data?</h2>
           <p className="mb-4">
-            Let's discuss how our Business Intelligence and Analytics solutions can transform your decision-making process. Contact us today for a consultation.
+            Lets discuss how our Business Intelligence and Analytics solutions can transform your decision-making process. Contact us today for a consultation.
           </p>
           <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
             Contact Us
