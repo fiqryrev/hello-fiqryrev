@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import SparklesText from "@/components/magicui/sparkles-text";
 import Marquee from "@/components/magicui/marquee";
 import ShinyButton from "@/components/magicui/shiny-button";
+import CombinedAnimation from "@/components/magicui/hero-anim";
+import BlurIn from "@/components/magicui/blur-in";
 
 const techStacks = [
   { name: "dbt", img: "/images/tech/dbt_logo.png" },
@@ -38,6 +39,8 @@ const techStacks = [
   { name: "Neo4j", img: "/images/tech/neo4j_logo.png" },
   { name: "PostgreSQL", img: "/images/tech/postgres_logo.png" },
 ];
+
+
 
 const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -232,48 +235,93 @@ const MarqueeTechStacks = () => {
 };
 
 const HeroSection: React.FC = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <AnimatedBackground />
-      <div className="absolute inset-0 z-0">
-        <video
-          src="/videos/effect_ray.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-50"
-        />
-      </div>
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent z-30"></div>
-      <div className="container mx-auto px-4 z-10 relative">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <h1 className="text-6xl font-bold mb-4 text-blue-500 font-lato"><SparklesText text="Fiqry Revadiansyah"/></h1>
-            
-            <p className="text-xl mb-6 text-gray-300 font-lato">
-              A <b>professional leader</b> with <b>6</b> years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions.
-            </p>
-            <div className="flex flex-wrap gap-4 mb-6">
-              <ShinyButton text="Data Scientist" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
-              <ShinyButton text="Data Analyst" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
-              <ShinyButton text="Data Engineer" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
+    const [isTextVisible, setIsTextVisible] = useState(false);
+    const [areButtonsVisible, setAreButtonsVisible] = useState(false);
+  
+    useEffect(() => {
+      // Delay to show the paragraph animation after CombinedAnimation
+      const textTimer = setTimeout(() => {
+        setIsTextVisible(true);
+      }, 500); // 0.5 second delay for the paragraph
+  
+      // Delay to show buttons after the paragraph is fully visible
+      const buttonsTimer = setTimeout(() => {
+        setAreButtonsVisible(true);
+      }, 1700); // 1 second delay after the paragraph appears
+  
+      return () => {
+        clearTimeout(textTimer);
+        clearTimeout(buttonsTimer);
+      };
+    }, []);
+  
+    return (
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <AnimatedBackground />
+        <div className="absolute inset-0 z-0">
+          <video
+            src="/videos/effect_ray.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-50"
+          />
+        </div>
+        <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent z-30"></div>
+        <div className="container mx-auto px-4 z-10 relative">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-8 md:mb-0">
+              <h1 className="text-6xl font-bold mb-4 text-blue-500 font-lato">
+                <CombinedAnimation
+                  text="Fiqry Revadiansyah"
+                  className="text-6xl font-bold mb-4 text-blue-500 font-lato"
+                />
+              </h1>
+              {isTextVisible && (
+                <BlurIn
+                  word="A professional leader with 6 years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions."
+                  className="text-xl mb-6 text-gray-300 font-lato text-left"
+                  size="text-l"
+                  delay={0.5} // Delay for blur animation
+                />
+              )}
+              <div className="flex flex-wrap gap-4 min-h-[10rem] justify-start items-center">
+                <ShinyButton 
+                  text="Data Scientist" 
+                  className={`bg-white px-8 py-2 rounded-full text-white font-lato transition-opacity duration-500 ${areButtonsVisible ? 'opacity-100' : 'opacity-0'}`} 
+                />
+                <ShinyButton 
+                  text="Data Analyst" 
+                  className={`bg-white px-8 py-2 rounded-full text-white font-lato transition-opacity duration-500 ${areButtonsVisible ? 'opacity-100' : 'opacity-0'}`} 
+                />
+                <ShinyButton 
+                  text="Data Engineer" 
+                  className={`bg-white px-8 py-2 rounded-full text-white font-lato transition-opacity duration-500 ${areButtonsVisible ? 'opacity-100' : 'opacity-0'}`} 
+                />
+                <ShinyButton 
+                  text="AI Product Manager" 
+                  className={`bg-white px-8 py-2 rounded-full text-white font-lato transition-opacity duration-500 ${areButtonsVisible ? 'opacity-100' : 'opacity-0'}`} 
+                />
+                <ShinyButton 
+                  text="AI & Prompt Engineer" 
+                  className={`bg-white px-8 py-2 rounded-full text-white font-lato transition-opacity duration-500 ${areButtonsVisible ? 'opacity-100' : 'opacity-0'}`} 
+                />
+                <ShinyButton 
+                  text="Speaker & Mentor" 
+                  className={`bg-white px-8 py-2 rounded-full text-white font-lato transition-opacity duration-500 ${areButtonsVisible ? 'opacity-100' : 'opacity-0'}`} 
+                />
+              </div>
             </div>
-            <div className="flex flex-wrap gap-4 mb-6">
-              <ShinyButton text="AI Product Manager" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
-              <ShinyButton text="AI & Prompt Engineer" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
-              <ShinyButton text="Speaker & Mentor" className="bg-white px-8 py-2 rounded-full text-white font-lato" />
+            <div className="md:w-1/2 relative">
+              <MarqueeTechStacks />
             </div>
-          </div>
-          <div className="md:w-1/2 relative">
-            <MarqueeTechStacks />
           </div>
         </div>
-      </div>
-      <BottomCurve />
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent z-30"></div>
-    </section>
-  );
-};
+        <BottomCurve />
+        <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent z-30"></div>
+      </section>
+    );
+  };
 
 export default HeroSection;
