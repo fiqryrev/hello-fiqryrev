@@ -14,7 +14,7 @@ const AcademicsPage: React.FC = () => {
           <div>
             <h3 className="text-2xl font-medium text-white">Bachelor of Statistics</h3>
             <p className="text-gray-300">Universitas Padjadjaran, 2013</p>
-            <p className="mt-2 text-gray-200"><strong>Thesis:</strong> "The Application of Generalized Space Time Autoregressive Integrated (GSTARI) Model in Consumer Price Index (CPI) Forecasting in Four Cities of West Java Province Indonesia"</p>
+            <p className="mt-2 text-gray-200"><strong>Thesis:</strong> The Application of Generalized Space Time Autoregressive Integrated (GSTARI) Model in Consumer Price Index (CPI) Forecasting in Four Cities of West Java Province Indonesia</p>
             <p className="mt-2 text-gray-200"><a href="https://scholar.google.co.id/citations?user=dxZ3G84AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Google Scholar</a></p>
           </div>
         </div>
@@ -38,14 +38,14 @@ const AcademicsPage: React.FC = () => {
             <ul className="list-disc list-inside mt-2 text-gray-200">
               <li>Course: Computational Thinking, attended by 50+ master degree students.</li>
               <li>Lecturer class of <a href="https://scholar.google.co.id/citations?hl=en&user=TLOoaa4AAAAJ" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Deny Setiawan, M.Pd.</a></li>
-              <li>Topics were about the introduction of artificial intelligence and its implementation in student's majors.</li>
+              <li>Topics were about the introduction of artificial intelligence and its implementation in students majors.</li>
             </ul>
           </li>
           <li className="bg-gray-800 rounded-lg shadow p-4">
             <h3 className="text-xl font-medium text-white">Guest Lecturer at Institut Teknologi Bandung</h3>
             <p className="text-gray-300">School of Business Management Institut Teknologi Bandung - Indonesia | April 2021</p>
             <ul className="list-disc list-inside mt-2 text-gray-200">
-              <li>Course: MB1201 - Business Statistics, "Statistics as Decision, Business, and Marketing Science in the Disruptive Industry", attended by 300+ bachelor degree students.</li>
+              <li>Course: MB1201 - Business Statistics: Statistics as Decision, Business, and Marketing Science in the Disruptive Industry, attended by 300+ bachelor degree students.</li>
               <li>Lecturer class of <a href="https://scholar.google.co.id/citations?user=ku9d3YgAAAAJ&hl=id&oi=ao" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Meditya Wasesa, Ph.D.</a></li>
               <li>Topics were about business innovation, disruption, and statistical application in industries.</li>
             </ul>
@@ -54,7 +54,7 @@ const AcademicsPage: React.FC = () => {
             <h3 className="text-xl font-medium text-white">CRAN Project Contribution: gstar Package</h3>
             <p className="text-gray-300">Comprehensive R Archive Network (CRAN) | June 2019</p>
             <ul className="list-disc list-inside mt-2 text-gray-200">
-              <li>Developed and deployed an academic package for statistics on the CRAN Project, named 'gstar'.</li>
+              <li>Developed and deployed an academic package for statistics on the CRAN Project, named gstar.</li>
               <li>Multivariate time series analysis based on Generalized Space-Time Autoregressive Model by Ruchjana et al.(2012) <a href="https://doi.org/10.1063%2F1.4724118" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">doi:10.1063/1.4724118</a></li>
               <li>Documents: <a href="https://cran.r-project.org/web/packages/gstar/index.html" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">CRAN Package</a> | <a href="https://drive.google.com/file/d/1pYAJMu0qPKrTabdoqJljfWRDqVdLmCP3/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Hak Kekayaan Intelektual (HKI) / Intellectual Property Rights (IPR)</a></li>
             </ul>
@@ -83,7 +83,7 @@ const AcademicsPage: React.FC = () => {
           <ul className="list-disc list-inside mt-2 text-gray-200">
           <li>Two research papers selected from the top 10 out of 94 submissions, covering topics in Humanities, Social Science, Politics, and Economics.</li>
             <li>Title 1: Application of Geographically Weighted Regression on Abating Poverty Problem in Indonesia Through 2030</li>
-            <li>Title 2: Indonesian Foreign Debt Optimization by QHM-ARIMA (Quadruple Helix Model – Autoregressive Integrated Moving Average) through 2030 as an Indonesian Demographic Bonus</li>
+            <li>Title 2: Indonesian Foreign Debt Optimization by QHM-ARIMA (Quadruple Helix Model, Autoregressive Integrated Moving Average) through 2030 as an Indonesian Demographic Bonus</li>
           </ul>
         </li>
 

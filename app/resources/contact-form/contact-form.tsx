@@ -140,7 +140,7 @@ const ContactForm: React.FC = () => {
     <div className="max-w-4xl mx-auto">
       <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl shadow-xl">
         <h1 className="text-4xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
-          Let's work together
+          Lets work together
         </h1>
         <p className="text-gray-300 mb-8 text-lg">
           Bring cutting-edge AI, Data Science, Analytics and Engineering insights to your workplace and your next project.

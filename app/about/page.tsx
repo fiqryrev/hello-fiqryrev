@@ -96,16 +96,6 @@ const ImageSlider = () => {
 
 export default function About() {
   const [message, setMessage] = useState('');
-  const [isSent, setIsSent] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Message sent:', message);
-    setIsSent(true);
-    setMessage('');
-    setTimeout(() => setIsSent(false), 3000);
-  };
-
   return (
     <div className="min-h-screen bg-black text-white relative w-full m-0 p-0">
       <ParticleEffect />
