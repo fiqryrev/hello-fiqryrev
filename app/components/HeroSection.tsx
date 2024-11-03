@@ -283,7 +283,6 @@ const HeroSection: React.FC = () => {
                   word="A professional leader with 6 years of experience in the entire data functionality (Data Science, Analytics, and Engineering) and a product management. Based in Jakarta Indonesia, he has honed his skills across various sectors, integrating actionable data insights, AI automations into product, business, and engineering functions."
                   className="text-xl mb-6 text-gray-300 font-lato text-left"
                   size="text-l"
-                  delay={0.5} // Delay for blur animation
                 />
               )}
               <div className="flex flex-wrap gap-4 min-h-[10rem] justify-start items-center">

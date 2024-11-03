@@ -1,33 +1,131 @@
 import React from 'react';
-import Link from 'next/link';
+import CombinedAnimation from '../../../components/magicui/hero-anim';
+import { GradualSpacing } from '../../../components/magicui/gradual-spacing';
+import { RainbowButton } from '../../../components/ui/rainbow-button';
 
 const PresentationDeckPage: React.FC = () => {
-  // This is a placeholder for presentation decks. In a real application, you would fetch this data from an API or database.
-  const presentationDecks = [
-    { id: 1, title: 'Introduction to Data Science', slug: 'intro-to-data-science' },
-    { id: 2, title: 'Machine Learning in Practice', slug: 'machine-learning-practice' },
-    { id: 3, title: 'Web Development Trends 2023', slug: 'web-dev-trends-2023' },
-  ];
-
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-6">Presentation Decks</h1>
-        <p className="text-xl mb-8">Explore my latest presentation decks on various topics.</p>
         
-        {presentationDecks.length > 0 ? (
-          <ul className="space-y-6">
-            {presentationDecks.map((deck) => (
-              <li key={deck.id} className="border-b border-gray-700 pb-4">
-                <Link href={`/resources/presentation-deck/${deck.slug}`} className="text-2xl font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-                  {deck.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-gray-400">No presentation decks available at the moment. Check back soon!</p>
-        )}
+        <CombinedAnimation text="Speakership Portfolio" className="mb-12 text-5xl text-white" />
+
+        {/* Speakership Section */}
+        <section>
+        <GradualSpacing text="List of Event" className="text-3xl font-semibold mb-6 text-white" />
+        <div className="text-center">
+            <a href="https://speakerdeck.com/fiqryr" target="_blank" rel="noopener noreferrer">
+            <p className="text-sm text-gray-300">Click here to visit my SpeakerDeck account for some of my past talks and presentations.</p>
+            </a>
+        </div>
+        <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+            <thead>
+                <tr className="bg-gray-800">
+                    <th className="p-3 font-semibold text-white">Event Name</th>
+                    <th className="p-3 font-semibold text-white">Event Type</th>
+                    <th className="p-3 font-semibold text-white">Organizer</th>
+                    <th className="p-3 font-semibold text-white">Event Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td className="p-3 text-gray-200">Hackathon Judge, Angelhacks Indonesia 2024</td>
+                    <td className="p-3 text-gray-200">Hackathon Judge</td>
+                    <td className="p-3 text-gray-200">Angelhacks Global and Grab Indonesia</td>
+                    <td className="p-3 text-gray-200">2024-07</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Data Analyst Program for IFG (Indonesia Financial Group)</td>
+                    <td className="p-3 text-gray-200">Workshop</td>
+                    <td className="p-3 text-gray-200">Rakamin Academy</td>
+                    <td className="p-3 text-gray-200">2024-07</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Closing of Garudahacks 5.0 Indonesia</td>
+                    <td className="p-3 text-gray-200">Seminar</td>
+                    <td className="p-3 text-gray-200">Garudahacks and Paper.id</td>
+                    <td className="p-3 text-gray-200">2024-07</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Harnessing the Power of Big Data and Artificial Intelligence: How Generation Z Can Contribute to Achieving SDGs</td>
+                    <td className="p-3 text-gray-200">Webinar and Talkshow</td>
+                    <td className="p-3 text-gray-200">Universitas Padjadjaran (South East Asia Scale)</td>
+                    <td className="p-3 text-gray-200">2023-10</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Data Analyst Program for LKPP Indonesia</td>
+                    <td className="p-3 text-gray-200">Workshop</td>
+                    <td className="p-3 text-gray-200">Rakamin Academy</td>
+                    <td className="p-3 text-gray-200">2023-06</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">The Asterism Fragments of Data Science - Dies Natalis of Faculty</td>
+                    <td className="p-3 text-gray-200">Webinar</td>
+                    <td className="p-3 text-gray-200">Institut Teknologi Telkom Purwokerto (ITTP)</td>
+                    <td className="p-3 text-gray-200">2022-09</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Dissecting a Programming Language: Python</td>
+                    <td className="p-3 text-gray-200">Workshop</td>
+                    <td className="p-3 text-gray-200">Ajaib x DQLab</td>
+                    <td className="p-3 text-gray-200">2022-08</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Problem Solving with Data Visualization</td>
+                    <td className="p-3 text-gray-200">Webinar</td>
+                    <td className="p-3 text-gray-200">Glints.com</td>
+                    <td className="p-3 text-gray-200">2021-08</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Orchestrating The Stellar Journey</td>
+                    <td className="p-3 text-gray-200">Webinar</td>
+                    <td className="p-3 text-gray-200">SMA Kornita IPB Bogor</td>
+                    <td className="p-3 text-gray-200">2021-07</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">The Role of Actuary Science and Data Science in Industry 4.0 Era</td>
+                    <td className="p-3 text-gray-200">Webinar</td>
+                    <td className="p-3 text-gray-200">Statistics Department FMIPA Universitas Tanjungpura</td>
+                    <td className="p-3 text-gray-200">2021-05</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Passion Playground Festival Vooya</td>
+                    <td className="p-3 text-gray-200">Talkshow</td>
+                    <td className="p-3 text-gray-200">Vooya.ID</td>
+                    <td className="p-3 text-gray-200">2020-11</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Kickstart Your Data Science Career</td>
+                    <td className="p-3 text-gray-200">Webinar</td>
+                    <td className="p-3 text-gray-200">Bisasih Community Indonesia</td>
+                    <td className="p-3 text-gray-200">2020-11</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Data Science short-course in BukalapakKeKampus Chapter UGM</td>
+                    <td className="p-3 text-gray-200">Workshop</td>
+                    <td className="p-3 text-gray-200">Bukalapak and Universitas Gadjah Mada</td>
+                    <td className="p-3 text-gray-200">2019-05</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Deep Dive into Facebook Prophet Model</td>
+                    <td className="p-3 text-gray-200">Workshop</td>
+                    <td className="p-3 text-gray-200">Indonesia R Community, Machine Learning ID, and Bukalapak</td>
+                    <td className="p-3 text-gray-200">2019-06</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </section>
+
+        <section className="mt-12 text-center">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Elevate Your Next Data & AI Event</h2>
+            <p className="text-gray-300 mb-3">Looking for an experienced speaker for your data science, analytics, and engineering event?</p>
+            <p className="text-gray-400 mb-6 text-sm">Available for workshops, seminars, and guest lectures at universities, corporate events, and tech conferences</p>
+            <RainbowButton href="/resources/contact-form">
+                Book as Speaker
+            </RainbowButton>
+        </section>
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
                 <Link href="/resources/case-studies" className="text-sm md:text-base hover:text-blue-400 transition-colors duration-200">Case Studies</Link>
               </li>
               <li>
-                <Link href="/resources/certifications" className="text-sm md:text-base hover:text-blue-400 transition-colors duration-200">Certifications</Link>
+                <Link href="/resources/academics" className="text-sm md:text-base hover:text-blue-400 transition-colors duration-200">Academics</Link>
               </li>
               <li>
                 <Link href="https://calendly.com/fiqryrev/letschat" className="text-sm md:text-base hover:text-blue-400 transition-colors duration-200">Chat with Me</Link>

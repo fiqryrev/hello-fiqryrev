@@ -12,10 +12,9 @@ interface BlurInProps {
     visible: { filter: string; opacity: number };
   };
   duration?: number;
-  delay: number;
   size?: string; // New prop for text size
 }
-const BlurIn = ({ word, className, variant, delay = 0.2, duration = 1.5, size = "text-4xl" }: BlurInProps) => {
+const BlurIn = ({ word, className, variant, duration = 1.5, size = "text-4xl" }: BlurInProps) => {
   const defaultVariants = {
     hidden: { filter: "blur(10px)", opacity: 0 },
     visible: { filter: "blur(0px)", opacity: 1 },

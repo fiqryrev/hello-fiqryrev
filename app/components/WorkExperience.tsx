@@ -66,6 +66,7 @@ const speakershipCompanies: Company[] = [
   { name: "Ministry of Tourism and Creative Economy of Indonesia", img: "/images/speakership/speaker_kemenparekraf_logo.png", url: "https://www.kemenparekraf.go.id" },
   { name: "Glints", img: "/images/speakership/speaker_glints_logo.png", url: "https://glints.com/id" },
   { name: "Angelhacks Jakarta", img: "/images/speakership/speakership_angelhack_logo.png", url: "https://angelhack.com/hackglobal/jakarta/" },
+  { name: "Yogya Group", img: "/images/speakership/speakership_yogyagroup_logo.png", url: "https://www.yogyagroup.com/" },
 ];
 
 const techStacks: TechStack[] = [
@@ -377,6 +378,17 @@ const speakershipData: SpeakershipData[] = [
         title: "Hackathon Jakarta 2024 - City Judge",
         date: "August 2024",
         description: "Served as a city judge in Indonesia, managed to review the hackathon submissions of 'Financial Inclusion' topic."
+      }
+    ]
+  },
+  {
+    university: "Yogya Group",
+    logo: "/images/speakership/speakership_yogyagroup_logo.png",
+    events: [
+      {
+        title: "Technical Workshop - Speaker",
+        date: "December 2019",
+        description: "Delivered an offline workshop about 'Time Series and Machine Learning' at PT. Akur Pratama (Yogyagroup Headquarter Bandung), which was attended by 10+ participants."
       }
     ]
   }

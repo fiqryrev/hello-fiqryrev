@@ -83,7 +83,7 @@ const Header: React.FC = () => {
     <div className="flex flex-col md:flex-row">
       <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-0">
         <ResourcesMenuItem icon="📝" text="Blog" description="Read the writings about data, hobbies, etc" href="/resources/blog" />
-        <ResourcesMenuItem icon="🎓" text="Certifications" description="Get informed about my certifications" href="/resources/certifications" />
+        <ResourcesMenuItem icon="🎓" text="Academics" description="Get informed about my academics and certifications" href="/resources/academics" />
         <ResourcesMenuItem icon="🖥️" text="Presentation Deck" description="Visit my latest presentation deck" href="/resources/presentation-deck" />
         <ResourcesMenuItem icon="📊" text="Case Studies" description="Latest news, tips, and best practices" href="/resources/case-studies" />
       </div>
