@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
+import { RainbowButton } from '../../components/ui/rainbow-button';
 
 const ParticleEffect = () => {
   useEffect(() => {
@@ -57,13 +57,13 @@ const ImageSlider = () => {
     return (
       <div
         ref={sliderRef}
-        className="relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden cursor-ew-resize"
+        className="relative w-full h-0 pb-[56.25%] overflow-hidden cursor-ew-resize"
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}
       >
         <div className="absolute top-0 left-0 w-full h-full">
           {/* 'After' image */}
-          <div className="w-full h-full bg-cover bg-center" 
+          <div className="w-full h-full bg-contain bg-no-repeat bg-center" 
                style={{ backgroundImage: "url('/images/articles/datawarehouse_after.png')" }}></div>
         </div>
         <div 
@@ -72,7 +72,7 @@ const ImageSlider = () => {
         >
           {/* 'Before' image */}
           <div 
-            className="w-full h-full bg-cover bg-center" 
+            className="w-full h-full bg-contain bg-no-repeat bg-center" 
             style={{ 
               backgroundImage: "url('/images/articles/datawarehouse_before.png')",
               width: `${100 / (sliderPosition / 100)}%`,
@@ -146,25 +146,13 @@ export default function About() {
           <div className="border-t border-gray-500 my-4 sm:my-6"></div>
   
           {/* Inquiry Form */}
-          <section className="mb-6 sm:mb-8 md:mb-12">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 text-center">Send Your Inquiries</h2>
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-              <textarea
-                className="w-full p-2 sm:p-3 border border-gray-600 rounded-md mb-3 sm:mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white text-sm sm:text-base"
-                rows={4}
-                placeholder="Enter your message here..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-              />
-              <Button 
-                type="submit" 
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 text-sm sm:text-base"
-                disabled={isSent}
-              >
-                {isSent ? 'Message Sent!' : 'Send Message'}
-              </Button>
-            </form>
+          <section className="mt-12 text-center">
+              <h2 className="text-2xl font-semibold mb-4 text-white">Empower Your Data Warehouse with Cutting-Edge AI Solutions</h2>
+              <p className="text-gray-300 mb-3">Seeking a knowledgeable individual for your event on data science, analytics, or data engineering projects?</p>
+              <p className="text-gray-400 mb-6 text-sm">Discover strategies for automating data pipelines, advancing data governance, and harnessing machine learning to modernize your data architecture.</p>
+              <RainbowButton href="/resources/contact-form">
+                  Book a Project
+              </RainbowButton>
           </section>
         </div>
       </div>
