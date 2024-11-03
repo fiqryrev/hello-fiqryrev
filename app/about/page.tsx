@@ -95,7 +95,6 @@ const ImageSlider = () => {
 };
 
 export default function About() {
-  const [message, setMessage] = useState('');
   return (
     <div className="min-h-screen bg-black text-white relative w-full m-0 p-0">
       <ParticleEffect />
