@@ -58,7 +58,7 @@ const Header: React.FC = () => {
   const SolutionsSubMenu: React.FC<{ items: { icon: string; text: string; description: string; href: string }[] }> = ({ items }) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0">
       {items.map((item, index) => (
-        <div key={index} className="w-full sm:w-[300px] border-b border-gray-700 last:border-b-0 sm:border-r sm:last:border-r-0">
+        <div key={index} className="w-full sm:w-[300px] border-b border-r border-gray-700 [&:nth-child(3n+1)]:border-l">
           <SolutionsMenuItem icon={item.icon} text={item.text} description={item.description} href={item.href} />
         </div>
       ))}
@@ -80,12 +80,13 @@ const Header: React.FC = () => {
   );
 
   const ResourcesSubMenu: React.FC = () => (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row border-l border-r border-b border-gray-700">
       <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-0">
-        <ResourcesMenuItem icon="📝" text="Blog" description="Read the writings about data, hobbies, etc" href="/resources/blog" />
-        <ResourcesMenuItem icon="🎓" text="Academics" description="Get informed about my academics and certifications" href="/resources/academics" />
-        <ResourcesMenuItem icon="🖥️" text="Speakership Portfolio" description="Visit my latest speakership portfolio" href="/resources/speakership" />
-        <ResourcesMenuItem icon="📊" text="Case Studies" description="Latest news, tips, and best practices" href="/resources/case-studies" />
+        {resourcesItems.map((item, index) => (
+          <div key={index} className={`border-b border-gray-700 ${index % 2 === 0 ? 'border-r' : ''}`}>
+            <ResourcesMenuItem icon={item.icon} text={item.text} description={item.description} href={item.href} />
+          </div>
+        ))}
       </div>
       <div className="w-full md:w-1/4 flex border-t md:border-t-0 md:border-l border-gray-700">
         <Link href="/resources/case-studies/multimodal-ocr" className="flex items-center w-full">
@@ -118,6 +119,21 @@ const Header: React.FC = () => {
     { icon: "🔒", text: "Data Governance and Security", description: "Ensure data compliance and security across your organization", href: "/solutions/data-governance-security" },
     { icon: "🌐", text: "Web Development", description: "Create modern, responsive web applications", href: "/solutions/web-development" },
   ];
+
+  const resourcesItems = [
+    { icon: "📝", text: "Blog", description: "Latest news, tips, and best practices", href: "/resources/blog" },
+    { icon: "🎓", text: "Academics", description: "Academic publications and research", href: "/resources/academics" },
+    { icon: "🎤", text: "Speakership Portfolio", description: "Speaking engagements and presentations", href: "/resources/speakership" },
+    { icon: "💡", text: "Case Studies", description: "Real-world implementation stories", href: "/resources/case-studies" }
+  ];
+
+  const featuredCaseStudy = {
+    title: 'How Multimodal OCR Cut Manual Document Processing Time by 90%',
+    description: 'Learn how we leveraged Google Gemini Flash Multimodal LLM to automate financial document processing, reducing manual input time from 10 minutes to just 1 minute.',
+    image: '/images/case-studies/multimodal-ocr.png',
+    href: '/case-studies/multimodal-ocr',
+    icon: '☁️'
+  };
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 font-lato transition-colors duration-300 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}>
