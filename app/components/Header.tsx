@@ -127,14 +127,6 @@ const Header: React.FC = () => {
     { icon: "💡", text: "Case Studies", description: "Real-world implementation stories", href: "/resources/case-studies" }
   ];
 
-  const featuredCaseStudy = {
-    title: 'How Multimodal OCR Cut Manual Document Processing Time by 90%',
-    description: 'Learn how we leveraged Google Gemini Flash Multimodal LLM to automate financial document processing, reducing manual input time from 10 minutes to just 1 minute.',
-    image: '/images/case-studies/multimodal-ocr.png',
-    href: '/case-studies/multimodal-ocr',
-    icon: '☁️'
-  };
-
   return (
     <header className={`fixed top-0 left-0 w-full z-50 font-lato transition-colors duration-300 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}>
       <div className="relative w-full" onMouseLeave={handleMouseLeave}>

@@ -6,8 +6,8 @@ const CaseStudies = () => {
   const caseStudies = [
     {
       title: 'How Multimodal OCR Cut Manual Document Processing Time by 90%',
-      description: 'Learn how we leveraged Google Gemini Flash Multimodal LLM to automate financial document processing, reducing manual input time from 10 minutes to just 1 minute.',
-      image: '/images/case-studies/multimodal-ocr.png',
+      description: 'Learn how we leveraged Google Gemini Flash Multimodal LLM to automate financial document processing, reducing manual input time from 10 minutes to just 10 seconds.',
+      image: '/images/articles/resources-casestudies-multimodal-receipt.png',
       link: '/resources/case-studies/multimodal-ocr',
       tags: ['AI/ML', 'OCR', 'Finance', 'Automation']
     },

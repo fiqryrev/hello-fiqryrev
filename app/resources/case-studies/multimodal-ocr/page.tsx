@@ -13,7 +13,7 @@ const MultimodalOCRCaseStudy = () => {
         <h2 className="text-2xl font-semibold mb-4">Executive Summary</h2>
         <p className="mb-4">
           This case study presents an innovative solution to the challenge of manual data entry in personal finance management. 
-          By harnessing the power of Google's Gemini Multimodal Large Language Model (LLM), we developed an advanced Optical Character Recognition (OCR) system 
+          By harnessing the power of Google Gemini Multimodal Large Language Model (LLM), we developed an advanced Optical Character Recognition (OCR) system 
           that not only extracts transaction data but also performs intelligent categorization. The result is a remarkable 90% reduction in document processing time, 
           from 10 minutes to just 10 seconds per document, while maintaining a high accuracy rate of 95%.
         </p>
@@ -47,6 +47,7 @@ const MultimodalOCRCaseStudy = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2">
+
             <h3 className="text-xl font-semibold mb-2">Output: Structured JSON</h3>
             <div className="bg-gray-800 p-4 rounded-lg h-[500px] overflow-y-auto">
               <pre className="text-sm text-gray-200 whitespace-pre-wrap">
@@ -252,7 +253,7 @@ const MultimodalOCRCaseStudy = () => {
       <section>
         <h2 className="text-2xl font-semibold mb-4">Conclusion</h2>
         <p>
-          The implementation of our Multimodal OCR system, powered by Google's Gemini Flash LLM, has revolutionized the document processing workflow in personal finance management. 
+          The implementation of our Multimodal OCR system, powered by Google Gemini LLM, has revolutionized the document processing workflow in personal finance management. 
           The 90% reduction in processing time, coupled with high accuracy and automated classification, demonstrates the transformative impact of advanced AI technologies in financial document processing. 
           This case study underscores the potential of multimodal AI models to solve complex, real-world challenges, paving the way for more efficient and accurate financial management systems.
         </p>
