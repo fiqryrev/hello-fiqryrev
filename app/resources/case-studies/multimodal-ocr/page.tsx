@@ -217,7 +217,7 @@ const MultimodalOCRCaseStudy = () => {
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-2">3. Structured Data Output</h3>
-              <p className="mb-2">The system generates a standardized JSON output as shown in the "Before and After Comparison" section above.</p>
+              <p className="mb-2">The system generates a standardized JSON output as shown in the Before and After Comparison section above.</p>
             </div>
           </div>
         </div>
