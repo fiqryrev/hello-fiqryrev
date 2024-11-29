@@ -224,7 +224,7 @@ const ContactForm: React.FC = () => {
             disabled={status.submitting}
             className="w-full bg-gradient-to-r from-teal-500 to-blue-500 text-white py-3 rounded-lg hover:from-teal-600 hover:to-blue-600 transition-all transform hover:scale-[1.02] active:scale-[0.98] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {status.submitting ? 'Sending...' : 'Send Request'}
+            {status.submitting ? 'Sending...' : 'Send Message'}
           </button>
 
           {status.message && (

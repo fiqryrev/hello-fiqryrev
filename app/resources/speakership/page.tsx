@@ -1,18 +1,16 @@
 import React from 'react';
 import CombinedAnimation from '../../../components/magicui/hero-anim';
-import { GradualSpacing } from '../../../components/magicui/gradual-spacing';
 import { RainbowButton } from '../../../components/ui/rainbow-button';
 
-const PresentationDeckPage: React.FC = () => {
+const SpeakershipPage: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="container mx-auto px-4 py-8">
         
         <CombinedAnimation text="Speakership Portfolio" className="mb-12 text-5xl text-white" />
 
-        {/* Speakership Section */}
+        {/* Presentation Deck Section */}
         <section>
-        <GradualSpacing text="List of Event" className="text-3xl font-semibold mb-6 text-white" />
         <div className="text-center">
             <a href="https://speakerdeck.com/fiqryr" target="_blank" rel="noopener noreferrer">
             <p className="text-sm text-gray-300">Click here to visit my SpeakerDeck account for some of my past talks and presentations.</p>
@@ -118,12 +116,15 @@ const PresentationDeckPage: React.FC = () => {
         </div>
         </section>
 
+         {/* Separator Line */}
+         <div className="border-t border-gray-500 my-4 sm:my-6"></div>
+
         <section className="mt-12 text-center">
             <h2 className="text-2xl font-semibold mb-4 text-white">Elevate Your Next Data & AI Event</h2>
             <p className="text-gray-300 mb-3">Looking for an experienced speaker for your data science, analytics, and engineering event?</p>
             <p className="text-gray-400 mb-6 text-sm">Available for workshops, seminars, and guest lectures at universities, corporate events, and tech conferences</p>
             <RainbowButton href="/resources/contact-form">
-                Book as Speaker
+                Chat with Me
             </RainbowButton>
         </section>
       </div>
@@ -131,4 +132,4 @@ const PresentationDeckPage: React.FC = () => {
   );
 };
 
-export default PresentationDeckPage;
+export default SpeakershipPage;

@@ -84,7 +84,7 @@ const Header: React.FC = () => {
       <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-0">
         <ResourcesMenuItem icon="📝" text="Blog" description="Read the writings about data, hobbies, etc" href="/resources/blog" />
         <ResourcesMenuItem icon="🎓" text="Academics" description="Get informed about my academics and certifications" href="/resources/academics" />
-        <ResourcesMenuItem icon="🖥️" text="Presentation Deck" description="Visit my latest presentation deck" href="/resources/presentation-deck" />
+        <ResourcesMenuItem icon="🖥️" text="Speakership Portfolio" description="Visit my latest speakership portfolio" href="/resources/speakership" />
         <ResourcesMenuItem icon="📊" text="Case Studies" description="Latest news, tips, and best practices" href="/resources/case-studies" />
       </div>
       <div className="w-full md:w-1/4 flex border-t md:border-t-0 md:border-l border-gray-700">

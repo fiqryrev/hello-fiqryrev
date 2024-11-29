@@ -1,6 +1,7 @@
 import React from 'react';
 import { GradualSpacing } from '@/components/magicui/gradual-spacing';
 import CombinedAnimation from '@/components/magicui/hero-anim';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 
 const AcademicsPage: React.FC = () => {
   return (
@@ -99,6 +100,18 @@ const AcademicsPage: React.FC = () => {
         </ul>
       </section>
 
+      {/* Separator Line */}
+      <div className="border-t border-gray-500 my-4 sm:my-6"></div>
+
+      {/* Inquiry Form */}
+      <section className="mt-12 text-center">
+          <h2 className="text-2xl font-semibold mb-4 text-white">Collaborate on Cutting-Edge Data Research and Solutions</h2>
+          <p className="text-gray-300 mb-3">Interested in advancing your projects in data science, analytics, or data engineering?</p>
+          <p className="text-gray-400 mb-6 text-sm">Let’s explore innovative strategies together—whether it’s driving data automation, enhancing data governance, or pioneering machine learning solutions. I’m excited to connect with new people and discuss impactful, industry-driven research ideas.</p>
+          <RainbowButton href="/resources/contact-form">
+              Chat with Me
+          </RainbowButton>
+      </section>
     </div>
   );
 };
