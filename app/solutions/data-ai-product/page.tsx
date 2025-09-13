@@ -13,7 +13,7 @@ export default function DataAIProduct() {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 pt-32">
           <div className="max-w-3xl">
-            <p className="text-[#B4B4B4] text-lg mb-4">SHAKUDO USE CASE</p>
+            <p className="text-[#B4B4B4] text-lg mb-4">TEST USE CASE</p>
             <h1 className="text-5xl font-bold mb-8 leading-tight">
               Optimize Route Planning with Real-Time Traffic Analytics
             </h1>
@@ -89,7 +89,7 @@ export default function DataAIProduct() {
           </h2>
           <div className="prose prose-lg prose-invert max-w-none">
             <p className="text-gray-300 leading-relaxed">
-              Shakudo's platform revolutionizes route planning by incorporating real-time traffic analytics and AI-powered optimization algorithms. This solution processes live data from various sources, including GPS trackers, traffic cameras, and weather stations, to dynamically adjust routes for optimal efficiency. Shakudo's unique ability to rapidly deploy and scale these AI tools enables transportation and logistics companies to seamlessly integrate advanced route optimization into their existing systems.
+              test
             </p>
             <ul className="mt-6 space-y-4 text-gray-300">
               <li>Real-time route adjustments based on current traffic conditions and predicted congestion</li>

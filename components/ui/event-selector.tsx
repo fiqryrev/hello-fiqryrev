@@ -1,5 +1,4 @@
 import React, { useState, useEffect, memo } from 'react';
-import { Calendar, MapPin, Award, Users, Mic } from 'lucide-react';
 
 interface EventOption {
   title: string;

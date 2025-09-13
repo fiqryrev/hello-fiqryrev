@@ -2,7 +2,7 @@
 
 import React from 'react';
 import EventSelector from '@/components/ui/event-selector';
-import { Calendar, Award, Users, Mic, Globe, BookOpen, Briefcase, GraduationCap, Cloud, Building2, Home, ShoppingBag, Brain } from 'lucide-react';
+import { Award, Users, Mic, Globe, BookOpen, Briefcase, GraduationCap, Cloud, Building2, Home, ShoppingBag, Brain } from 'lucide-react';
 
 const CareerHighlights: React.FC = () => {
   // Event data with icons - extracted from CV speakership section

@@ -57,7 +57,7 @@ const InteractiveSelector = () => {
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
-  }, []);
+  }, [options]);
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#222] font-sans text-white"> 

@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import ShimmerButton from '../../components/ui/shimmer-button';
 import Image from 'next/image';
 
 const Header: React.FC = () => {

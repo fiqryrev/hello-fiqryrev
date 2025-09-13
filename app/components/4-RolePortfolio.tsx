@@ -173,7 +173,6 @@ const roles: Role[] = [
 const RolePortfolio: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDockVisible, setIsDockVisible] = useState(false);
-  const [menuKey, setMenuKey] = useState(0); // Force re-render of menu
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -212,8 +211,6 @@ const RolePortfolio: React.FC = () => {
           if (Math.abs(sectionCenter - windowCenter) < rect.height / 2) {
             if (activeIndex !== index) {
               setActiveIndex(index);
-              // Update menu by forcing re-render
-              setMenuKey(prev => prev + 1);
             }
           }
         }

@@ -29,7 +29,7 @@ const HeroSectionNew: React.FC = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [placeholderQuestions.length]);
 
   const roles = [
     { title: "Data Analytics", icon: Brain, color: "from-blue-400 to-cyan-400" },

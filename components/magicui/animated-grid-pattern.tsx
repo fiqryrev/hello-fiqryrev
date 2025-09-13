@@ -68,7 +68,7 @@ export function GridPattern({
     if (dimensions.width && dimensions.height) {
       setSquares(generateSquares(numSquares));
     }
-  }, [dimensions, numSquares]);
+  }, [dimensions, numSquares, generateSquares]);
 
   // Resize observer to update container dimensions
   useEffect(() => {
@@ -86,8 +86,10 @@ export function GridPattern({
     }
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current);
+      // Store ref in a variable to avoid stale closure
+      const currentContainer = containerRef.current;
+      if (currentContainer) {
+        resizeObserver.unobserve(currentContainer);
       }
     };
   }, [containerRef]);
