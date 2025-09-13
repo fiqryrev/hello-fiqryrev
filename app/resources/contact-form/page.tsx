@@ -1,6 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import ErrorBoundary from '../../components/ErrorBoundary';
+import ErrorBoundary from '../../components/_archive/ErrorBoundary';
 
 const ContactForm = dynamic(() => import('./contact-form').then(mod => mod.default), {
   ssr: false,

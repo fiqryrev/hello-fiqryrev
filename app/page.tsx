@@ -1,15 +1,17 @@
 import React from 'react';
-import HeroSection from './components/HeroSection';
-import CareerHighlights from './components/CareerHighlights';
-import WorkExperience from './components/WorkExperience';
-import AIBuiltSection from './components/AIBuiltSection';
+import HeroSectionNew from './components/1-HeroSectionNew';
+import CareerHighlights from './components/2-CareerHighlights';
+import WorkExperience from './components/3-WorkExperience';
+import RolePortfolio from './components/4-RolePortfolio';
+import AIBuiltSection from './components/5-AIBuiltSection';
 
 export default function Home() {
   return (
     <main>
-      <HeroSection />
+      <HeroSectionNew />
       <CareerHighlights />
       <WorkExperience />
+      <RolePortfolio />
       <AIBuiltSection />
     </main>
   );

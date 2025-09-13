@@ -28,6 +28,30 @@ const SpeakershipPage: React.FC = () => {
             </thead>
             <tbody>
                 <tr>
+                    <td className="p-3 text-gray-200">AI in Banking - Officer Development Program Batch 24</td>
+                    <td className="p-3 text-gray-200">Speaker</td>
+                    <td className="p-3 text-gray-200">Bank Syariah Indonesia</td>
+                    <td className="p-3 text-gray-200">2025-01</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">AI in Banking - Officer Development Program Batch 22</td>
+                    <td className="p-3 text-gray-200">Speaker</td>
+                    <td className="p-3 text-gray-200">Bank Syariah Indonesia</td>
+                    <td className="p-3 text-gray-200">2024-12</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Fortex 2025</td>
+                    <td className="p-3 text-gray-200">Speaker</td>
+                    <td className="p-3 text-gray-200">Universitas Al Azhar Indonesia</td>
+                    <td className="p-3 text-gray-200">2025-01</td>
+                </tr>
+                <tr>
+                    <td className="p-3 text-gray-200">Bitlabs Pitching Day 2024</td>
+                    <td className="p-3 text-gray-200">Judge</td>
+                    <td className="p-3 text-gray-200">Bitlabs Indonesia</td>
+                    <td className="p-3 text-gray-200">2024-12</td>
+                </tr>
+                <tr>
                     <td className="p-3 text-gray-200">Hackathon Judge, Angelhacks Indonesia 2024</td>
                     <td className="p-3 text-gray-200">Hackathon Judge</td>
                     <td className="p-3 text-gray-200">Angelhacks Global and Grab Indonesia</td>

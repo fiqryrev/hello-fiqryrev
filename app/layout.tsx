@@ -2,9 +2,9 @@ import React from 'react'
 import './globals.css'
 import './styles/particles.css'
 import { Inter } from 'next/font/google'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ScrollToTopButton from './components/ScrollToTopButton'
+import Header from './components/0-Header'
+import Footer from './components/0-Footer'
+import ScrollToTopButton from './components/0-ScrollToTopButton'
 import { metadata } from './metadata'
 
 const inter = Inter({ subsets: ['latin'] })
