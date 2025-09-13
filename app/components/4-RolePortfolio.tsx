@@ -52,7 +52,7 @@ const roles: Role[] = [
       'SQL & BigQuery',
       'Jupyter, MLflow, Airflow'
     ],
-    image: '/images/highlights/events_fortex_uai.jpeg',
+    image: '/images/highlights/events_garudahacks.jpg',
     color: '#3B82F6',
     gradient: 'from-blue-600 via-blue-500 to-cyan-400'
   },
