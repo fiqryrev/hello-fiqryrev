@@ -3,7 +3,7 @@ interface ChatbotResponse {
   sessionId?: string;
   chatId?: string;
   chatMessageId?: string;
-  [key: string]: any;
+  [key: string]: string | undefined;
 }
 
 export async function queryChatbot(message: string): Promise<ChatbotResponse> {
