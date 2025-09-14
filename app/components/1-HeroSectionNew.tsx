@@ -2,13 +2,18 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Database, Brain, Sparkles, Globe, GitBranch, Send, MessageSquare } from 'lucide-react';
+import { Code2, Database, Brain, Sparkles, Globe, GitBranch, Send, MessageSquare, Loader2 } from 'lucide-react';
+import { queryChatbot } from '@/app/services/chatbot';
 
 const HeroSectionNew: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [chatInput, setChatInput] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [chatResponse, setChatResponse] = useState<string | null>(null);
+  const [fadeOut, setFadeOut] = useState(false);
+  const [displayDuration, setDisplayDuration] = useState(10);
 
   const placeholderQuestions = [
     "Ask me anything...",
@@ -30,6 +35,33 @@ const HeroSectionNew: React.FC = () => {
 
     return () => clearInterval(interval);
   }, [placeholderQuestions.length]);
+
+  useEffect(() => {
+    if (chatResponse && !isLoading) {
+      setFadeOut(false);
+
+      // Calculate reading time based on character count
+      // Average reading speed: ~200-250 words per minute
+      // Average word length: ~5 characters
+      // So ~1000-1250 characters per minute = ~17-20 characters per second
+      const charCount = chatResponse.length;
+      const baseReadingTime = (charCount / 20) * 1000; // 20 chars per second
+
+      // Clamp between 10 and 30 seconds
+      const calculatedDuration = Math.min(Math.max(baseReadingTime + 3000, 10000), 30000); // Add 3s buffer for user to notice
+      setDisplayDuration(Math.round(calculatedDuration / 1000)); // Convert to seconds for display
+
+      const timer = setTimeout(() => {
+        setFadeOut(true);
+        setTimeout(() => {
+          setChatResponse(null);
+          setFadeOut(false);
+        }, 600); // Increased to match animation duration
+      }, calculatedDuration);
+
+      return () => clearTimeout(timer);
+    }
+  }, [chatResponse, isLoading]);
 
   const roles = [
     { title: "Data Analytics", icon: Brain, color: "from-blue-400 to-cyan-400" },
@@ -163,6 +195,11 @@ const HeroSectionNew: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
             className="flex justify-center mb-12 md:mb-16 px-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log('Form submission blocked');
+            }}
           >
             <div className="relative w-full max-w-2xl">
               <div
@@ -186,34 +223,99 @@ const HeroSectionNew: React.FC = () => {
                   onBlur={() => setIsFocused(false)}
                   placeholder={placeholderQuestions[placeholderIndex]}
                   className="flex-1 bg-transparent outline-none text-white placeholder:text-white/40 text-base transition-all duration-500"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && chatInput.trim()) {
-                      // Handle send message
-                      window.location.href = `/resources/contact-form?message=${encodeURIComponent(chatInput)}`;
+                  onKeyDown={async (e) => {
+                    if (e.key === 'Enter' && chatInput.trim() && !isLoading) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Handling Enter key press for chatbot');
+                      setIsLoading(true);
+                      setChatResponse(null);
+                      try {
+                        console.log('Sending message to chatbot:', chatInput);
+                        const response = await queryChatbot(chatInput);
+                        console.log('Received response:', response);
+                        setChatResponse(response.text || response.toString());
+                        setChatInput('');
+                      } catch (error) {
+                        console.error('Failed to get response:', error);
+                        setChatResponse('Sorry, I encountered an error. Please try again.');
+                      } finally {
+                        setIsLoading(false);
+                      }
+                    } else if (e.key === 'Enter') {
+                      e.preventDefault();
+                      e.stopPropagation();
                     }
                   }}
                 />
                 <button
-                  onClick={() => {
-                    if (chatInput.trim()) {
-                      window.location.href = `/resources/contact-form?message=${encodeURIComponent(chatInput)}`;
+                  type="button"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (chatInput.trim() && !isLoading) {
+                      setIsLoading(true);
+                      setChatResponse(null);
+                      try {
+                        const response = await queryChatbot(chatInput);
+                        setChatResponse(response.text || response.toString());
+                        setChatInput('');
+                      } catch (error) {
+                        console.error('Failed to get response:', error);
+                        setChatResponse('Sorry, I encountered an error. Please try again.');
+                      } finally {
+                        setIsLoading(false);
+                      }
                     }
                   }}
                   className={`
                     p-2 rounded-lg transition-all duration-200
-                    ${chatInput.trim()
+                    ${chatInput.trim() && !isLoading
                       ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg hover:scale-105'
                       : 'bg-white/10 text-white/30 cursor-not-allowed'
                     }
                   `}
-                  disabled={!chatInput.trim()}
+                  disabled={!chatInput.trim() || isLoading}
                 >
-                  <Send className="w-4 h-4" />
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </button>
               </div>
               <p className="text-center text-white/40 text-xs mt-3">
                 Press Enter to send or click the arrow
               </p>
+
+              {/* Chat Response or Loading */}
+              {(isLoading || chatResponse) && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{
+                    opacity: fadeOut ? 0 : 1,
+                    y: fadeOut ? -20 : 0,
+                    scale: fadeOut ? 0.95 : 1
+                  }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="mt-4 p-4 bg-black/40 backdrop-blur-md border border-purple-400/30 rounded-xl"
+                  style={{ pointerEvents: fadeOut ? 'none' : 'auto' }}
+                >
+                  {isLoading ? (
+                    <div className="flex items-center gap-3">
+                      <Loader2 className="w-5 h-5 text-purple-400 animate-spin" />
+                      <span className="text-white/70">Thinking...</span>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="text-white/90 whitespace-pre-wrap">
+                        {chatResponse}
+                      </div>
+                      {!fadeOut && (
+                        <div className="mt-2 text-xs text-white/30 text-right">
+                          Message duration: {displayDuration} seconds
+                        </div>
+                      )}
+                    </>
+                  )}
+                </motion.div>
+              )}
             </div>
           </motion.div>
 

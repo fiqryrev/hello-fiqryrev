@@ -8,7 +8,7 @@ const ContactForm = dynamic(() => import('./contact-form').then(mod => mod.defau
 });
 
 export default function ContactFormPage() {
-  console.log('Rendering ContactFormPage');
+  console.log('Rendering Message');
   
   return (
     <ErrorBoundary>
