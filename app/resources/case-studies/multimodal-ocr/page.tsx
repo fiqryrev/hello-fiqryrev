@@ -2,59 +2,140 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { FileText, Clock, Zap, TrendingUp, CheckCircle, ArrowRight, Brain, Code, Server, Database } from 'lucide-react';
 
 const MultimodalOCRCaseStudy = () => {
   const [activeTab, setActiveTab] = useState('receipt');
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8">Case Study: Leveraging Multimodal OCR to Achieve 90% Reduction in Document Processing Time</h1>
+    <div className="min-h-screen bg-black text-white">
+      <div className="pt-24">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
+          {/* Header Section */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              </span>
+              <span className="text-xs text-white/70 font-medium">AI-Powered Innovation</span>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Multimodal OCR Revolution
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl text-white/80 font-light max-w-3xl mx-auto">
+              How Google Gemini Flash transformed document processing with 90% time reduction
+            </p>
+          </div>
+
+          {/* Key Metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+              <Zap className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-purple-400 mb-1">90%</div>
+              <div className="text-sm text-white/60">Time Reduction</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+              <CheckCircle className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-purple-400 mb-1">95%</div>
+              <div className="text-sm text-white/60">Accuracy Rate</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+              <Clock className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-purple-400 mb-1">10s</div>
+              <div className="text-sm text-white/60">Per Document</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+              <TrendingUp className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-purple-400 mb-1">10x</div>
+              <div className="text-sm text-white/60">Throughput</div>
+            </div>
+          </div>
       
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Executive Summary</h2>
-        <p className="mb-4">
+          {/* Executive Summary */}
+          <section className="mb-16">
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Executive Summary
+                </span>
+              </h2>
+              <p className="text-white/80 leading-relaxed">
           This case study presents an innovative solution to the challenge of manual data entry in personal finance management. 
           By harnessing the power of Google Gemini Multimodal Large Language Model (LLM), we developed an advanced Optical Character Recognition (OCR) system 
           that not only extracts transaction data but also performs intelligent categorization. The result is a remarkable 90% reduction in document processing time, 
           from 10 minutes to just 10 seconds per document, while maintaining a high accuracy rate of 95%.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Before and After Comparison</h2>
-        <div className="mb-4">
-          <button
-            className={`px-4 py-2 mr-2 ${activeTab === 'receipt' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-            onClick={() => setActiveTab('receipt')}
-          >
-            Receipt Image
-          </button>
-          <button
-            className={`px-4 py-2 ${activeTab === 'non-receipt' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-            onClick={() => setActiveTab('non-receipt')}
-          >
-            Non-Receipt Image
-          </button>
-        </div>
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="w-full md:w-1/2">
-            <h3 className="text-xl font-semibold mb-2">Input: {activeTab === 'receipt' ? 'Receipt' : 'Non-Receipt'} Image</h3>
-            <div className="bg-gray-800 p-4 rounded-lg h-[500px] overflow-y-auto">
-              <div className="relative w-full h-full min-h-[400px]">
-                <Image
-                  src={activeTab === 'receipt' ? "/images/articles/resources-casestudies-multimodal-receipt.png" : "/images/articles/resources-casestudies-multimodal-wrong_picture.jpeg"}
-                  alt={activeTab === 'receipt' ? "Receipt" : "Non-Receipt Image"}
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              </p>
             </div>
-          </div>
-          <div className="w-full md:w-1/2">
+          </section>
 
-            <h3 className="text-xl font-semibold mb-2">Output: Structured JSON</h3>
-            <div className="bg-gray-800 p-4 rounded-lg h-[500px] overflow-y-auto">
-              <pre className="text-sm text-gray-200 whitespace-pre-wrap">
+          {/* Before and After Comparison */}
+          <section className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Live Demonstration
+              </span>
+            </h2>
+
+            {/* Tab Buttons */}
+            <div className="flex justify-center gap-4 mb-8">
+              <button
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                  activeTab === 'receipt'
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.3)]'
+                    : 'bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 hover:border-purple-400/30'
+                }`}
+                onClick={() => setActiveTab('receipt')}
+              >
+                <FileText className="inline-block w-4 h-4 mr-2" />
+                Receipt Processing
+              </button>
+              <button
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                  activeTab === 'non-receipt'
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.3)]'
+                    : 'bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 hover:border-purple-400/30'
+                }`}
+                onClick={() => setActiveTab('non-receipt')}
+              >
+                <FileText className="inline-block w-4 h-4 mr-2" />
+                Error Handling
+              </button>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Input Section */}
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-6 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <h3 className="text-xl font-bold text-white">
+                    Input: {activeTab === 'receipt' ? 'Receipt' : 'Non-Receipt'} Image
+                  </h3>
+                </div>
+                <div className="bg-black/40 rounded-xl p-4 h-[500px] overflow-y-auto border border-purple-400/10">
+                  <div className="relative w-full h-full min-h-[400px]">
+                    <Image
+                      src={activeTab === 'receipt' ? "/images/articles/resources-casestudies-multimodal-receipt.png" : "/images/articles/resources-casestudies-multimodal-wrong_picture.jpeg"}
+                      alt={activeTab === 'receipt' ? "Receipt" : "Non-Receipt Image"}
+                      fill
+                      className="object-contain rounded-lg"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Output Section */}
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-6 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <h3 className="text-xl font-bold text-white">
+                    Output: Structured JSON
+                  </h3>
+                </div>
+                <div className="bg-black/40 rounded-xl p-4 h-[500px] overflow-y-auto border border-purple-400/10">
+                  <pre className="text-sm text-green-400/90 font-mono whitespace-pre-wrap">
                 {activeTab === 'receipt' ? `{
   "status": 200,
   "success": true,
@@ -152,119 +233,309 @@ const MultimodalOCRCaseStudy = () => {
     "file_name": "document_scan.jpg"
   }
 }`}
-              </pre>
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Technical Architecture */}
+          <section className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Technical Architecture
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <Brain className="w-8 h-8 text-purple-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Core AI Model</h3>
+                <p className="text-white/70 text-sm">Google Gemini Multimodal LLM</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <Code className="w-8 h-8 text-purple-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Backend Framework</h3>
+                <p className="text-white/70 text-sm">FastAPI (Python-based, asynchronous)</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <Server className="w-8 h-8 text-purple-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Server</h3>
+                <p className="text-white/70 text-sm">Uvicorn (ASGI server implementation)</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <Code className="w-8 h-8 text-purple-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Programming Language</h3>
+                <p className="text-white/70 text-sm">Python 3.9+</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <FileText className="w-8 h-8 text-purple-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Image Processing</h3>
+                <p className="text-white/70 text-sm">OpenCV and Pillow libraries</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <Database className="w-8 h-8 text-purple-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Data Format</h3>
+                <p className="text-white/70 text-sm">JSON with Swagger UI docs</p>
+              </div>
+            </div>
+          </section>
+
+          {/* System Capabilities */}
+          <section className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                System Capabilities
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Intelligent Amount Detection",
+                  description: "Context-aware algorithms to accurately identify and extract transaction amounts"
+                },
+                {
+                  title: "Account Classification",
+                  description: "Automatically categorizes transactions into appropriate account types"
+                },
+                {
+                  title: "Transaction Categorization",
+                  description: "Machine learning to classify expenses into predefined or custom categories"
+                },
+                {
+                  title: "Credit/Debit Classification",
+                  description: "Distinguishes between income and expenses based on transaction context"
+                },
+                {
+                  title: "High Accuracy",
+                  description: "Achieves 95%+ accuracy in data extraction and categorization"
+                },
+                {
+                  title: "Real-time Processing",
+                  description: "Near-instantaneous results enabling immediate financial insights"
+                },
+                {
+                  title: "Multi-format Support",
+                  description: "Processes receipts, invoices, and bank statements"
+                },
+                {
+                  title: "Multilingual Support",
+                  description: "Able to process documents in multiple languages"
+                },
+                {
+                  title: "Custom Classification Rules",
+                  description: "Customized rule engine for user-defined categorization logic"
+                }
+              ].map((capability, index) => (
+                <div key={index} className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-2">{capability.title}</h3>
+                      <p className="text-white/70 text-sm">{capability.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Technical Workflow */}
+          <section className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Technical Workflow
+              </span>
+            </h2>
+            <p className="text-white/80 text-center mb-8 max-w-3xl mx-auto">
+              Our system employs a sophisticated multi-stage process to transform raw document images into structured, actionable financial data:
+            </p>
+
+            {/* Process Diagram */}
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 mb-8 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+              <div className="relative w-full h-[400px]">
+                <Image
+                  src="/images/articles/resources-casestudies-multimodal-diagram.png"
+                  alt="Multimodal OCR Process Diagram"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+
+            {/* Process Steps */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center">
+                    <span className="text-purple-400 font-bold">1</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Document Preprocessing</h3>
+                </div>
+                <p className="text-white/80 mb-4">The system optimizes the input image for analysis through:</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm">Adaptive thresholding for enhanced contrast</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm">Gaussian denoising to reduce image noise</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm">Affine transformations for perspective correction and deskewing</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm">Resolution standardization to 300 DPI for consistent processing</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center">
+                    <span className="text-purple-400 font-bold">2</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Intelligent Document Analysis</h3>
+                </div>
+                <p className="text-white/80 mb-4">Gemini processes and understands documents through a comprehensive approach:</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm"><strong className="text-white/90">Visual Layout Analysis:</strong> Identifies document structure, key regions, and information hierarchy</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm"><strong className="text-white/90">Contextual Understanding:</strong> Uses NLP to comprehend semantic meaning of text and relationships</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm"><strong className="text-white/90">Intelligent Matching:</strong> Employs fuzzy matching for variations in merchant names and items</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm"><strong className="text-white/90">Financial Classification:</strong> Auto-categorizes transactions into Charts of Accounts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 text-purple-400 mt-1 flex-shrink-0" />
+                    <span className="text-white/70 text-sm"><strong className="text-white/90">Error Detection:</strong> Validates data against patterns and flags inconsistencies</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center">
+                    <span className="text-purple-400 font-bold">3</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Structured Data Output</h3>
+                </div>
+                <p className="text-white/80">The system generates a standardized JSON output with complete transaction details, merchant information, and intelligent categorization as demonstrated in the live examples above.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Performance Metrics and Business Impact */}
+          <section className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Performance & Business Impact
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-400/30 hover:shadow-[0_0_40px_rgba(168,85,247,0.25)] transition-all duration-300">
+                <h3 className="text-xl font-bold mb-6">
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Key Performance Indicators
+                  </span>
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm"><strong className="text-purple-400">Processing Time:</strong> Reduced from 10 minutes to 10 seconds</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm"><strong className="text-purple-400">Accuracy Rate:</strong> 95% (compared to manual entry)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm"><strong className="text-purple-400">Error Reduction:</strong> 95% decrease in data entry errors</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm"><strong className="text-purple-400">Throughput:</strong> Capacity increased from 6 to 60 docs/hour</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm"><strong className="text-purple-400">Scalability:</strong> Linear scaling with added resources</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm"><strong className="text-purple-400">Price:</strong> Estimated Rp 1,000 per 50 pages</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-400/30 hover:shadow-[0_0_40px_rgba(168,85,247,0.25)] transition-all duration-300">
+                <h3 className="text-xl font-bold mb-6">
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Business Benefits
+                  </span>
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm">90% reduction in manual data entry costs</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm">Improved data consistency and reliability</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm">Real-time financial insights for faster decisions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm">Enhanced customer satisfaction via quick processing</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-white/80 text-sm">Human resources freed for higher-value tasks</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Separator with Gradient */}
+          <div className="relative my-16">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-purple-400/20"></div>
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-black px-4">
+                <span className="text-purple-400">✦</span>
+              </span>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Technical Architecture</h2>
-        <ul className="list-disc pl-6 mb-4">
-          <li><strong>Core AI Model:</strong> Google Gemini Multimodal LLM</li>
-          <li><strong>Backend Framework:</strong> FastAPI (Python-based, asynchronous)</li>
-          <li><strong>Server:</strong> Uvicorn (ASGI server implementation)</li>
-          <li><strong>Programming Language:</strong> Python 3.9+</li>
-          <li><strong>Image Processing:</strong> OpenCV and Pillow libraries</li>
-          <li><strong>Data Serialization:</strong> JSON</li>
-          <li><strong>API Documentation:</strong> Swagger UI (via FastAPI)</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">System Capabilities</h2>
-        <ul className="list-disc pl-6 mb-4">
-          <li><strong>Intelligent Amount Detection:</strong> Utilizes context-aware algorithms to accurately identify and extract transaction amounts.</li>
-          <li><strong>Account Classification:</strong> Automatically categorizes transactions into appropriate account types (e.g., checking, savings, credit card).</li>
-          <li><strong>Transaction Categorization:</strong> Employs machine learning to classify expenses into predefined or custom categories.</li>
-          <li><strong>Credit/Debit Classification:</strong> Distinguishes between income and expenses based on transaction context.</li>
-          <li><strong>High Accuracy:</strong> Achieves 95%+ accuracy in data extraction and categorization.</li>
-          <li><strong>Real-time Processing:</strong> Provides near-instantaneous results, enabling immediate financial insights.</li>
-          <li><strong>Multi-format Support:</strong> Processes various document types including receipts, invoices, and bank statements.</li>
-          <li><strong>Multilingual Support:</strong> Able to process documents in multiple languages</li>
-          <li><strong>Custom Classification Rules:</strong> Able to cater customized rule engine for user-defined categorization logic</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Technical Workflow: From Document to Structured Data</h2>
-        <div className="mb-6">
-          <p className="mb-4">
-            Our system employs a sophisticated multi-stage process to transform raw document images into structured, actionable financial data:
-          </p>
-          <div className="relative w-full max-w-2xl mx-auto my-6 h-[400px]">
-            <Image
-              src="/images/articles/resources-casestudies-multimodal-diagram.png"
-              alt="Multimodal OCR Process Diagram"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-xl font-semibold mb-2">1. Document Preprocessing</h3>
-              <p>The system optimizes the input image for analysis through:</p>
-              <ul className="list-disc pl-6 mb-2">
-                <li>Adaptive thresholding for enhanced contrast</li>
-                <li>Gaussian denoising to reduce image noise</li>
-                <li>Affine transformations for perspective correction and deskewing</li>
-                <li>Resolution standardization to 300 DPI for consistent processing</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-2">2. Intelligent Document Analysis</h3>
-              <p>Gemini processes and understands documents through a comprehensive approach:</p>
-              <ul className="list-disc pl-6 mb-2">
-                <li>Visual Layout Analysis: Identifies document structure, key regions, and information hierarchy</li>
-                <li>Contextual Understanding: Uses natural language processing to comprehend the semantic meaning of text and its relationships</li>
-                <li>Intelligent Matching: Employs fuzzy matching algorithms to handle variations in merchant names and item descriptions</li>
-                <li>Financial Classification: Automatically categorizes transactions into appropriate Charts of Accounts and wallet destinations</li>
-                <li>Error Detection: Validates extracted data against expected patterns and flags potential inconsistencies</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-2">3. Structured Data Output</h3>
-              <p className="mb-2">The system generates a standardized JSON output as shown in the Before and After Comparison section above.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Performance Metrics and Business Impact</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gray-800 text-gray-200 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3">Key Performance Indicators</h3>
-            <ul className="list-disc pl-6">
-              <li>Processing Time: Reduced from 10 minutes to 10 second per document</li>
-              <li>Accuracy Rate: 95% (compared to manual entry)</li>
-              <li>Error Reduction: 95% decrease in data entry errors</li>
-              <li>Throughput: Capacity increased from 6 to 60 documents per hour</li>
-              <li>Scalability: Linear scaling with added computational resources</li>
-              <li>Price: Estimated Rp 1,000 per 50 pages</li>
-            </ul>
-          </div>
-          <div className="bg-gray-800 text-gray-200 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3">Business Benefits</h3>
-            <ul className="list-disc pl-6">
-              <li>90% reduction in manual data entry costs</li>
-              <li>Improved data consistency and reliability</li>
-              <li>Real-time financial insights enabling faster decision-making</li>
-              <li>Enhanced customer satisfaction through quicker processing</li>
-              <li>Freed up human resources for higher-value tasks</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Conclusion</h2>
-        <p>
+          {/* Conclusion */}
+          <section className="mb-16">
+            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Conclusion
+                </span>
+              </h2>
+              <p className="text-white/80 leading-relaxed text-center max-w-4xl mx-auto">
           The implementation of our Multimodal OCR system, powered by Google Gemini LLM, has revolutionized the document processing workflow in personal finance management. 
           The 90% reduction in processing time, coupled with high accuracy and automated classification, demonstrates the transformative impact of advanced AI technologies in financial document processing. 
           This case study underscores the potential of multimodal AI models to solve complex, real-world challenges, paving the way for more efficient and accurate financial management systems.
-        </p>
-      </section>
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

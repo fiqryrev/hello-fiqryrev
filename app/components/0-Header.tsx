@@ -42,14 +42,18 @@ const Header: React.FC = () => {
   const handleMouseEnter = (submenu: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
     setActiveSubmenu(submenu);
   };
 
   const handleMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     timeoutRef.current = setTimeout(() => {
       setActiveSubmenu(null);
-    }, 300);
+    }, 200);
   };
 
   const toggleMobileMenu = () => {
@@ -156,7 +160,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 font-lato p-4" ref={headerRef}>
-      <div className={`relative mx-auto max-w-7xl transition-all duration-300 ${isScrolled ? 'backdrop-blur-2xl bg-white/10 shadow-2xl' : 'backdrop-blur-xl bg-white/5'} rounded-2xl border border-white/20`} onMouseLeave={handleMouseLeave}>
+      <div className={`relative mx-auto max-w-7xl transition-all duration-300 ${isScrolled ? 'backdrop-blur-2xl bg-white/10 shadow-2xl' : 'backdrop-blur-xl bg-white/5'} rounded-2xl border border-white/20`}>
         {/* Menu box with glassmorphism */}
         <div className="w-full h-16">
           <nav className="px-6 h-full">
@@ -180,17 +184,33 @@ const Header: React.FC = () => {
                 <Link href="/" className="text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105">
                   Home
                 </Link>
-                <div className="relative" onMouseEnter={() => handleMouseEnter('solutions')}>
-                  <button className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105">
+                <div
+                  className="relative group"
+                  onMouseEnter={() => handleMouseEnter('solutions')}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 py-2">
                     <span>Solutions</span>
-                    <ChevronDown size={16} className="transition-transform duration-300" />
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${activeSubmenu === 'solutions' ? 'rotate-180' : ''}`} />
                   </button>
+                  {/* Invisible bridge to prevent gap */}
+                  {activeSubmenu === 'solutions' && (
+                    <div className="absolute left-0 right-0 top-full h-2 bg-transparent" />
+                  )}
                 </div>
-                <div className="relative" onMouseEnter={() => handleMouseEnter('resources')}>
-                  <button className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105">
+                <div
+                  className="relative group"
+                  onMouseEnter={() => handleMouseEnter('resources')}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 py-2">
                     <span>Resources</span>
-                    <ChevronDown size={16} className="transition-transform duration-300" />
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${activeSubmenu === 'resources' ? 'rotate-180' : ''}`} />
                   </button>
+                  {/* Invisible bridge to prevent gap */}
+                  {activeSubmenu === 'resources' && (
+                    <div className="absolute left-0 right-0 top-full h-2 bg-transparent" />
+                  )}
                 </div>
                 <Link href="/about" className="text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105">
                   About
@@ -242,11 +262,21 @@ const Header: React.FC = () => {
 
         {/* Submenu with solid dark background */}
         {activeSubmenu && (
-          <div className="absolute left-0 right-0 top-full mt-2 bg-gray-950/98 shadow-2xl rounded-xl border border-gray-800 overflow-hidden">
-            {/* Submenu content box */}
-            <div className="w-full">
-              {activeSubmenu === 'solutions' && <SolutionsSubMenu items={solutionsItems} />}
-              {activeSubmenu === 'resources' && <ResourcesSubMenu />}
+          <div
+            className="absolute left-0 right-0 top-full mt-0 pt-2 bg-transparent"
+            onMouseEnter={() => {
+              if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+              }
+            }}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="bg-gray-950/98 shadow-2xl rounded-xl border border-gray-800 overflow-hidden">
+              {/* Submenu content box */}
+              <div className="w-full">
+                {activeSubmenu === 'solutions' && <SolutionsSubMenu items={solutionsItems} />}
+                {activeSubmenu === 'resources' && <ResourcesSubMenu />}
+              </div>
             </div>
           </div>
         )}

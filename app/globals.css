@@ -284,6 +284,43 @@ body {
   }
 }
 
+/* Particle Effect Styles */
+.particle-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: particleFloat 3s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(100vw) translateY(-20px);
+    opacity: 0;
+  }
+}
+
 @theme inline {
   @keyframes iconBounce {
   0%, 100% {
