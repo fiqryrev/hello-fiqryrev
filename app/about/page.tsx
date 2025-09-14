@@ -36,59 +36,116 @@ const ParticleEffect = () => {
 
 const ImageSlider = () => {
     const [sliderPosition, setSliderPosition] = useState(50);
+    const [isDragging, setIsDragging] = useState(false);
     const sliderRef = useRef<HTMLDivElement>(null);
-  
+
+    const updatePosition = (clientX: number) => {
+      if (sliderRef.current) {
+        const rect = sliderRef.current.getBoundingClientRect();
+        const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+        setSliderPosition((x / rect.width) * 100);
+      }
+    };
+
+    const handleMouseDown = () => {
+      setIsDragging(true);
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
     const handleMouseMove = (e: React.MouseEvent) => {
-      if (sliderRef.current) {
-        const rect = sliderRef.current.getBoundingClientRect();
-        const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-        setSliderPosition((x / rect.width) * 100);
+      if (isDragging) {
+        updatePosition(e.clientX);
       }
     };
-  
+
+    const handleMouseLeave = () => {
+      setIsDragging(false);
+    };
+
     const handleTouchMove = (e: React.TouchEvent) => {
-      if (sliderRef.current) {
-        const rect = sliderRef.current.getBoundingClientRect();
-        const x = Math.max(0, Math.min(e.touches[0].clientX - rect.left, rect.width));
-        setSliderPosition((x / rect.width) * 100);
-      }
+      e.preventDefault();
+      updatePosition(e.touches[0].clientX);
     };
-  
+
+    const handleClick = (e: React.MouseEvent) => {
+      updatePosition(e.clientX);
+    };
+
+    useEffect(() => {
+      const handleGlobalMouseUp = () => {
+        setIsDragging(false);
+      };
+
+      if (isDragging) {
+        document.addEventListener('mouseup', handleGlobalMouseUp);
+        document.addEventListener('mouseleave', handleGlobalMouseUp);
+      }
+
+      return () => {
+        document.removeEventListener('mouseup', handleGlobalMouseUp);
+        document.removeEventListener('mouseleave', handleGlobalMouseUp);
+      };
+    }, [isDragging]);
+
     return (
       <div
         ref={sliderRef}
-        className="relative w-full h-0 pb-[56.25%] overflow-hidden cursor-ew-resize"
+        className="relative w-full aspect-video overflow-hidden cursor-ew-resize select-none"
         onMouseMove={handleMouseMove}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
         onTouchMove={handleTouchMove}
+        onClick={handleClick}
       >
-        <div className="absolute top-0 left-0 w-full h-full">
-          {/* 'After' image */}
-          <div className="w-full h-full bg-contain bg-no-repeat bg-center" 
-               style={{ backgroundImage: "url('/images/articles/datawarehouse_after.png')" }}></div>
+        {/* After image (right side) */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="/images/articles/datawarehouse_after.png"
+            alt="After"
+            className="w-full h-full object-contain"
+            draggable={false}
+          />
         </div>
-        <div 
+
+        {/* Before image (left side) */}
+        <div
           className="absolute top-0 left-0 h-full overflow-hidden"
           style={{ width: `${sliderPosition}%` }}
         >
-          {/* 'Before' image */}
-          <div 
-            className="w-full h-full bg-contain bg-no-repeat bg-center" 
-            style={{ 
-              backgroundImage: "url('/images/articles/datawarehouse_before.png')",
-              width: `${100 / (sliderPosition / 100)}%`,
-              height: '100%',
+          <img
+            src="/images/articles/datawarehouse_before.png"
+            alt="Before"
+            className="h-full object-contain"
+            style={{
+              width: `${(100 / sliderPosition) * 100}%`,
+              maxWidth: 'none'
             }}
-          ></div>
+            draggable={false}
+          />
         </div>
+
+        {/* Slider handle */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-white cursor-ew-resize"
-          style={{ left: `${sliderPosition}%` }}
+          className="absolute top-0 bottom-0 w-1 bg-gradient-to-r from-purple-400 to-pink-400 cursor-ew-resize shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+          style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
         >
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center">
-            <svg className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8 12L4 8m0 0l4-4m-4 4h16m0 0l-4 4m4-4l-4-4" />
             </svg>
           </div>
+        </div>
+
+        {/* Labels */}
+        <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white/80 border border-white/20">
+          Before
+        </div>
+        <div className="absolute top-4 right-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white/80 border border-white/20">
+          After
         </div>
       </div>
     );
@@ -98,50 +155,155 @@ export default function About() {
   return (
     <div className="min-h-screen bg-black text-white relative w-full m-0 p-0">
       <ParticleEffect />
-      <div className="relative z-10">
+      <div className="relative z-10 pt-24">
         <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
-          {/* Main Title Section */}
-          <div className="flex flex-col md:flex-row justify-center items-center mt-4 sm:mt-8 md:mt-12 mb-6 sm:mb-8 md:mb-12">
-            <div className="text-center md:text-left md:w-1/2 mb-4 md:mb-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-lato mb-3 sm:mb-4">
-                Elevating Your Vision with <br className="hidden sm:inline" />
-                Data and AI Innovation
-              </h1>
+          {/* Professional Title Section */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              </span>
+              <span className="text-xs text-white/70 font-medium">Innovation Leader</span>
             </div>
-            <div className="text-center md:text-right md:w-1/2 md:pl-4 lg:pl-8">
-              <p className="text-sm sm:text-base md:text-lg font-light">
+
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                About Fiqry
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl text-white/80 font-light mb-8">
+              Elevating Your Vision with Data and AI Innovation
+            </p>
+          </div>
+
+          {/* Main Content Section with Glassmorphism */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                My Mission
+              </h2>
+              <p className="text-white/70 leading-relaxed">
                 I leverage cutting-edge technologies to solve complex challenges. From advanced analytics to AI-powered automation, my work bridges the gap between innovation and impact. Together, we create solutions that transform businesses into data-driven powerhouses.
-                <br className="hidden sm:inline" />
-                Let&apos;s build the future of intelligent systems, starting today.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                My Vision
+              </h2>
+              <p className="text-white/70 leading-relaxed">
+                Building the future of intelligent systems, starting today. I envision a world where data and AI seamlessly integrate into every business process, enabling unprecedented efficiency, innovation, and growth across all industries.
               </p>
             </div>
           </div>
   
-          {/* Separator Line */}
-          <div className="border-t border-gray-500 my-4 sm:my-6"></div>
-  
-          {/* Case Study Section */}
-          <section className="mb-6 sm:mb-8 md:mb-12 bg-gray-900 bg-opacity-70 p-3 sm:p-4 md:p-6 rounded-lg shadow-md">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-lato font-bold text-center mb-3 sm:mb-4">
-              Case Study - Modernize Data Warehouse Architecture
-            </h1>
-            <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 text-center">
-              Here is my top-notch data warehouse architecture utilizing advanced AI solutions for top tech companies, leading innovations in automation, data governance, and machine learning. This transformation modernizes data warehouse architecture by integrating AI-powered tools like dbt and Google Gemini for automated SQL generation, metadata management, and real-time data processing.
-            </p>
-            <ImageSlider />
+          {/* Separator with Gradient */}
+          <div className="relative my-12">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-purple-400/20"></div>
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-black px-4">
+                <span className="text-purple-400">★</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Case Study Section with Glassmorphism */}
+          <section className="mb-12">
+            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-2xl p-8 shadow-[0_0_30px_rgba(168,85,247,0.1)]">
+              <div className="text-center mb-8">
+                <span className="inline-block px-4 py-1 mb-4 text-xs font-medium text-purple-400 bg-purple-400/10 rounded-full border border-purple-400/30">
+                  Featured Case Study
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Modernize Data Warehouse Architecture
+                  </span>
+                </h2>
+                <p className="text-white/70 max-w-3xl mx-auto leading-relaxed">
+                  Revolutionizing data infrastructure for top tech companies through AI-powered automation, advanced data governance, and cutting-edge machine learning. This transformation integrates tools like dbt and Google Gemini for automated SQL generation, metadata management, and real-time data processing.
+                </p>
+              </div>
+
+              {/* Image Slider with Border */}
+              <div className="rounded-xl overflow-hidden border border-purple-400/20 shadow-lg">
+                <ImageSlider />
+              </div>
+
+              {/* Case Study Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-400">90%</div>
+                  <div className="text-sm text-white/60">Faster Processing</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-400">60%</div>
+                  <div className="text-sm text-white/60">Cost Reduction</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-400">24/7</div>
+                  <div className="text-sm text-white/60">Real-time Analytics</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-400">100%</div>
+                  <div className="text-sm text-white/60">Automated</div>
+                </div>
+              </div>
+            </div>
           </section>
 
-          {/* Separator Line */}
-          <div className="border-t border-gray-500 my-4 sm:my-6"></div>
-  
-          {/* Inquiry Form */}
-          <section className="mt-12 text-center">
-              <h2 className="text-2xl font-semibold mb-4 text-white">Empower Your Data Warehouse with Cutting-Edge AI Solutions</h2>
-              <p className="text-gray-300 mb-3">Seeking a knowledgeable individual for your event on data science, analytics, or data engineering projects?</p>
-              <p className="text-gray-400 mb-6 text-sm">Discover strategies for automating data pipelines, advancing data governance, and harnessing machine learning to modernize your data architecture.</p>
-              <RainbowButton href="/resources/contact-form">
+          {/* Separator with Gradient */}
+          <div className="relative my-12">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-purple-400/20"></div>
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-black px-4">
+                <span className="text-purple-400">✦</span>
+              </span>
+            </div>
+          </div>
+
+          {/* CTA Section with Glassmorphism */}
+          <section className="text-center">
+            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-purple-400/10 border border-purple-400/30">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span className="text-xs text-white/70 font-medium">Available for Projects</span>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Empower Your Data & AI Journey
+                </span>
+              </h2>
+
+              <p className="text-white/80 mb-3 text-lg">
+                Seeking expertise for your data science, analytics, or AI engineering projects?
+              </p>
+
+              <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
+                Discover strategies for automating data pipelines, advancing data governance, and harnessing machine learning to modernize your data architecture.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <RainbowButton href="/resources/contact-form">
                   Book a Project
-              </RainbowButton>
+                </RainbowButton>
+
+                <a
+                  href="/resources/contact-form"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105"
+                >
+                  Let&apos;s Chat
+                </a>
+              </div>
+            </div>
           </section>
         </div>
       </div>

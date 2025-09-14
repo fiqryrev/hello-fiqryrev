@@ -69,7 +69,9 @@ const config: Config = {
   			gradient: 'gradient 15s ease infinite',
   			pulse: 'pulse var(--duration) ease-out infinite',
   			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
-  			rainbow: 'rainbow var(--speed, 2s) infinite linear'
+  			rainbow: 'rainbow var(--speed, 2s) infinite linear',
+  			'spin-slow': 'spin 8s linear infinite',
+  			'float-up': 'float-up 1s ease-out forwards'
   		},
   		keyframes: {
   			'spin-around': {
@@ -137,6 +139,20 @@ const config: Config = {
   				},
   				'100%': {
   					'background-position': '200%'
+  				}
+  			},
+  			'float-up': {
+  				'0%': {
+  					transform: 'translateY(0) scale(0)',
+  					opacity: '0'
+  				},
+  				'50%': {
+  					transform: 'translateY(-20px) scale(1)',
+  					opacity: '1'
+  				},
+  				'100%': {
+  					transform: 'translateY(-40px) scale(0)',
+  					opacity: '0'
   				}
   			}
   		},

@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import Image from 'next/image';
 import styles from '../styles/components/4-RolePortfolio.module.css';
 import '../styles/components/4-RolePortfolioMenu.css';
 import { InteractiveMenu, InteractiveMenuItem } from "@/components/ui/modern-mobile-menu";
+
+// Lazy load SplineScene for better performance
+const SplineScene = lazy(() => import("@/components/ui/splite").then(module => ({ default: module.SplineScene })));
 import {
   DataScientistIcon,
   AIEngineerIcon,
@@ -173,8 +176,11 @@ const roles: Role[] = [
 const RolePortfolio: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDockVisible, setIsDockVisible] = useState(false);
+  const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const animationFrameRef = useRef<number>();
 
   // Create menu items for the InteractiveMenu
   const menuItems: InteractiveMenuItem[] = [
@@ -187,40 +193,85 @@ const RolePortfolio: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return;
+      // Cancel any pending animation frame
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
 
-      const container = containerRef.current;
-      const scrollTop = window.scrollY;
-      const containerTop = container.offsetTop;
-      const containerHeight = container.offsetHeight;
-      const windowHeight = window.innerHeight;
+      // Use requestAnimationFrame for better performance
+      animationFrameRef.current = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
 
-      // Check if we're within the RolePortfolio section
-      const containerBottom = containerTop + containerHeight;
-      const isInSection = scrollTop + windowHeight > containerTop + 100 && scrollTop < containerBottom - 100;
+        const container = containerRef.current;
+        const scrollTop = window.scrollY;
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const containerBottom = containerTop + containerHeight;
+
+      // More precise section detection - only show when actually viewing the section
+      const viewportBottom = scrollTop + windowHeight;
+      const viewportTop = scrollTop;
+
+      // Check if we're truly within the RolePortfolio section (not just approaching it)
+      const isFullyInSection = viewportTop >= containerTop - 50 && viewportBottom <= containerBottom + windowHeight;
+      const isPartiallyInSection = viewportBottom > containerTop + 100 && viewportTop < containerBottom - 100;
+      const isInSection = isFullyInSection || isPartiallyInSection;
+
       setIsDockVisible(isInSection);
 
+      // Calculate fade effect - only start fading when actually reaching the section
+      const fadeDistance = 200; // Reduced fade distance for more precise control
+      let opacity = 0;
 
-      // Determine which section is most visible
-      sectionsRef.current.forEach((section, index) => {
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          const sectionCenter = rect.top + rect.height / 2;
-          const windowCenter = windowHeight / 2;
+      // Only start fading when we're actually at the section boundary
+      if (viewportBottom > containerTop && viewportTop < containerBottom) {
+        // Calculate opacity based on how much of the viewport is in the section
+        if (viewportBottom < containerTop + fadeDistance) {
+          // Fading in from top
+          opacity = (viewportBottom - containerTop) / fadeDistance;
+        } else if (viewportTop > containerBottom - fadeDistance) {
+          // Fading out to bottom
+          opacity = (containerBottom - viewportTop) / fadeDistance;
+        } else if (viewportBottom >= containerTop + fadeDistance && viewportTop <= containerBottom - fadeDistance) {
+          // Fully in section
+          opacity = 1;
+        }
+      }
 
-          if (Math.abs(sectionCenter - windowCenter) < rect.height / 2) {
-            if (activeIndex !== index) {
-              setActiveIndex(index);
+      // Clamp opacity between 0 and 1
+      opacity = Math.max(0, Math.min(1, opacity));
+      setBackgroundOpacity(opacity);
+
+      // Only render component when opacity > 0
+      setIsBackgroundVisible(opacity > 0);
+
+        // Determine which section is most visible
+        sectionsRef.current.forEach((section, index) => {
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            const sectionCenter = rect.top + rect.height / 2;
+            const windowCenter = windowHeight / 2;
+
+            if (Math.abs(sectionCenter - windowCenter) < rect.height / 2) {
+              if (activeIndex !== index) {
+                setActiveIndex(index);
+              }
             }
           }
-        }
+        });
       });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, [activeIndex]);
 
   // Update menu active state when activeIndex changes
@@ -244,16 +295,45 @@ const RolePortfolio: React.FC = () => {
       className="relative bg-black overflow-hidden"
       style={{ minHeight: `${roles.length * 100}vh` }}
     >
-      {/* Fixed Background with Gradient Transition */}
-      <div className="fixed inset-0 pointer-events-none">
+      {/* Background with Gradient Transition - absolute positioning within section */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-200 ease-out"
+        style={{ opacity: backgroundOpacity }}
+      >
+        {/* Spline 3D Background - only render when visible with lazy loading */}
+        {isBackgroundVisible && (
+          <div className="fixed inset-0" style={{ opacity: 0.3 * backgroundOpacity }}>
+            <Suspense fallback={
+              <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-black animate-pulse" />
+            }>
+              <SplineScene
+                scene="https://prod.spline.design/pYL7e00JCyfTZoSk/scene.splinecode"
+                className="w-full h-full"
+              />
+            </Suspense>
+          </div>
+        )}
+
+        {/* Gradient overlay on top of Spline */}
         <div
-          className="absolute inset-0 transition-all duration-1000"
+          className="fixed inset-0 transition-all duration-1000"
           style={{
-            background: `linear-gradient(135deg, ${roles[activeIndex].color}10 0%, transparent 50%, black 100%)`
+            background: `linear-gradient(135deg, ${roles[activeIndex].color}20 0%, transparent 50%, black 100%)`,
+            opacity: backgroundOpacity
           }}
         />
+
+        {/* Dark overlay to ensure readability */}
+        <div
+          className="fixed inset-0 bg-black/40"
+          style={{ opacity: backgroundOpacity }}
+        />
+
         {/* Add subtle grid pattern */}
-        <div className="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-5" />
+        <div
+          className="fixed inset-0 bg-[url('/images/grid.svg')] bg-center"
+          style={{ opacity: 0.05 * backgroundOpacity }}
+        />
       </div>
 
       {/* Interactive Menu Dock */}
@@ -451,7 +531,7 @@ const RolePortfolio: React.FC = () => {
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-pink-600/20 opacity-60 z-10 group-hover:opacity-40 transition-opacity duration-300" />
 
-                  {/* Image */}
+                  {/* Image with lazy loading */}
                   <Image
                     src={role.image}
                     alt={role.title}
@@ -459,6 +539,9 @@ const RolePortfolio: React.FC = () => {
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
 
                   {/* Role Badge */}

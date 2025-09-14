@@ -7,7 +7,12 @@ import Footer from './components/0-Footer'
 import ScrollToTopButton from './components/0-ScrollToTopButton'
 import { metadata } from './metadata'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap', // Optimize font loading
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+})
 
 export { metadata }
 
@@ -27,9 +32,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <div suppressHydrationWarning>
-          <ScrollToTopButton />
-        </div>
+        <ScrollToTopButton />
       </body>
     </html>
   )

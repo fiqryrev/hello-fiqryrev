@@ -199,9 +199,14 @@ const Header: React.FC = () => {
 
               {/* CTA button with futuristic style */}
               <div className="hidden md:flex justify-end">
-                <button className="px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]">
+                <a
+                  href="https://drive.google.com/file/d/1P40A1qmU4jqdfJQP5CAB0HM3O5NUdB96/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]"
+                >
                   Download CV
-                </button>
+                </a>
               </div>
             </div>
           </nav>
@@ -223,9 +228,14 @@ const Header: React.FC = () => {
               <Link href="/about" className="block px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300" onClick={closeMobileMenu}>About</Link>
             </div>
             <div className="px-4 pb-4">
-              <button className="w-full px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300">
+              <a
+                href="https://drive.google.com/file/d/1Ormc6OylZ6bRQeWXrG2V3qP8eDaOXKUZ/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300 text-center"
+              >
                 Download CV
-              </button>
+              </a>
             </div>
           </div>
         )}
