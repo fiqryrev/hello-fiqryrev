@@ -3,7 +3,6 @@
 import React from 'react';
 import { Search, Brain, Database, Zap, Layers, GitBranch, ArrowRight, CheckCircle, Sparkles, Code, Server, Shield } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const SearchRetrievalPage: React.FC = () => {
   return (
@@ -482,7 +481,7 @@ const SearchRetrievalPage: React.FC = () => {
 
               <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
                 Whether you need semantic search, RAG implementation, or multimodal retrieval,
-                I'll help you build search systems that understand context and deliver relevant results.
+                I&apos;ll help you build search systems that understand context and deliver relevant results.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Shield, Lock, Eye, FileCheck, AlertTriangle, Key, Database, Users, CheckCircle, ArrowRight, Sparkles, Server, GitBranch, Zap } from 'lucide-react';
+import { Shield, Lock, Eye, FileCheck, AlertTriangle, Database, Users, CheckCircle, Sparkles, Server, GitBranch } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const DataGovernanceSecurityPage: React.FC = () => {
   return (
@@ -602,7 +601,7 @@ const DataGovernanceSecurityPage: React.FC = () => {
 
               <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
                 Whether you need compliance implementation, security hardening, or governance frameworks,
-                I'll help you protect your data while maintaining operational efficiency.
+                I&apos;ll help you protect your data while maintaining operational efficiency.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

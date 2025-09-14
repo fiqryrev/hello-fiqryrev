@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Brain, Zap, TrendingUp, Shield, Database, Code, ArrowRight, CheckCircle, Sparkles, Layers, GitBranch, BarChart3 } from 'lucide-react'
+import { Brain, Zap, TrendingUp, Shield, Database, ArrowRight, CheckCircle, GitBranch } from 'lucide-react'
 import Link from 'next/link'
 
 export default function DataAIProduct() {
@@ -392,7 +392,7 @@ export default function DataAIProduct() {
 
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Let's Build Your AI-Powered Future
+                  Let&apos;s Build Your AI-Powered Future
                 </span>
               </h2>
 
@@ -402,7 +402,7 @@ export default function DataAIProduct() {
 
               <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
                 Whether you need document automation, predictive analytics, or custom AI solutions,
-                I'm here to help you leverage the power of data and artificial intelligence.
+                I&apos;m here to help you leverage the power of data and artificial intelligence.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

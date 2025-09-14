@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Search, Database, BarChart3, Layers, GitBranch, Server, Code2, Shield, Sparkles } from 'lucide-react';
+import { Search, Database, BarChart3, Layers, GitBranch, Code2, Shield, Sparkles } from 'lucide-react';
 
 interface Tool {
   id: string;
@@ -85,7 +85,7 @@ const categories = [
   'Security'
 ];
 
-const categoryIcons: { [key: string]: any } = {
+const categoryIcons: { [key: string]: React.ElementType } = {
   'All': Sparkles,
   'Business Intelligence': BarChart3,
   'Data Warehouse': Database,
@@ -249,7 +249,7 @@ export default function DataStackPage() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span className="text-xs text-white/70 font-medium">Let's Build Together</span>
+                <span className="text-xs text-white/70 font-medium">Let&apos;s Build Together</span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -264,7 +264,7 @@ export default function DataStackPage() {
 
               <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
                 Whether you need a complete BI platform or integration of specific tools,
-                I'll help you build the perfect analytics stack for your business.
+                I&apos;ll help you build the perfect analytics stack for your business.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

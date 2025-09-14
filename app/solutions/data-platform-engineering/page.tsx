@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Database, Cloud, GitBranch, Cpu, Shield, Zap, Server, Settings, ArrowRight, CheckCircle, Sparkles, BarChart3, Code, Layers } from 'lucide-react';
+import { Database, Cloud, GitBranch, Cpu, Shield, Zap, Settings, ArrowRight, CheckCircle, Sparkles, BarChart3, Code, Layers } from 'lucide-react';
 import Link from 'next/link';
 
 const DataPlatformEngineeringPage: React.FC = () => {
@@ -480,7 +480,7 @@ const DataPlatformEngineeringPage: React.FC = () => {
 
               <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
                 Whether you need cloud migration, real-time analytics, or AI-powered data services,
-                I'll help you build a robust, scalable data platform that drives business value.
+                I&apos;ll help you build a robust, scalable data platform that drives business value.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
