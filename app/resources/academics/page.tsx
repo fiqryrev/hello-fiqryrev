@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { GradualSpacing } from '@/components/magicui/gradual-spacing';
 import CombinedAnimation from '@/components/magicui/hero-anim';
 import { RainbowButton } from '@/components/ui/rainbow-button';
@@ -11,7 +12,9 @@ const AcademicsPage: React.FC = () => {
       <section>
         <GradualSpacing text="Education" className="text-3xl font-semibold mb-6 text-white" />
         <div className="bg-gray-800 rounded-lg shadow-lg p-6 flex items-center space-x-6">
-          <img src="/images/speakership/speaker_unpad_logo.png" alt="University Logo" className="w-24 h-24 object-contain" />
+          <div className="relative w-24 h-24">
+            <Image src="/images/speakership/speaker_unpad_logo.png" alt="University Logo" fill className="object-contain" />
+          </div>
           <div>
             <h3 className="text-2xl font-medium text-white">Bachelor of Statistics</h3>
             <p className="text-gray-300">Universitas Padjadjaran, 2013</p>

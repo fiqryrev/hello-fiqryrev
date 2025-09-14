@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const MultimodalOCRCaseStudy = () => {
   const [activeTab, setActiveTab] = useState('receipt');
@@ -39,11 +40,14 @@ const MultimodalOCRCaseStudy = () => {
           <div className="w-full md:w-1/2">
             <h3 className="text-xl font-semibold mb-2">Input: {activeTab === 'receipt' ? 'Receipt' : 'Non-Receipt'} Image</h3>
             <div className="bg-gray-800 p-4 rounded-lg h-[500px] overflow-y-auto">
-              <img 
-                src={activeTab === 'receipt' ? "/images/articles/resources-casestudies-multimodal-receipt.png" : "/images/articles/resources-casestudies-multimodal-wrong_picture.jpeg"} 
-                alt={activeTab === 'receipt' ? "Receipt" : "Non-Receipt Image"} 
-                className="w-full h-auto object-contain"
-              />
+              <div className="relative w-full h-full min-h-[400px]">
+                <Image
+                  src={activeTab === 'receipt' ? "/images/articles/resources-casestudies-multimodal-receipt.png" : "/images/articles/resources-casestudies-multimodal-wrong_picture.jpeg"}
+                  alt={activeTab === 'receipt' ? "Receipt" : "Non-Receipt Image"}
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
           <div className="w-full md:w-1/2">
@@ -188,11 +192,14 @@ const MultimodalOCRCaseStudy = () => {
           <p className="mb-4">
             Our system employs a sophisticated multi-stage process to transform raw document images into structured, actionable financial data:
           </p>
-          <img 
-            src="/images/articles/resources-casestudies-multimodal-diagram.png" 
-            alt="Multimodal OCR Process Diagram" 
-            className="w-full max-w-2xl mx-auto my-6"
-          />
+          <div className="relative w-full max-w-2xl mx-auto my-6 h-[400px]">
+            <Image
+              src="/images/articles/resources-casestudies-multimodal-diagram.png"
+              alt="Multimodal OCR Process Diagram"
+              fill
+              className="object-contain"
+            />
+          </div>
           <div className="space-y-4">
             <div>
               <h3 className="text-xl font-semibold mb-2">1. Document Preprocessing</h3>

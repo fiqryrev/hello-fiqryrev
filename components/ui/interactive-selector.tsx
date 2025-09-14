@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { FaCampground, FaFire, FaTint, FaHotTub, FaHiking } from 'react-icons/fa';
 
 const InteractiveSelector = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animatedOptions, setAnimatedOptions] = useState<number[]>([]);
   
-  const options = [
+  const options = useMemo(() => [
     {
       title: "Luxury Tent",
       description: "Cozy glamping under the stars",
@@ -36,7 +36,7 @@ const InteractiveSelector = () => {
       image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80",
       icon: <FaHiking size={24} className="text-white" />
     }
-  ];
+  ], []);
 
   const handleOptionClick = (index: number) => {
     if (index !== activeIndex) {

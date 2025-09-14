@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { RainbowButton } from '../../components/ui/rainbow-button';
 
 const ParticleEffect = () => {
@@ -103,10 +104,11 @@ const ImageSlider = () => {
       >
         {/* After image (right side) */}
         <div className="absolute inset-0 w-full h-full">
-          <img
+          <Image
             src="/images/articles/datawarehouse_after.png"
             alt="After"
-            className="w-full h-full object-contain"
+            fill
+            className="object-contain"
             draggable={false}
           />
         </div>
@@ -116,16 +118,18 @@ const ImageSlider = () => {
           className="absolute top-0 left-0 h-full overflow-hidden"
           style={{ width: `${sliderPosition}%` }}
         >
-          <img
-            src="/images/articles/datawarehouse_before.png"
-            alt="Before"
-            className="h-full object-contain"
-            style={{
+          <div className="relative h-full" style={{
               width: `${(100 / sliderPosition) * 100}%`,
               maxWidth: 'none'
-            }}
-            draggable={false}
-          />
+            }}>
+            <Image
+              src="/images/articles/datawarehouse_before.png"
+              alt="Before"
+              fill
+              className="object-contain"
+              draggable={false}
+            />
+          </div>
         </div>
 
         {/* Slider handle */}

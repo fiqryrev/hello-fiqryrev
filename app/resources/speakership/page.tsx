@@ -292,7 +292,7 @@ const SpeakershipPage: React.FC = () => {
             </p>
 
             <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
-              Available for workshops, seminars, and guest lectures at universities, corporate events, and tech conferences. Let's inspire your audience with cutting-edge insights and practical knowledge.
+              Available for workshops, seminars, and guest lectures at universities, corporate events, and tech conferences. Let&apos;s inspire your audience with cutting-edge insights and practical knowledge.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

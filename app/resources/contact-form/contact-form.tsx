@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Send, Calendar, Users, MessageSquare, Briefcase, Code, Brain, Target, Rocket, ChartBar, GitBranch, Database } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import { RainbowButton } from '../../../components/ui/rainbow-button';
 
 console.log('ContactForm component file is being loaded');
 
@@ -180,7 +179,7 @@ const ContactForm: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
               </span>
-              <span className="text-xs text-white/70 font-medium">Let's Collaborate</span>
+              <span className="text-xs text-white/70 font-medium">Let&apos;s Collaborate</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
