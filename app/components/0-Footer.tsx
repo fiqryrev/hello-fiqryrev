@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
             <h4 className="text-lg md:text-xl font-semibold mb-4 text-white/80">Resources</h4>
             <ul className="space-y-2 md:space-y-3">
               <li>
-                <Link href="/resources/blogs" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Blogs</Link>
+                <Link href="/resources/blog" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Blogs</Link>
               </li>
               <li>
                 <Link href="/resources/speakership" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Speakership Portfolio</Link>

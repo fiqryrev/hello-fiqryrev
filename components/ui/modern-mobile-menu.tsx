@@ -37,6 +37,7 @@ const InteractiveMenu: React.FC<InteractiveMenuProps> = ({ items, accentColor })
 
   useEffect(() => {
       if (activeIndex >= finalItems.length) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- boundary guard when items list shrinks
           setActiveIndex(0);
       }
   }, [finalItems, activeIndex]);

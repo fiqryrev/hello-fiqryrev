@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import { solutionsItems, resourcesItems } from '@/app/data/navigation';
+import type { NavMenuItem } from '@/app/data/navigation';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,7 +72,7 @@ const Header: React.FC = () => {
     setActiveSubmenu(null);
   };
 
-  const SolutionsMenuItem: React.FC<{ icon: string; text: string; description: string; href: string }> = ({ icon, text, description, href }) => (
+  const SolutionsMenuItem: React.FC<NavMenuItem> = ({ icon, text, description, href }) => (
     <Link href={href} className="block group" onClick={closeMobileMenu}>
       <div className="flex items-start p-3 hover:bg-gray-800/50 transition-all duration-300 h-full bg-gray-900/95 m-0.5 rounded-lg border border-gray-700/50 hover:border-blue-500/30">
         <div className="w-7 h-7 mr-2.5 flex items-center justify-center bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-md flex-shrink-0 group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300">
@@ -84,17 +86,17 @@ const Header: React.FC = () => {
     </Link>
   );
 
-  const SolutionsSubMenu: React.FC<{ items: { icon: string; text: string; description: string; href: string }[] }> = ({ items }) => (
+  const renderSolutionsSubMenu = (items: NavMenuItem[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0 p-1">
-      {items.map((item, index) => (
-        <div key={index} className="w-full">
+      {items.map((item) => (
+        <div key={item.href} className="w-full">
           <SolutionsMenuItem icon={item.icon} text={item.text} description={item.description} href={item.href} />
         </div>
       ))}
     </div>
   );
 
-  const ResourcesMenuItem: React.FC<{ icon: string; text: string; description: string; href: string }> = ({ icon, text, description, href }) => (
+  const ResourcesMenuItem: React.FC<NavMenuItem> = ({ icon, text, description, href }) => (
     <Link href={href} className="block group" onClick={closeMobileMenu}>
       <div className="flex items-start p-3 hover:bg-gray-800/50 transition-all duration-300 bg-gray-900/95 m-0.5 rounded-lg border border-gray-700/50 hover:border-blue-500/30">
         <div className="w-7 h-7 mr-2.5 flex items-center justify-center bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-md flex-shrink-0 group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300">
@@ -108,11 +110,11 @@ const Header: React.FC = () => {
     </Link>
   );
 
-  const ResourcesSubMenu: React.FC = () => (
+  const renderResourcesSubMenu = () => (
     <div className="flex flex-col md:flex-row p-1">
       <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-0">
-        {resourcesItems.map((item, index) => (
-          <div key={index} className="w-full">
+        {resourcesItems.map((item) => (
+          <div key={item.href} className="w-full">
             <ResourcesMenuItem icon={item.icon} text={item.text} description={item.description} href={item.href} />
           </div>
         ))}
@@ -124,9 +126,10 @@ const Header: React.FC = () => {
               <div className="relative w-full h-0 pb-[100%]">
                 <Image
                   src="/images/articles/gcp_logo.png"
-                  alt="Case Study Preview"
-                  layout="fill"
-                  objectFit="contain"
+                  alt="Multimodal OCR Case Study Preview"
+                  fill
+                  sizes="80px"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -141,22 +144,6 @@ const Header: React.FC = () => {
       </div>
     </div>
   );
-
-  const solutionsItems = [
-    { icon: "💻", text: "Data and AI Products", description: "Build the ideal product from AI", href: "/solutions/data-ai-product" },
-    { icon: "🔧", text: "Data Platform and Engineering", description: "Build robust data infrastructure and pipelines", href: "/solutions/data-platform-engineering" },
-    { icon: "🔍", text: "Search and Retrieval", description: "Implement efficient search systems for your data", href: "/solutions/search-retrieval" },
-    { icon: "📊", text: "Business Intelligence and Analytics", description: "Gain insights from your data with advanced analytics", href: "/solutions/bi-analytics" },
-    { icon: "🔒", text: "Data Governance and Security", description: "Ensure data compliance and security across your organization", href: "/solutions/data-governance-security" },
-    { icon: "🌐", text: "Web Development", description: "Create modern, responsive web applications", href: "/solutions/web-development" },
-  ];
-
-  const resourcesItems = [
-    { icon: "📝", text: "Blog", description: "Latest news, tips, and best practices", href: "/resources/blog" },
-    { icon: "🎓", text: "Academics", description: "Academic publications and research", href: "/resources/academics" },
-    { icon: "🎤", text: "Speakership Portfolio", description: "Speaking engagements and presentations", href: "/resources/speakership" },
-    { icon: "💡", text: "Case Studies", description: "Real-world implementation stories", href: "/resources/case-studies" }
-  ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 font-lato p-4" ref={headerRef}>
@@ -220,7 +207,7 @@ const Header: React.FC = () => {
               {/* CTA button with futuristic style */}
               <div className="hidden md:flex justify-end">
                 <a
-                  href="https://drive.google.com/file/d/1d_nzcBcmbIOqgpqqYM7APQvad1SbTYkk/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1ZYDTSjxebJTHCHeK92w9hoXShwnUbccJ/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]"
@@ -249,7 +236,7 @@ const Header: React.FC = () => {
             </div>
             <div className="px-4 pb-4">
               <a
-                href="https://drive.google.com/file/d/1Ormc6OylZ6bRQeWXrG2V3qP8eDaOXKUZ/view?usp=sharing"
+                href="https://drive.google.com/file/d/1ZYDTSjxebJTHCHeK92w9hoXShwnUbccJ/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300 text-center"
@@ -274,8 +261,8 @@ const Header: React.FC = () => {
             <div className="bg-gray-950/98 shadow-2xl rounded-xl border border-gray-800 overflow-hidden">
               {/* Submenu content box */}
               <div className="w-full">
-                {activeSubmenu === 'solutions' && <SolutionsSubMenu items={solutionsItems} />}
-                {activeSubmenu === 'resources' && <ResourcesSubMenu />}
+                {activeSubmenu === 'solutions' && renderSolutionsSubMenu(solutionsItems)}
+                {activeSubmenu === 'resources' && renderResourcesSubMenu()}
               </div>
             </div>
           </div>

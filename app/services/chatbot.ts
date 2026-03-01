@@ -1,23 +1,29 @@
-interface ChatbotResponse {
+export interface ChatbotResponse {
   text?: string;
   sessionId?: string;
   chatId?: string;
   chatMessageId?: string;
-  [key: string]: string | undefined;
 }
 
 export async function queryChatbot(message: string): Promise<ChatbotResponse> {
+  const CHATBOT_URL = process.env.NEXT_PUBLIC_CHATBOT_API_URL;
+
+  if (!CHATBOT_URL) {
+    throw new Error("NEXT_PUBLIC_CHATBOT_API_URL is not configured");
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
-    const response = await fetch(
-      "https://flowise-z19w.onrender.com/api/v1/prediction/e28ab4f1-6343-429f-b283-25db5abcbbe1",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ question: message })
-      }
-    );
+    const response = await fetch(CHATBOT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ question: message }),
+      signal: controller.signal,
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -28,5 +34,7 @@ export async function queryChatbot(message: string): Promise<ChatbotResponse> {
   } catch (error) {
     console.error("Error querying chatbot:", error);
     throw error;
+  } finally {
+    clearTimeout(timeout);
   }
 }

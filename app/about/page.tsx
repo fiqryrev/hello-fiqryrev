@@ -3,37 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { RainbowButton } from '../../components/ui/rainbow-button';
-
-const ParticleEffect = () => {
-  useEffect(() => {
-    const container = document.querySelector('.particle-container');
-    if (!container) return;
-
-    const maxParticles = 50;
-
-    const createParticle = () => {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      particle.style.top = `${Math.random() * 100}%`;
-      particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
-      container.appendChild(particle);
-
-      particle.addEventListener('animationend', () => {
-        particle.remove();
-      });
-    };
-
-    const particleInterval = setInterval(() => {
-      if (container.children.length < maxParticles) {
-        createParticle();
-      }
-    }, 200);
-
-    return () => clearInterval(particleInterval);
-  }, []);
-
-  return <div className="particle-container"></div>;
-};
+import { ParticleEffect } from '@/app/components/shared/ParticleEffect';
 
 const ImageSlider = () => {
     const [sliderPosition, setSliderPosition] = useState(50);

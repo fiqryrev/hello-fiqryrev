@@ -66,6 +66,7 @@ export function GridPattern({
   // Update squares to animate in
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- regenerate squares when dimensions change
       setSquares(generateSquares(numSquares));
     }
   }, [dimensions, numSquares, generateSquares]);

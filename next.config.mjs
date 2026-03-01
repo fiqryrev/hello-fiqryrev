@@ -1,5 +1,4 @@
 import createMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -68,19 +67,11 @@ const nextConfig = {
       },
     ];
   },
-  swcMinify: true, // Use SWC for minification (faster than Terser)
   reactStrictMode: true,
-  experimental: {
-    optimizeCss: true, // Enable CSS optimization
-  },
 };
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
-  },
 })
 
 export default withMDX(nextConfig);

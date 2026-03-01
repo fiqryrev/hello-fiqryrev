@@ -1,4 +1,10 @@
 import React from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact',
+  description: 'Get in touch with Fiqry Revadiansyah for data science, AI, and engineering project collaborations.',
+};
 
 interface ContactFormLayoutProps {
   children: React.ReactNode;

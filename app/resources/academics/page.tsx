@@ -1,7 +1,13 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { GraduationCap, Award, BookOpen, Users } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Academics',
+  description: 'Academic background, research, and educational contributions by Fiqry Revadiansyah.',
+};
 
 const AcademicsPage = () => {
   return (

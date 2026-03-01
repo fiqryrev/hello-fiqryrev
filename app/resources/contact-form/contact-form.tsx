@@ -1,41 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Send, Calendar, Users, MessageSquare, Briefcase, Code, Brain, Target, Rocket, ChartBar, GitBranch, Database } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { ParticleEffect } from '@/app/components/shared/ParticleEffect';
 
-console.log('ContactForm component file is being loaded');
-
-const ParticleEffect = () => {
-  useEffect(() => {
-    const container = document.querySelector('.particle-container');
-    if (!container) return;
-
-    const maxParticles = 50;
-
-    const createParticle = () => {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      particle.style.top = `${Math.random() * 100}%`;
-      particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
-      container.appendChild(particle);
-
-      particle.addEventListener('animationend', () => {
-        particle.remove();
-      });
-    };
-
-    const particleInterval = setInterval(() => {
-      if (container.children.length < maxParticles) {
-        createParticle();
-      }
-    }, 200);
-
-    return () => clearInterval(particleInterval);
-  }, []);
-
-  return <div className="particle-container"></div>;
-};
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -140,10 +112,10 @@ const ContactForm: React.FC = () => {
 
     try {
       await emailjs.send(
-        'hellofiqryrev_email',
-        'hellofiqryrev_contactme',
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         templateParams,
-        'znZf-mzsyCBJ9qDzb'
+        EMAILJS_PUBLIC_KEY,
       );
       
       setStatus({
@@ -219,10 +191,10 @@ const ContactForm: React.FC = () => {
                   </span>
                 </h2>
                 <div className="grid md:grid-cols-3 gap-6">
-                  {contentSections[formData.eventType as keyof typeof contentSections].features.map((feature, index) => {
+                  {contentSections[formData.eventType as keyof typeof contentSections].features.map((feature) => {
                     const FeatureIcon = feature.icon;
                     return (
-                      <div key={index} className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm p-4 rounded-lg border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300">
+                      <div key={feature.title} className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm p-4 rounded-lg border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300">
                         <FeatureIcon className="text-purple-400 mb-2" />
                         <h3 className="text-white font-medium mb-2">{feature.title}</h3>
                         <p className="text-white/60 text-sm">{feature.description}</p>
