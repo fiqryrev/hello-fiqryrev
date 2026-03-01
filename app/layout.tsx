@@ -1,6 +1,5 @@
 import React from 'react'
 import './globals.css'
-import './styles/particles.css'
 import { Inter } from 'next/font/google'
 import Header from './components/0-Header'
 import Footer from './components/0-Footer'
@@ -52,8 +51,14 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-black text-white min-h-screen flex flex-col m-0 p-0`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <main className="flex-grow w-full">
+        <main id="main-content" className="flex-grow w-full">
           {children}
         </main>
         <Footer />

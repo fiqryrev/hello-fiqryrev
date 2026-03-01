@@ -7,7 +7,8 @@ Index of all sprints for the Hello Fiqryrev project.
 | Sprint | Folder | Status | Start Date | End Date | Goal | Phases |
 |---|---|---|---|---|---|---|
 | 1 | `sprint-1_2026-03-01/` | COMPLETED | 2026-03-01 | 2026-03-01 | Website revamp — dependency cleanup, performance, SEO, code quality | 8 (5 completed, 2 not started, 1 known issues) |
-| 2 | `sprint-2/` | NOT STARTED | TBD | TBD | TBD | — |
+| 2 | `sprint-2_2026-03-02/` | COMPLETED | 2026-03-02 | 2026-03-02 | Production env vars, PortfolioShowcase, accessibility, CSS cleanup, shared components, testing, CI/CD | 7 (all completed) |
+| 3 | `sprint-3/` | NOT STARTED | TBD | TBD | TBD | TBD |
 
 ## Sprint 1 Summary
 
@@ -20,18 +21,28 @@ Full website revamp covering dependency cleanup, Next.js 14→16 upgrade, image 
 4. Code Quality & Architecture — data extraction, shared components, type safety
 5. SEO & Metadata — sitemap, robots, OpenGraph, JSON-LD, per-page metadata
 
-**Not started (carried to Sprint 2 backlog):**
+**Not started (moved to Sprint 2):**
 - Phase 6: Accessibility — ARIA, keyboard nav, focus management
 - Phase 7: CSS Cleanup & Infra — dedup CSS, error boundaries, security headers
 
-## Sprint 2 Backlog
+## Sprint 2 Summary
 
-Pending items from Sprint 1 to consider:
-- Phase 6 (Accessibility): ARIA labels, keyboard navigation, focus management, reduced-motion
-- Phase 7 (CSS Cleanup & Infra): CSS deduplication, error boundaries, security headers
-- Solution page shared components (documented in `.claude/docs/001-solution-page-template-analysis.md`)
-- Test framework setup (Vitest + React Testing Library)
-- CI/CD pipeline (`.github/workflows/`)
+Full-scope sprint covering production deployment fix, homepage redesign, accessibility, infrastructure, testing, and CI/CD. See [sprint-2_2026-03-02/000-progress-report.md](sprint-2_2026-03-02/000-progress-report.md) for full details.
+
+**Completed phases:**
+1. Environment Variables & Security — clean `.env.example`, document Vercel env var setup
+2. Portfolio Marketplace — archive RolePortfolio, create Apple-style PortfolioShowcase, reorder sections
+3. Accessibility — ARIA labels, keyboard nav, focus management, skip link, reduced-motion guards
+4. CSS Cleanup & Infra — dedup CSS, error boundaries, security headers, image pattern restriction
+5. Solution Shared Components — extract SolutionHeader, MetricsGrid, GradientSeparator, SolutionCTA
+6. Test Framework — bootstrap Vitest + React Testing Library, initial test suite (19 tests)
+7. CI/CD Pipeline — GitHub Actions CI workflow, PR template, type-check script
+
+## Sprint 3 Summary
+
+Upcoming sprint. See [sprint-3/000-progress-report.md](sprint-3/000-progress-report.md) for template.
+
+**Status:** Not started. Run "Plan sprint 3" to define scope and create phase files.
 
 ## Folder Convention
 

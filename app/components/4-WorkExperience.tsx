@@ -45,14 +45,14 @@ const CompanyPopup: React.FC<{ company: CompanyData, onClose: () => void, onPrev
   }, [onClose, onPrevious, onNext]);
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 p-4">
+    <div role="dialog" aria-modal="true" aria-labelledby="company-popup-title" className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 p-4">
       <div ref={popupRef} className="relative w-full max-w-4xl mx-auto">
         <ShineBorder
           className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-black/90 shadow-2xl shadow-purple-500/30"
           color={["#c084fc", "#e879f9", "#f472b6"]}
         >
           <div className="text-white p-4 sm:p-8 w-full max-h-[80vh] overflow-y-auto bg-black/95 backdrop-blur-sm rounded-xl border border-purple-500/30">
-            <button onClick={onClose} className="absolute top-4 right-4 text-2xl text-white/60 hover:text-white z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-200">&times;</button>
+            <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 text-2xl text-white/60 hover:text-white z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-200">&times;</button>
 
             {/* Company popup content */}
             <div className="flex flex-col items-center mb-4 sm:mb-6">
@@ -65,7 +65,7 @@ const CompanyPopup: React.FC<{ company: CompanyData, onClose: () => void, onPrev
                 className="object-contain"
               />
               <div className="text-center mt-4">
-                <h2 className="text-xl sm:text-2xl font-bold">{company.position}</h2>
+                <h2 id="company-popup-title" className="text-xl sm:text-2xl font-bold">{company.position}</h2>
                 <p className="text-white/60 mt-2 text-sm sm:text-base">{company.duration}</p>
                 <p className="text-purple-400 font-semibold mt-1 text-sm sm:text-base">{company.ratio}</p>
               </div>
@@ -150,14 +150,14 @@ const SpeakershipPopup: React.FC<{
   }, [onClose, onPrevious, onNext]);
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 p-4">
+    <div role="dialog" aria-modal="true" aria-labelledby="speakership-popup-title" className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 p-4">
       <div ref={popupRef} className="relative w-full max-w-4xl mx-auto">
         <ShineBorder
           className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-black/90 shadow-2xl shadow-purple-500/30"
           color={['#c084fc', '#e879f9', '#f472b6']}
         >
           <div className="text-white p-4 sm:p-8 w-full max-h-[80vh] overflow-y-auto bg-black/95 backdrop-blur-sm rounded-xl border border-purple-500/30">
-            <button onClick={onClose} className="absolute top-4 right-4 text-2xl text-white/60 hover:text-white z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-200">
+            <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 text-2xl text-white/60 hover:text-white z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-200">
               &times;
             </button>
 
@@ -171,7 +171,7 @@ const SpeakershipPopup: React.FC<{
                 sizes="150px"
                 className="object-contain"
               />
-              <h2 className="text-xl sm:text-2xl font-bold mt-4">{data.university}</h2>
+              <h2 id="speakership-popup-title" className="text-xl sm:text-2xl font-bold mt-4">{data.university}</h2>
             </div>
             {data.events.map((event) => (
               <div key={event.title} className="mb-4 sm:mb-6 border-t border-white/20 pt-4">
@@ -267,9 +267,10 @@ const WorkExperience: React.FC = () => {
         <div className="flex justify-center items-center flex-wrap mb-8 sm:mb-12 max-w-6xl mx-auto">
           {workRelatedCompanies.map((company: Company, index: number) => (
             <div key={company.name} className="w-1/2 sm:w-1/3 md:w-1/4 p-2">
-              <div
+              <button
                 onClick={() => handleCompanyClick(index)}
-                className="cursor-pointer p-4 h-24 flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(192,132,252,0.3)] transition-all duration-300"
+                aria-label={`View ${company.name} details`}
+                className="cursor-pointer p-4 h-24 w-full flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(192,132,252,0.3)] transition-all duration-300"
               >
                 <Image
                   src={company.img}
@@ -279,7 +280,7 @@ const WorkExperience: React.FC = () => {
                   sizes="150px"
                   className="object-contain"
                 />
-              </div>
+              </button>
             </div>
           ))}
         </div>
@@ -287,9 +288,10 @@ const WorkExperience: React.FC = () => {
         <div className="flex justify-center items-center flex-wrap mb-8 sm:mb-16 max-w-7xl mx-auto">
           {speakershipCompanies.map((company: Company, index: number) => (
             <div key={company.name} className="w-1/3 sm:w-1/4 md:w-1/5 p-2">
-              <div
+              <button
                 onClick={() => handleSpeakershipClick(index)}
-                className="cursor-pointer p-3 h-20 flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(192,132,252,0.3)] transition-all duration-300"
+                aria-label={`View ${company.name} speakership details`}
+                className="cursor-pointer p-3 h-20 w-full flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(192,132,252,0.3)] transition-all duration-300"
               >
                 <Image
                   src={company.img}
@@ -299,7 +301,7 @@ const WorkExperience: React.FC = () => {
                   sizes="75px"
                   className="object-contain"
                 />
-              </div>
+              </button>
             </div>
           ))}
         </div>

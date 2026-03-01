@@ -176,6 +176,7 @@ const ContactForm: React.FC = () => {
                       className={`px-6 py-2 rounded-lg transition-all duration-300 ${formData.eventType === type ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'text-white/60 hover:text-white hover:bg-white/10'}`}
                       onClick={() => setFormData(prev => ({ ...prev, eventType: type }))}
                       type="button"
+                      aria-pressed={formData.eventType === type}
                     >
                       {type.charAt(0).toUpperCase() + type.slice(1)}
                     </button>
@@ -206,9 +207,10 @@ const ContactForm: React.FC = () => {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-white/80 mb-2 font-medium">Full name</label>
+                  <label htmlFor="fullName" className="block text-white/80 mb-2 font-medium">Full name</label>
                   <input
                     type="text"
+                    id="fullName"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
@@ -219,9 +221,10 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-white/80 mb-2 font-medium">Work email</label>
+                  <label htmlFor="workEmail" className="block text-white/80 mb-2 font-medium">Work email</label>
                   <input
                     type="email"
+                    id="workEmail"
                     name="workEmail"
                     value={formData.workEmail}
                     onChange={handleInputChange}
@@ -232,8 +235,9 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-white/80 mb-2 font-medium">Event details</label>
+                  <label htmlFor="eventDetails" className="block text-white/80 mb-2 font-medium">Event details</label>
                   <textarea
+                    id="eventDetails"
                     name="eventDetails"
                     value={formData.eventDetails}
                     onChange={handleInputChange}
@@ -247,6 +251,7 @@ const ContactForm: React.FC = () => {
                   <button
                     type="submit"
                     disabled={status.submitting}
+                    aria-busy={status.submitting}
                     className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-[1.02] active:scale-[0.98] font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-purple-500/25"
                   >
                     {status.submitting ? 'Sending...' : 'Send Message'}
@@ -254,7 +259,7 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 {status.message && (
-                  <div className={`text-center p-4 rounded-xl backdrop-blur-sm ${status.message.includes('error') ? 'bg-red-500/20 text-red-200 border border-red-400/30' : 'bg-green-500/20 text-green-200 border border-green-400/30'}`}>
+                  <div role="alert" aria-live="polite" className={`text-center p-4 rounded-xl backdrop-blur-sm ${status.message.includes('error') ? 'bg-red-500/20 text-red-200 border border-red-400/30' : 'bg-green-500/20 text-green-200 border border-green-400/30'}`}>
                     {status.message}
                   </div>
                 )}

@@ -150,7 +150,7 @@ const Header: React.FC = () => {
       <div className={`relative mx-auto max-w-7xl transition-all duration-300 ${isScrolled ? 'backdrop-blur-2xl bg-white/10 shadow-2xl' : 'backdrop-blur-xl bg-white/5'} rounded-2xl border border-white/20`}>
         {/* Menu box with glassmorphism */}
         <div className="w-full h-16">
-          <nav className="px-6 h-full">
+          <nav aria-label="Main navigation" className="px-6 h-full">
             <div className="flex items-center justify-between h-full">
               {/* Left space (logo) */}
               <div className="flex-shrink-0">
@@ -161,7 +161,13 @@ const Header: React.FC = () => {
 
               {/* Mobile menu button */}
               <div className="md:hidden">
-                <button onClick={toggleMobileMenu} className="text-white">
+                <button
+                  onClick={toggleMobileMenu}
+                  className="text-white"
+                  aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isMobileMenuOpen}
+                  aria-controls="mobile-menu"
+                >
                   {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
               </div>
@@ -176,7 +182,12 @@ const Header: React.FC = () => {
                   onMouseEnter={() => handleMouseEnter('solutions')}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 py-2">
+                  <button
+                    className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 py-2"
+                    aria-expanded={activeSubmenu === 'solutions'}
+                    aria-haspopup="true"
+                    onClick={() => setActiveSubmenu(activeSubmenu === 'solutions' ? null : 'solutions')}
+                  >
                     <span>Solutions</span>
                     <ChevronDown size={16} className={`transition-transform duration-300 ${activeSubmenu === 'solutions' ? 'rotate-180' : ''}`} />
                   </button>
@@ -190,7 +201,12 @@ const Header: React.FC = () => {
                   onMouseEnter={() => handleMouseEnter('resources')}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 py-2">
+                  <button
+                    className="flex items-center space-x-1 text-white/90 hover:text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 py-2"
+                    aria-expanded={activeSubmenu === 'resources'}
+                    aria-haspopup="true"
+                    onClick={() => setActiveSubmenu(activeSubmenu === 'resources' ? null : 'resources')}
+                  >
                     <span>Resources</span>
                     <ChevronDown size={16} className={`transition-transform duration-300 ${activeSubmenu === 'resources' ? 'rotate-180' : ''}`} />
                   </button>
@@ -210,6 +226,7 @@ const Header: React.FC = () => {
                   href="https://drive.google.com/file/d/1ZYDTSjxebJTHCHeK92w9hoXShwnUbccJ/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Download CV (opens in new tab)"
                   className="px-6 py-2.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]"
                 >
                   Download CV
@@ -221,14 +238,14 @@ const Header: React.FC = () => {
 
         {/* Mobile menu with glassmorphism */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 top-full mt-2 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl overflow-hidden">
+          <div id="mobile-menu" className="md:hidden absolute left-0 right-0 top-full mt-2 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl overflow-hidden">
             <div className="px-4 pt-4 pb-3 space-y-1">
               <Link href="/" className="block px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300" onClick={closeMobileMenu}>Home</Link>
-              <button onClick={() => handleMobileSubmenuToggle('solutions')} className="w-full text-left px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 flex items-center justify-between">
+              <button onClick={() => handleMobileSubmenuToggle('solutions')} aria-expanded={activeSubmenu === 'solutions'} className="w-full text-left px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 flex items-center justify-between">
                 Solutions
                 <ChevronDown size={16} className={`transition-transform duration-300 ${activeSubmenu === 'solutions' ? 'rotate-180' : ''}`} />
               </button>
-              <button onClick={() => handleMobileSubmenuToggle('resources')} className="w-full text-left px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 flex items-center justify-between">
+              <button onClick={() => handleMobileSubmenuToggle('resources')} aria-expanded={activeSubmenu === 'resources'} className="w-full text-left px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 flex items-center justify-between">
                 Resources
                 <ChevronDown size={16} className={`transition-transform duration-300 ${activeSubmenu === 'resources' ? 'rotate-180' : ''}`} />
               </button>
