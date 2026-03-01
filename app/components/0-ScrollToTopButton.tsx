@@ -8,6 +8,7 @@ const ScrollToTopButton = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration guard pattern per CLAUDE.md rule 7
     setIsMounted(true);
   }, []);
 

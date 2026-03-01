@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Image from 'next/image'
 import { Brain, Zap, TrendingUp, Shield, Database, ArrowRight, CheckCircle, GitBranch } from 'lucide-react'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Data & AI Product Solutions',
+  description: 'AI-powered data products and intelligent automation solutions by Fiqry Revadiansyah.',
+};
 
 export default function DataAIProduct() {
   return (

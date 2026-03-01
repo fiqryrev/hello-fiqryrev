@@ -46,6 +46,7 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
         timers.push(timer);
       });
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- initializing animated state for mobile on mount
       setAnimatedOptions(events.map((_, i) => i));
     }
 
@@ -63,8 +64,8 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
     return () => clearInterval(interval);
   }, [events.length]);
 
-  // Mobile Slider Component
-  const MobileSlider = () => (
+  // Mobile Slider render function
+  const renderMobileSlider = () => (
     <div className="md:hidden w-full px-4">
       <div className="relative overflow-hidden rounded-xl">
         <div
@@ -157,7 +158,7 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
 
       {/* Mobile Slider */}
       <div className="relative z-10">
-        <MobileSlider />
+        {renderMobileSlider()}
       </div>
 
       {/* Desktop Options Container */}

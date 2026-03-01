@@ -1,6 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowRight, BookOpen, PenTool, Sparkles } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Insights on data science, AI engineering, and technology from Fiqry Revadiansyah.',
+};
 
 const BlogPage: React.FC = () => {
   // This is a placeholder for blog posts. In a real application, you would fetch this data from an API or database.

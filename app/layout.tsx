@@ -16,6 +16,27 @@ const inter = Inter({
 
 export { metadata }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Fiqry Revadiansyah',
+  jobTitle: 'Data Science and Engineering Lead',
+  url: 'https://hellofiqryrev.com',
+  sameAs: [
+    'https://linkedin.com/in/fiqryrevadiansyah',
+    'https://github.com/fiqryrev',
+  ],
+  knowsAbout: [
+    'Data Science',
+    'Data Engineering',
+    'Machine Learning',
+    'Artificial Intelligence',
+    'MLOps',
+    'Analytics',
+    'Generative AI',
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -25,6 +46,10 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className={`${inter.className} bg-black text-white min-h-screen flex flex-col m-0 p-0`}>
         <Header />

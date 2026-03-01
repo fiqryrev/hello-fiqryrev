@@ -4,10 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Database, Brain, Sparkles, Globe, GitBranch, Send, MessageSquare, Loader2 } from 'lucide-react';
 import { queryChatbot } from '@/app/services/chatbot';
+import { useVisibility } from '@/lib/use-visibility';
+import { useReducedMotion } from '@/lib/use-reduced-motion';
 
 const HeroSectionNew: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [chatInput, setChatInput] = useState('');
+  const { ref: sectionRef, isVisible: isSectionVisible } = useVisibility(0.1);
+  const reducedMotion = useReducedMotion();
   const [isFocused, setIsFocused] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +83,7 @@ const HeroSectionNew: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -88,6 +92,7 @@ const HeroSectionNew: React.FC = () => {
           loop
           muted
           playsInline
+          preload="none"
           className="w-full h-[200%] object-cover opacity-70 absolute bottom-0 left-0"
           style={{ transform: 'translateY(50%)' }}
         />
@@ -198,7 +203,6 @@ const HeroSectionNew: React.FC = () => {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              console.log('Form submission blocked');
             }}
           >
             <div className="relative w-full max-w-2xl">
@@ -227,13 +231,10 @@ const HeroSectionNew: React.FC = () => {
                     if (e.key === 'Enter' && chatInput.trim() && !isLoading) {
                       e.preventDefault();
                       e.stopPropagation();
-                      console.log('Handling Enter key press for chatbot');
                       setIsLoading(true);
                       setChatResponse(null);
                       try {
-                        console.log('Sending message to chatbot:', chatInput);
                         const response = await queryChatbot(chatInput);
-                        console.log('Received response:', response);
                         setChatResponse(response.text || response.toString());
                         setChatInput('');
                       } catch (error) {
@@ -344,50 +345,31 @@ const HeroSectionNew: React.FC = () => {
         </motion.div>
 
         {/* Floating Tech Icons - Subtle Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 5, 0]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-20 left-10 opacity-10"
-          >
-            <Code2 className="w-24 h-24 text-blue-400" />
-          </motion.div>
-          <motion.div
-            animate={{
-              y: [0, 20, 0],
-              rotate: [0, -5, 0]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute bottom-20 right-10 opacity-10"
-          >
-            <Database className="w-32 h-32 text-purple-400" />
-          </motion.div>
-          <motion.div
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, 10, 0]
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-40 right-20 opacity-10"
-          >
-            <GitBranch className="w-20 h-20 text-pink-400" />
-          </motion.div>
-        </div>
+        {!reducedMotion && (
+          <div className="absolute inset-0 pointer-events-none">
+            <motion.div
+              animate={isSectionVisible ? { y: [0, -20, 0], rotate: [0, 5, 0] } : {}}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-20 left-10 opacity-10"
+            >
+              <Code2 className="w-24 h-24 text-blue-400" />
+            </motion.div>
+            <motion.div
+              animate={isSectionVisible ? { y: [0, 20, 0], rotate: [0, -5, 0] } : {}}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-20 right-10 opacity-10"
+            >
+              <Database className="w-32 h-32 text-purple-400" />
+            </motion.div>
+            <motion.div
+              animate={isSectionVisible ? { y: [0, -15, 0], rotate: [0, 10, 0] } : {}}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-40 right-20 opacity-10"
+            >
+              <GitBranch className="w-20 h-20 text-pink-400" />
+            </motion.div>
+          </div>
+        )}
       </div>
 
       {/* Bottom gradient fade */}

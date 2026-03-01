@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import SolutionContent from './SolutionContent';
 
 export const metadata: Metadata = {
-  title: 'Solutions | Fiqry Revadiansyah',
-  description: 'Explore the solutions offered by Fiqry Revadiansyah in data science and engineering.',
+  title: 'Solutions',
+  description: 'Explore data science, engineering, and AI solutions offered by Fiqry Revadiansyah.',
 };
 
 const SolutionPage: React.FC = () => {

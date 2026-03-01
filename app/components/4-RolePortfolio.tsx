@@ -5,6 +5,7 @@ import Image from 'next/image';
 import styles from '../styles/components/4-RolePortfolio.module.css';
 import '../styles/components/4-RolePortfolioMenu.css';
 import { InteractiveMenu, InteractiveMenuItem } from "@/components/ui/modern-mobile-menu";
+import { useReducedMotion } from '@/lib/use-reduced-motion';
 
 // Lazy load SplineScene for better performance
 const SplineScene = lazy(() => import("@/components/ui/splite").then(module => ({ default: module.SplineScene })));
@@ -180,7 +181,9 @@ const RolePortfolio: React.FC = () => {
   const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number>(0);
+  const menuTimeoutRef = useRef<NodeJS.Timeout>(undefined);
+  const reducedMotion = useReducedMotion();
 
   // Create menu items for the InteractiveMenu
   const menuItems: InteractiveMenuItem[] = [
@@ -276,10 +279,9 @@ const RolePortfolio: React.FC = () => {
 
   // Update menu active state when activeIndex changes
   useEffect(() => {
-    // Wait for next tick to ensure DOM is ready
-    setTimeout(() => {
-      const menuItems = document.querySelectorAll('.role-portfolio-menu-wrapper .menu__item');
-      menuItems.forEach((item, index) => {
+    menuTimeoutRef.current = setTimeout(() => {
+      const items = document.querySelectorAll('.role-portfolio-menu-wrapper .menu__item');
+      items.forEach((item, index) => {
         if (index === activeIndex) {
           item.classList.add('active');
         } else {
@@ -287,6 +289,10 @@ const RolePortfolio: React.FC = () => {
         }
       });
     }, 50);
+
+    return () => {
+      if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
+    };
   }, [activeIndex, isDockVisible]);
 
   return (
@@ -396,7 +402,9 @@ const RolePortfolio: React.FC = () => {
               {/* Left Content */}
               <div
                 className={`relative z-10 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
-                style={{
+                style={reducedMotion ? {
+                  opacity: index === activeIndex ? 1 : 0.4,
+                } : {
                   transform: `translateY(${index === activeIndex ? 0 : 30}px)`,
                   opacity: index === activeIndex ? 1 : 0.4,
                   transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
@@ -521,7 +529,9 @@ const RolePortfolio: React.FC = () => {
               {/* Right Image */}
               <div
                 className={`relative ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}
-                style={{
+                style={reducedMotion ? {
+                  opacity: index === activeIndex ? 1 : 0.6,
+                } : {
                   transform: `scale(${index === activeIndex ? 1 : 0.95}) translateY(${index === activeIndex ? 0 : 20}px)`,
                   opacity: index === activeIndex ? 1 : 0.6,
                   transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'

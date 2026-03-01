@@ -1,16 +1,27 @@
+import fs from 'fs';
+import path from 'path';
+
 import React from 'react'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 
 interface BlogPostProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
+}
+
+export function generateStaticParams() {
+  const blogDir = path.join(process.cwd(), 'app/resources/blog');
+  const files = fs.readdirSync(blogDir).filter((f) => f.endsWith('.mdx'));
+  return files.map((file) => ({
+    slug: file.replace('.mdx', ''),
+  }));
 }
 
 export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
-  const { slug } = params
+  const { slug } = await params
   const MDXContent = await import(`../../${slug}.mdx`).catch(() => null)
 
   if (!MDXContent) {
@@ -24,7 +35,7 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  const { slug } = params
+  const { slug } = await params
   const MDXContent = await import(`../../${slug}.mdx`).catch(() => null)
 
   if (!MDXContent) {

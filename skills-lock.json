@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-tailwind-best-practices": {
+      "source": "emerson1337/skills-for-agents",
+      "sourceType": "github",
+      "computedHash": "a8287f2d78ec0fd7b7f98be9683d32aa37b863759c67eddd411f0dfbcbe06099"
+    }
+  }
+}

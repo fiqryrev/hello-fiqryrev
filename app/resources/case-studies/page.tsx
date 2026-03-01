@@ -1,7 +1,13 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, FileText, Clock, Sparkles } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Case Studies',
+  description: 'Real-world data science and engineering case studies demonstrating AI-powered solutions.',
+};
 
 const CaseStudies = () => {
   const caseStudies = [

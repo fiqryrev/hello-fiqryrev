@@ -1,4 +1,10 @@
 import React from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Speakership',
+  description: 'Speaking engagements and presentations by Fiqry Revadiansyah on data science, AI, and engineering.',
+};
 
 interface SpeakershipLayoutProps {
   children: React.ReactNode;

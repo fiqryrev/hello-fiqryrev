@@ -18,6 +18,20 @@
   animation: wormhole 10s infinite;
 }
 
+.paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wormholeBackground {
+    animation: none;
+  }
+  .particle {
+    animation: none;
+    display: none;
+  }
+}
+
 @keyframes wormhole {
   0% {
     background-position: left center, 0% 50%;
