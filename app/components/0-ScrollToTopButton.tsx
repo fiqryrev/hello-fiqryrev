@@ -64,6 +64,7 @@ const ScrollToTopButton = () => {
 
         {/* Progress ring */}
         <svg
+          aria-hidden="true"
           className="absolute inset-0 w-14 h-14 -rotate-90 pointer-events-none"
           viewBox="0 0 56 56"
         >
@@ -109,6 +110,7 @@ const ScrollToTopButton = () => {
 
           {/* Icon */}
           <svg
+            aria-hidden="true"
             className="w-6 h-6 text-white relative z-10 group-hover:translate-y-[-2px] transition-transform duration-300"
             fill="none"
             stroke="currentColor"

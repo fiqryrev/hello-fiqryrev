@@ -12,25 +12,25 @@ const Footer: React.FC = () => {
             <p className="text-sm md:text-base text-white/60 mb-6">Expanding the frontiers of AI and development with each line of code. <span className="text-purple-400 font-semibold">Discover</span>. <span className="text-purple-400 font-semibold">Create</span>. <span className="text-purple-400 font-semibold">Evolve</span>.</p>
             <h4 className="text-lg md:text-xl font-semibold mb-4 text-white/80">Connect</h4>
             <div className="flex space-x-6 md:space-x-4">
-              <a href="https://github.com/fiqryrev" target="_blank" rel="noopener noreferrer" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
+              <a href="https://github.com/fiqryrev" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
                 <FaGithub />
               </a>
-              <a href="https://linkedin.com/in/fiqryrevadiansyah" target="_blank" rel="noopener noreferrer" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
+              <a href="https://linkedin.com/in/fiqryrevadiansyah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
                 <FaLinkedin />
               </a>
-              <a href="https://instagram.com/fiqryrev" target="_blank" rel="noopener noreferrer" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
+              <a href="https://instagram.com/fiqryrev" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
                 <FaInstagram />
               </a>
-              <a href="mailto:fiqryrevadiansyah@gmail.com" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
+              <a href="mailto:fiqryrevadiansyah@gmail.com" aria-label="Send email" className="text-3xl md:text-2xl text-white/60 hover:text-purple-400 hover:scale-110 transition-all duration-200">
                 <FaEnvelope />
               </a>
             </div>
           </div>
-          <div>
+          <nav aria-label="Footer solutions">
             <h4 className="text-lg md:text-xl font-semibold mb-4 text-white/80">Solutions</h4>
             <ul className="space-y-2 md:space-y-3">
               <li>
-                <Link href="/solutions/data-ai-product" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Data and AI Product</Link> 
+                <Link href="/solutions/data-ai-product" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Data and AI Product</Link>
               </li>
               <li>
                 <Link href="/solutions/data-platform-engineering" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Data Platform and Engineering</Link>
@@ -48,8 +48,8 @@ const Footer: React.FC = () => {
                 <Link href="/solutions/web-development" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">Web Development</Link>
               </li>
             </ul>
-          </div>
-          <div>
+          </nav>
+          <nav aria-label="Footer resources">
             <h4 className="text-lg md:text-xl font-semibold mb-4 text-white/80">Resources</h4>
             <ul className="space-y-2 md:space-y-3">
               <li>
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 <Link href="/about" className="text-sm md:text-base text-white/60 hover:text-purple-400 transition-colors duration-200">About</Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
         <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/10 text-center">
           <p className="text-sm md:text-base text-white/50">&copy; {new Date().getFullYear()} Fiqry Revadiansyah. All rights reserved.</p>

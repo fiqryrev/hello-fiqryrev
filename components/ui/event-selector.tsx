@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
+import { useReducedMotion } from '@/lib/use-reduced-motion';
 
 interface EventOption {
   title: string;
@@ -17,10 +18,18 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animatedOptions, setAnimatedOptions] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   const handleOptionClick = (index: number) => {
     if (index !== activeIndex) {
       setActiveIndex(index);
+    }
+  };
+
+  const handleOptionKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOptionClick(index);
     }
   };
 
@@ -55,14 +64,16 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
     };
   }, [events, isMobile]);
 
-  // Auto-rotate through events
+  // Auto-rotate through events (paused when reduced motion is preferred)
   useEffect(() => {
+    if (reducedMotion) return;
+
     const interval = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % events.length);
-    }, 10000); // Change every 10 seconds
+    }, 10000);
 
     return () => clearInterval(interval);
-  }, [events.length]);
+  }, [events.length, reducedMotion]);
 
   // Mobile Slider render function
   const renderMobileSlider = () => (
@@ -114,7 +125,7 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
         </button>
 
         <div className="flex gap-2">
-          {events.map((_, index) => (
+          {events.map((event, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
@@ -123,7 +134,7 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
                   ? 'w-6 bg-gradient-to-r from-blue-400 to-purple-400'
                   : 'w-2 bg-white/20'
               }`}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={event.title}
             />
           ))}
         </div>
@@ -166,13 +177,18 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
         {events.map((option, index) => (
           <div
             key={index}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activeIndex === index}
+            aria-label={option.title}
+            onKeyDown={(e) => handleOptionKeyDown(e, index)}
             className={`
               option relative flex flex-col justify-end overflow-hidden transition-all duration-700 ease-in-out
               ${activeIndex === index ? 'active' : ''}
             `}
             style={{
               backgroundImage: `url('${option.image}')`,
-              backgroundSize: activeIndex === index ? 'cover' : 'cover',
+              backgroundSize: 'cover',
               backgroundPosition: 'center',
               backfaceVisibility: 'hidden',
               opacity: animatedOptions.includes(index) ? 1 : 0,
@@ -253,7 +269,7 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
 
       {/* Desktop Indicator dots */}
       <div className="hidden md:flex gap-2 mt-8 relative z-10">
-        {events.map((_, index) => (
+        {events.map((event, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
@@ -262,7 +278,7 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
                 ? 'w-8 bg-gradient-to-r from-blue-400 to-purple-400'
                 : 'w-2 bg-white/20 hover:bg-white/30'
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={event.title}
           />
         ))}
       </div>
@@ -365,6 +381,17 @@ const EventSelector: React.FC<EventSelectorProps> = memo(({ events }) => {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-spin-slow,
+          .animate-float,
+          .animate-twinkle,
+          .animate-fadeInTop {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
         }
       `}</style>
     </div>

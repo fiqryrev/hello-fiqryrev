@@ -1,57 +1,31 @@
-'use client';
-
 import React from 'react';
 import { Shield, Lock, Eye, FileCheck, AlertTriangle, Database, Users, CheckCircle, Sparkles, Server, GitBranch } from 'lucide-react';
 import Link from 'next/link';
+import { SolutionHeader, MetricsGrid, GradientSeparator, SolutionCTA } from '@/app/solutions/_components'
+import type { Metadata } from 'next';
 
-const DataGovernanceSecurityPage: React.FC = () => {
+export const metadata: Metadata = {
+  title: 'Data Governance & Security',
+  description: 'Ensure data quality, compliance, and security with AI-powered governance and engineering solutions.',
+};
+
+export default function DataGovernanceSecurityPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="pt-24">
         <div className="container mx-auto px-4 py-12">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-              </span>
-              <span className="text-xs text-white/70 font-medium">Data Governance & Compliance</span>
-            </div>
+          <SolutionHeader
+            badgeText="Data Governance & Compliance"
+            title="Data Governance & Security"
+            subtitle="Ensure data quality, compliance, and security with AI-powered governance and engineering solutions"
+          />
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Data Governance & Security
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 font-light max-w-3xl mx-auto">
-              Ensure data quality, compliance, and security with AI-powered governance and engineering solutions
-            </p>
-          </div>
-
-          {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Shield className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">100%</div>
-              <div className="text-sm text-white/60">Compliance Rate</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Lock className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">256-bit</div>
-              <div className="text-sm text-white/60">Encryption</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Eye className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">24/7</div>
-              <div className="text-sm text-white/60">Monitoring</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <AlertTriangle className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">Zero</div>
-              <div className="text-sm text-white/60">Breaches</div>
-            </div>
-          </div>
+          <MetricsGrid items={[
+            { icon: Shield, value: "100%", label: "Compliance Rate" },
+            { icon: Lock, value: "256-bit", label: "Encryption" },
+            { icon: Eye, value: "24/7", label: "Monitoring" },
+            { icon: AlertTriangle, value: "Zero", label: "Breaches" },
+          ]} />
 
           {/* Compliance Frameworks */}
           <section className="mb-16">
@@ -566,64 +540,20 @@ const DataGovernanceSecurityPage: React.FC = () => {
             </div>
           </section>
 
-          {/* Separator with Gradient */}
-          <div className="relative my-16">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-purple-400/20"></div>
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-black px-4">
-                <span className="text-purple-400">✦</span>
-              </span>
-            </div>
-          </div>
+          <GradientSeparator />
 
-          {/* CTA Section */}
-          <section className="text-center">
-            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-purple-400/10 border border-purple-400/30">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-xs text-white/70 font-medium">Secure Your Data</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Protect Your Most Valuable Asset
-                </span>
-              </h2>
-
-              <p className="text-white/80 mb-3 text-lg">
-                Implement enterprise-grade security and governance
-              </p>
-
-              <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
-                Whether you need compliance implementation, security hardening, or governance frameworks,
-                I&apos;ll help you protect your data while maintaining operational efficiency.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/resources/contact-form"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-105 transition-all duration-300"
-                >
-                  Start Security Assessment
-                </Link>
-                <Link
-                  href="/resources/case-studies"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105"
-                >
-                  View Case Studies
-                </Link>
-              </div>
-            </div>
-          </section>
+          <SolutionCTA
+            badgeText="Secure Your Data"
+            headline="Protect Your Most Valuable Asset"
+            tagline="Implement enterprise-grade security and governance"
+            body="Whether you need compliance implementation, security hardening, or governance frameworks, I'll help you protect your data while maintaining operational efficiency."
+            primaryHref="/resources/contact-form"
+            primaryLabel="Start Security Assessment"
+            secondaryHref="/resources/case-studies"
+            secondaryLabel="View Case Studies"
+          />
         </div>
       </div>
     </div>
   );
-};
-
-export default DataGovernanceSecurityPage;
+}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Search, Database, BarChart3, Layers, GitBranch, Code2, Shield, Sparkles } from 'lucide-react';
+import { SolutionHeader, GradientSeparator, SolutionCTA } from '@/app/solutions/_components'
 
 interface Tool {
   id: string;
@@ -111,25 +112,11 @@ export default function DataStackPage() {
     <div className="min-h-screen bg-black text-white">
       <div className="pt-24">
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-              </span>
-              <span className="text-xs text-white/70 font-medium">Business Intelligence & Analytics</span>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Data Stack Components
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 font-light max-w-3xl mx-auto">
-              Best-of-breed production-ready data tools and frameworks preconfigured to work seamlessly on your data platform
-            </p>
-          </div>
+          <SolutionHeader
+            badgeText="Business Intelligence & Analytics"
+            title="Data Stack Components"
+            subtitle="Best-of-breed production-ready data tools and frameworks preconfigured to work seamlessly on your data platform"
+          />
 
           {/* Search and Filter Section */}
           <div className="flex flex-col lg:flex-row gap-8 mb-8">
@@ -229,60 +216,19 @@ export default function DataStackPage() {
             </div>
           </div>
 
-          {/* Separator with Gradient */}
-          <div className="relative my-16">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-purple-400/20"></div>
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-black px-4">
-                <span className="text-purple-400">✦</span>
-              </span>
-            </div>
-          </div>
+          <GradientSeparator />
 
-          {/* CTA Section */}
-          <section className="text-center mb-16">
-            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-purple-400/10 border border-purple-400/30">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-xs text-white/70 font-medium">Let&apos;s Build Together</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Need Custom Analytics Solutions?
-                </span>
-              </h2>
-
-              <p className="text-white/80 mb-3 text-lg">
-                Transform your data into actionable insights
-              </p>
-
-              <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
-                Whether you need a complete BI platform or integration of specific tools,
-                I&apos;ll help you build the perfect analytics stack for your business.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="/resources/contact-form"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-105 transition-all duration-300"
-                >
-                  Get Started
-                </a>
-                <a
-                  href="/resources/case-studies"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105"
-                >
-                  View Case Studies
-                </a>
-              </div>
-            </div>
-          </section>
+          <SolutionCTA
+            badgeText="Let's Build Together"
+            headline="Need Custom Analytics Solutions?"
+            tagline="Transform your data into actionable insights"
+            body="Whether you need a complete BI platform or integration of specific tools, I'll help you build the perfect analytics stack for your business."
+            primaryHref="/resources/contact-form"
+            primaryLabel="Get Started"
+            secondaryHref="/resources/case-studies"
+            secondaryLabel="View Case Studies"
+            className="mb-16"
+          />
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image'
 import { Brain, Zap, TrendingUp, Shield, Database, ArrowRight, CheckCircle, GitBranch } from 'lucide-react'
 import Link from 'next/link'
+import { SolutionHeader, MetricsGrid, GradientSeparator, SolutionCTA } from '@/app/solutions/_components'
 
 export const metadata: Metadata = {
   title: 'Data & AI Product Solutions',
@@ -13,49 +14,18 @@ export default function DataAIProduct() {
     <div className="min-h-screen bg-black text-white">
       <div className="pt-24">
         <div className="container mx-auto px-4 py-12">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-              </span>
-              <span className="text-xs text-white/70 font-medium">AI-Powered Solutions</span>
-            </div>
+          <SolutionHeader
+            badgeText="AI-Powered Solutions"
+            title="Data & AI Products"
+            subtitle="Transform your business with intelligent solutions powered by cutting-edge AI and data engineering"
+          />
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Data & AI Products
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 font-light max-w-3xl mx-auto">
-              Transform your business with intelligent solutions powered by cutting-edge AI and data engineering
-            </p>
-          </div>
-
-          {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Brain className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">10+</div>
-              <div className="text-sm text-white/60">AI Models Deployed</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Zap className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">90%</div>
-              <div className="text-sm text-white/60">Process Automation</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <TrendingUp className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">5x</div>
-              <div className="text-sm text-white/60">ROI Improvement</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Shield className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">100%</div>
-              <div className="text-sm text-white/60">Data Security</div>
-            </div>
-          </div>
+          <MetricsGrid items={[
+            { icon: Brain, value: "10+", label: "AI Models Deployed" },
+            { icon: Zap, value: "90%", label: "Process Automation" },
+            { icon: TrendingUp, value: "5x", label: "ROI Improvement" },
+            { icon: Shield, value: "100%", label: "Data Security" },
+          ]} />
 
           {/* Featured Solutions */}
           <section className="mb-16">
@@ -373,60 +343,18 @@ export default function DataAIProduct() {
             </div>
           </section>
 
-          {/* Separator with Gradient */}
-          <div className="relative my-16">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-purple-400/20"></div>
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-black px-4">
-                <span className="text-purple-400">✦</span>
-              </span>
-            </div>
-          </div>
+          <GradientSeparator />
 
-          {/* CTA Section */}
-          <section className="text-center">
-            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-purple-400/10 border border-purple-400/30">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-xs text-white/70 font-medium">Ready to Transform?</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Let&apos;s Build Your AI-Powered Future
-                </span>
-              </h2>
-
-              <p className="text-white/80 mb-3 text-lg">
-                Transform your data into competitive advantage
-              </p>
-
-              <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
-                Whether you need document automation, predictive analytics, or custom AI solutions,
-                I&apos;m here to help you leverage the power of data and artificial intelligence.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/resources/contact-form"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-105 transition-all duration-300"
-                >
-                  Start Your AI Journey
-                </Link>
-                <Link
-                  href="/resources/case-studies"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105"
-                >
-                  View Success Stories
-                </Link>
-              </div>
-            </div>
-          </section>
+          <SolutionCTA
+            badgeText="Ready to Transform?"
+            headline="Let's Build Your AI-Powered Future"
+            tagline="Transform your data into competitive advantage"
+            body="Whether you need document automation, predictive analytics, or custom AI solutions, I'm here to help you leverage the power of data and artificial intelligence."
+            primaryHref="/resources/contact-form"
+            primaryLabel="Start Your AI Journey"
+            secondaryHref="/resources/case-studies"
+            secondaryLabel="View Success Stories"
+          />
         </div>
       </div>
     </div>

@@ -4,10 +4,10 @@ import HeroSectionNew from './components/1-HeroSectionNew';
 const CareerHighlights = dynamic(() => import('./components/2-CareerHighlights'), {
   loading: () => <section className="min-h-screen bg-black" />,
 });
-const WorkExperience = dynamic(() => import('./components/3-WorkExperience'), {
+const PortfolioShowcase = dynamic(() => import('./components/3-PortfolioShowcase'), {
   loading: () => <section className="min-h-screen bg-black" />,
 });
-const RolePortfolio = dynamic(() => import('./components/4-RolePortfolio'), {
+const WorkExperience = dynamic(() => import('./components/4-WorkExperience'), {
   loading: () => <section className="min-h-screen bg-black" />,
 });
 const AIBuiltSection = dynamic(() => import('./components/5-AIBuiltSection'), {
@@ -19,8 +19,8 @@ export default function Home() {
     <main>
       <HeroSectionNew />
       <CareerHighlights />
+      <PortfolioShowcase />
       <WorkExperience />
-      <RolePortfolio />
       <AIBuiltSection />
     </main>
   );

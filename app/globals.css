@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #000000;
-  --foreground: #ffffff;
-}
-
-body {
-  color: var(--foreground);
-  background-color: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -94,25 +83,6 @@ body {
     --component-line-inactive-color: var(--border);
     --component-active-color-default: var(--accent-foreground);
   }
-  .dark {
-    --color-1: 0 100% 63%;
-    --color-2: 270 100% 63%;
-    --color-3: 210 100% 63%;
-    --color-4: 195 100% 63%;
-    --color-5: 90 100% 63%;
-    --component-inactive-color: var(--muted-foreground);
-    --component-bg: var(--card);
-    --component-shadow: var(--border);
-    --component-active-bg: var(--secondary);
-    --component-line-inactive-color: var(--muted-foreground);
-    --component-active-color-default: var(--accent-foreground);
-  }
-  .theme {
-    --color-chart-2: var(--color-chart-2);
-    --color-chart-3: var(--color-chart-3);
-    --color-chart-4: var(--color-chart-4);
-    --color-chart-5: var(--color-chart-5);
-  }
 }
 
 @layer base {
@@ -121,6 +91,9 @@ body {
   }
   body {
     @apply bg-black text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-purple-400;
   }
 }
 
@@ -161,39 +134,6 @@ body {
 @media (max-width: 480px) {
   html {
     font-size: 12px;
-  }
-}
-
-/* Improved container class */
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
   }
 }
 
@@ -275,15 +215,6 @@ body {
   @apply my-2 sm:my-4 md:my-6 lg:my-8;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 /* Particle Effect Styles */
 .particle-container {
   position: absolute;
@@ -337,6 +268,34 @@ body {
     }
   80% {
     transform: translateY(0);
+    }
+  }
+}
+
+/* Reduced-motion: disable non-essential animations globally */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .particle,
+  .animate-ping,
+  .animate-pulse,
+  .animate-spin-slow,
+  .animate-float-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  @keyframes particleFloat {
+    0%, 100% {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes iconBounce {
+    0%, 100% {
+      transform: none;
     }
   }
 }

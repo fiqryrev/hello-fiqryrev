@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Wand2, Code2, Database, Sparkles, Palette, Layers, Zap, Brain, Terminal, Globe, Cpu, Cloud, GitBranch, Blocks, Smartphone, Server } from 'lucide-react';
+import { SolutionHeader, SolutionCTA } from '@/app/solutions/_components'
 
 interface AITool {
   id: string;
@@ -114,25 +115,11 @@ export default function WebDevelopmentPage() {
     <div className="min-h-screen bg-black text-white">
       <div className="pt-24">
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-              </span>
-              <span className="text-xs text-white/70 font-medium">AI-Powered Development</span>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Build with AI Magic
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 font-light max-w-3xl mx-auto">
-              Transform ideas into production-ready applications using AI. From UI generation to database design, build complete SaaS products in minutes, not months.
-            </p>
-          </div>
+          <SolutionHeader
+            badgeText="AI-Powered Development"
+            title="Build with AI Magic"
+            subtitle="Transform ideas into production-ready applications using AI. From UI generation to database design, build complete SaaS products in minutes, not months."
+          />
 
           {/* AI Workflow Process */}
           <div className="mb-16">
@@ -336,48 +323,17 @@ export default function WebDevelopmentPage() {
             </div>
           </div>
 
-          {/* CTA Section */}
-          <section className="text-center mb-16">
-            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-purple-400/10 border border-purple-400/30">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-xs text-white/70 font-medium">Let&apos;s Build with AI</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Ready to 10x Your Development Speed?
-                </span>
-              </h2>
-
-              <p className="text-white/80 mb-3 text-lg">
-                Ship faster with AI-powered development
-              </p>
-
-              <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
-                From idea to production in hours, not weeks. Let AI handle the boilerplate
-                while you focus on what makes your product unique.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="/resources/contact-form"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-105 transition-all duration-300"
-                >
-                  Start Building with AI
-                </a>
-                <a
-                  href="/resources/case-studies"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105"
-                >
-                  View AI Projects
-                </a>
-              </div>
-            </div>
-          </section>
+          <SolutionCTA
+            badgeText="Let's Build with AI"
+            headline="Ready to 10x Your Development Speed?"
+            tagline="Ship faster with AI-powered development"
+            body="From idea to production in hours, not weeks. Let AI handle the boilerplate while you focus on what makes your product unique."
+            primaryHref="/resources/contact-form"
+            primaryLabel="Start Building with AI"
+            secondaryHref="/resources/case-studies"
+            secondaryLabel="View AI Projects"
+            className="mb-16"
+          />
         </div>
       </div>
     </div>

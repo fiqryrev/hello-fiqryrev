@@ -1,57 +1,31 @@
-'use client';
-
 import React from 'react';
 import { Search, Brain, Database, Zap, Layers, GitBranch, ArrowRight, CheckCircle, Sparkles, Code, Server, Shield } from 'lucide-react';
 import Link from 'next/link';
+import { SolutionHeader, MetricsGrid, GradientSeparator, SolutionCTA } from '@/app/solutions/_components'
+import type { Metadata } from 'next';
 
-const SearchRetrievalPage: React.FC = () => {
+export const metadata: Metadata = {
+  title: 'Search & Retrieval Systems',
+  description: 'Build intelligent search systems with vector embeddings, semantic search, and AI-powered retrieval.',
+};
+
+export default function SearchRetrievalPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="pt-24">
         <div className="container mx-auto px-4 py-12">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-              </span>
-              <span className="text-xs text-white/70 font-medium">AI-Powered Search Solutions</span>
-            </div>
+          <SolutionHeader
+            badgeText="AI-Powered Search Solutions"
+            title="Search & Retrieval Systems"
+            subtitle="Build intelligent search systems with vector embeddings, semantic search, and AI-powered retrieval"
+          />
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Search & Retrieval Systems
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 font-light max-w-3xl mx-auto">
-              Build intelligent search systems with vector embeddings, semantic search, and AI-powered retrieval
-            </p>
-          </div>
-
-          {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Search className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">&lt;50ms</div>
-              <div className="text-sm text-white/60">Query Latency</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Brain className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">99%</div>
-              <div className="text-sm text-white/60">Accuracy</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Database className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">1B+</div>
-              <div className="text-sm text-white/60">Vectors</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/10 backdrop-blur-md border border-purple-400/20 rounded-xl p-6 text-center hover:border-purple-400/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
-              <Zap className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-3xl font-bold text-purple-400 mb-1">10x</div>
-              <div className="text-sm text-white/60">Faster Retrieval</div>
-            </div>
-          </div>
+          <MetricsGrid items={[
+            { icon: Search, value: "<50ms", label: "Query Latency" },
+            { icon: Brain, value: "99%", label: "Accuracy" },
+            { icon: Database, value: "1B+", label: "Vectors" },
+            { icon: Zap, value: "10x", label: "Faster Retrieval" },
+          ]} />
 
           {/* Vector Search Solutions */}
           <section className="mb-16">
@@ -446,64 +420,20 @@ const SearchRetrievalPage: React.FC = () => {
             </div>
           </section>
 
-          {/* Separator with Gradient */}
-          <div className="relative my-16">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-purple-400/20"></div>
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-black px-4">
-                <span className="text-purple-400">✦</span>
-              </span>
-            </div>
-          </div>
+          <GradientSeparator />
 
-          {/* CTA Section */}
-          <section className="text-center">
-            <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-purple-400/10 border border-purple-400/30">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-xs text-white/70 font-medium">Elevate Your Search</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Build Intelligent Search Systems
-                </span>
-              </h2>
-
-              <p className="text-white/80 mb-3 text-lg">
-                Transform how users discover and retrieve information
-              </p>
-
-              <p className="text-white/60 mb-8 text-base max-w-2xl mx-auto">
-                Whether you need semantic search, RAG implementation, or multimodal retrieval,
-                I&apos;ll help you build search systems that understand context and deliver relevant results.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/resources/contact-form"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-105 transition-all duration-300"
-                >
-                  Start Your Search Project
-                </Link>
-                <Link
-                  href="/resources/case-studies"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105"
-                >
-                  View Case Studies
-                </Link>
-              </div>
-            </div>
-          </section>
+          <SolutionCTA
+            badgeText="Elevate Your Search"
+            headline="Build Intelligent Search Systems"
+            tagline="Transform how users discover and retrieve information"
+            body="Whether you need semantic search, RAG implementation, or multimodal retrieval, I'll help you build search systems that understand context and deliver relevant results."
+            primaryHref="/resources/contact-form"
+            primaryLabel="Start Your Search Project"
+            secondaryHref="/resources/case-studies"
+            secondaryLabel="View Case Studies"
+          />
         </div>
       </div>
     </div>
   );
-};
-
-export default SearchRetrievalPage;
+}
