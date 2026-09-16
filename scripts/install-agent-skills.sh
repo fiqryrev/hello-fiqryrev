@@ -58,7 +58,8 @@ for skill_path in "$SRC_DIR"/*/; do
   if [[ -L "$target" ]]; then
     resolved="$(cd "$(dirname "$target")" && cd "$(readlink "$target")" 2>/dev/null && pwd || true)"
     canonical="$(cd "$skill_path" && pwd)"
-    if [[ "$resolved" == "$canonical" ]]; then
+    # --copy intentionally falls through so it can replace a valid symlink.
+    if [[ "$resolved" == "$canonical" && "$MODE" != "copy" ]]; then
       [[ "$MODE" == "check" ]] && echo "ok   ${name} (symlink)"
       continue
     fi
