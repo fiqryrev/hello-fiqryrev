@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/install-agent-skills.sh --check >/dev/null 2>&1 || ./scripts/install-agent-skills.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

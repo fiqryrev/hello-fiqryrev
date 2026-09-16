@@ -160,7 +160,7 @@ Six service area pages under `app/solutions/`:
 
 ## Development Guidelines
 
-Full coding standards, architecture rules, and conventions are documented in `.claude/CLAUDE.md`. Key points:
+Shared agent guidance is documented in `AGENTS.md`. Claude Code loads it through the root `CLAUDE.md`, which also imports the Claude-specific conventions in `.claude/CLAUDE.md`. Key points:
 
 - **Server components by default** — only add `"use client"` when needed
 - **`cn()` for class merging** — never template literals for conditional classes

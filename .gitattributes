@@ -1,0 +1,2 @@
+# Keep committed symlinks intact on checkout
+.claude/skills/** -text
