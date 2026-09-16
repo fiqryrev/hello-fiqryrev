@@ -1,0 +1,4 @@
+interface:
+  display_name: "Worktree PR Harness"
+  short_description: "Guarded plan, validate, and publish workflow for GitHub PRs"
+  default_prompt: "Use the repository worktree PR harness for this goal, preserving its approval gates and returning the PR URL only after validation and authorized publication."

@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "pr:harness": "node scripts/worktree-pr-harness.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

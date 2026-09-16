@@ -13,6 +13,12 @@ Committed skills live in `.agents/skills/`. Claude Code sees them through
 |---|---|---|
 | `design-taste` | `.agents/skills/design-taste/SKILL.md` | Any work on how an interface looks or behaves |
 | `frontend-tailwind-best-practices` | `.agents/skills/frontend-tailwind-best-practices/SKILL.md` | Tailwind CSS component styling and layout |
+| `worktree-pr-harness` | `.agents/skills/worktree-pr-harness/SKILL.md` | Guarded planning, implementation, validation, and GitHub PR lifecycle in an isolated worktree |
+
+Use `worktree-pr-harness` for repository changes that need a versioned plan, a
+dedicated worktree, explicit mutation approvals, or repeatable GitHub PR
+revisions and cleanup. Its primary invocation is `$worktree-pr-harness <goal>`;
+the recovery and audit interface is `npm run pr:harness -- ...`.
 
 ## design-taste: when to load it
 
